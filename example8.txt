@@ -1,0 +1,32 @@
+setgridsize(200, 100, 1)
+setcellsize(5e-9, 5e-9, 5e-9)
+
+m = uniform(1, 1, 0)  // no need to normalize length
+saveas(m, "uniform")
+
+m = vortex(1, -1)     // circulation, polarization
+saveas(m, "vortex")
+
+m = twodomain(1,0,0,  0,1,0,  -1,0,0) // Néel wall
+saveas(m, "twodomain")
+
+m = twodomain(1,0,0,  0,1,0,  -1,0,0).rotz(-pi/4)
+saveas(m, "twodomain_rot")
+
+m = vortexwall(1, -1, 1, 1) 
+saveas(m, "vortexwall")
+
+m = vortexwall(1, -1, 1, 1).scale(1/2, 1, 1)
+saveas(m, "vortexwall_scale")
+
+m = vortex(1,-1).transl(100e-9, 50e-9, 0)
+saveas(m, "vortex_transl")
+
+// set m in only a part of space, or a single cell:
+m = uniform(1, 1, 1)
+m.setInShape(cylinder(400e-9, 100e-9), vortex(1, -1))
+m.setCell(20, 10, 0, 0.1, 0.1, -0.9) // set in cell index  [20,10,0]
+saveas(m, "setInShape_setCell")
+
+// Read m form .dump file, assuming it exists:
+// m.loadfile("myfile.dump")

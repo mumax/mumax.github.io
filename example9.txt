@@ -1,0 +1,28 @@
+nx := 512
+ny := 256
+setgridsize(nx, ny, 1)
+setcellsize(2e-6/Nx, 1e-6/Ny, 20e-9)
+
+Aex   = 1.3e-11
+Msat  = 8e5
+Ku1   = 5e2
+AnisU = vector(1, 0, 0)
+alpha = 3
+
+m = vortex(1, 1)
+run(3e-9)
+
+tableadd(B_ext)
+
+th := 0.0001 // field direction
+
+saveas(m, "m_initial")
+
+// Scan the hysteresis loop:
+for B:=0.; B<100e-3; B+=10e-3{
+	B_ext = vector(B*cos(th), B*sin(th), 0)
+	run(.1e-9)
+	tablesave()
+}
+
+saveas(m, "m_saturated")

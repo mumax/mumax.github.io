@@ -1,0 +1,6 @@
+i := 7    // defines a new variable i, type automatically detected to be int
+print(i)  // now we can use i
+i = 5     // assign new value, don't use ':=' (attempt to re-declare)
+
+str := "hello" // defines str, type automatically is string
+//str = 1      // would fail, cannot assign int to string
