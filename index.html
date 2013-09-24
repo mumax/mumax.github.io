@@ -8,8 +8,6 @@
 
 <body>
 
-
-
 <div style="float:left">
 	<img src="nimble-cubes128.png"/>
 </div>
@@ -27,10 +25,10 @@
 
 <div style="width:50%; margin-left:25%">
 
-<p><b>mumax<sup>3</sup></b> is a GPU-accelerated micromagnetic simulation program developed at <a href="http://www.ugent.be">Ghent University</a>, <a href="http://dynamat.ugent.be">DyNaMat</a> group. The software is free and open-source under a GPLv3 license.</p>
-
-<p>mumax<sup>3</sup> offers a speed-up of up to 100x compared to CPU-based simulations. Additionally, it is optimized for low memory use and easily allows over 10 million FD cells. </p>
-
+	<p><b>mumax<sup>3</sup></b> is a GPU-accelerated micromagnetic simulation program developed at <a href="http://www.ugent.be">Ghent University</a>, <a href="http://dynamat.ugent.be">DyNaMat</a> group. The software is free and open-source under a GPLv3 license.</p>
+	
+	<p>mumax<sup>3</sup> offers a speed-up of up to 100x compared to CPU-based simulations. Additionally, it is optimized for low memory use and easily allows over 10 million FD cells. </p>
+	
 </div>
 
 <div style="float:left">
@@ -63,19 +61,12 @@
 <div style="float:left; width:50%">
 	<h2>web GUI</h2>
 	<p>mumax<sup>3</sup> includes a browser-based user that interface lets you follow a running simulation or modify it on-the-fly, be it on your local machine or remotely.</p>
-</div>
 
-<div style="float:left">
-	<a href="web2.png"><img src="web2.png" width=407 /></a>
-</div>
-<br style="clear:both"/> 
+	<h2>simple scripting</h2>
+	<p>mumax3 provides simple yet powerful input scripting. E.g., the example applies a time-dependent external field to a uniform magnet (FMR experiment).</p>
 
-
-<h2>simple scripting</h2>
-
-<p>mumax3 provides simple yet powerful input scripting. E.g., the example below applies a time-dependent external field to a uniform magnet (FMR experiment).</p>
-
-<pre><code>setgridsize(128, 32, 4)
+<pre><code>
+setgridsize(128, 32, 4)
 setcellsize(5e-9, 5e-9, 5e-9)
 Msat = 860e3
 Aex  = 13e-12
@@ -88,6 +79,35 @@ B_ext = vector(0.1, A*sin(2*pi*f*t), 0)
 
 run(10e-9)
 </code></pre>
+
+</div>
+
+<div style="float:left; ">
+	<a href="web2.png"><img src="web2.png" width=407 /></a>
+</div>
+<br style="clear:both"/> 
+
+
+
+<div style="width:60%;">
+
+	<h2>requirements</h2>
+	<p>mumax<sup>3</sup> is cross-platform and runs on Linux, Windows and Mac platforms. You need an nVIDIA GPU with compute capability 2.0 or higher, as listed <a href="http://developer.nvidia.com/cuda-gpus">here</a>.
+	</p>
+	We recommend:
+	<ul>
+		<li>GTX 670 (2GB) for very good performance per price</li>
+		<li>GTX 680 (2GB) for better performance, but pricier</li>
+		<li>GTX TITAN (6GB) for very large simulations</li>
+	</ul>
+
+	
+	<p>Also, you need to install nVIDIA's CUDA toolkit.</p>
+	<p>Finally you need to use nVIDIA's proprietary graphics driver, which may already be installed on your system.</p>
+	
+</div>
+
+
 
 <hr/>
 
