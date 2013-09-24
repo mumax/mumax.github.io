@@ -10,12 +10,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="101"
+   width="180"
    height="31"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="home.svg">
+   sodipodi:docname="documentation.svg">
   <defs
      id="defs4">
     <linearGradient
@@ -38,7 +38,7 @@
        x2="192.14285"
        y2="193.79076"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.5,0,0,0.5,81.428573,64.038233)" />
+       gradientTransform="matrix(0.89335337,0,0,0.49451135,50.124955,64.490294)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -48,8 +48,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="-4.2642862"
-     inkscape:cy="-29.811018"
+     inkscape:cx="-4.2732131"
+     inkscape:cy="-29.81159"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -69,8 +69,8 @@
        visible="true"
        enabled="true"
        snapvisiblegridlinesonly="true"
-       originx="-120.92857px"
-       originy="-931.64286px" />
+       originx="-120.9375px"
+       originy="-931.64344px" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -80,7 +80,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -88,26 +88,26 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-120.92857,-89.719322)">
+     transform="translate(-120.9375,-89.71875)">
     <rect
-       style="fill:url(#linearGradient3763);fill-opacity:1;fill-rule:evenodd;stroke:#7d7d7d;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:url(#linearGradient3763);fill-opacity:1;fill-rule:evenodd;stroke:#7d7d7d;stroke-width:1.32932067;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect2987"
-       width="100"
-       height="30"
-       x="121.42857"
-       y="90.219322"
-       ry="15" />
+       width="178.67068"
+       height="29.670681"
+       x="121.59323"
+       y="90.383987"
+       ry="14.83534" />
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="142.97644"
+       x="134.97644"
        y="110.49839"
        id="text3765"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3767"
-         x="142.97644"
+         x="134.97644"
          y="110.49839"
-         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#ffffff;fill-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">Home</tspan></text>
+         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;fill:#ffffff;fill-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">Documentation</tspan></text>
   </g>
 </svg>
