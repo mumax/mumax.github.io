@@ -3,18 +3,8 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>mx3</title>
-	<style media="all" type="text/css">
-		body { margin-left: 5%; margin-right: 5%; margin-top:4em; font-family: sans-serif;  }
-		h1   { font-size: 22px; font-weight: normal; color: #000088}
-		h2   { font-size: 18px; font-weight: normal; color: #000088}
-		h3   { font-size: 15px; font-weight: normal; color: #000088}
-		table{ border:"10"; }
-		hr   { border-style: none; border-top: 1px solid #CCCCCC; margin-top: 20px; margin-bottom: 20px }
-		a    { color: #375EAB; text-decoration: none; }
-		div  { margin-left: 20px; margin-top: 10px; margin-bottom: 20px; }
-		pre  { margin-left: 50px; margin-top: 10px; margin-bottom: 20px; margin-right: 20%; color: #000044; font-size: 12px; background-color: #EEEEFF; padding:10px; }
-	</style>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>mumax3</title>
 </head>
 
 
@@ -64,7 +54,7 @@
  <p> Exchange stiffness </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example1">[1]</a>  <a href="examples.html#example2">[2]</a>  <a href="examples.html#example6">[6]</a>  <a href="examples.html#example9">[9]</a>  <a href="examples.html#example10">[10]</a>  <a href="examples.html#example11">[11]</a>  <a href="examples.html#example12">[12]</a>  <a href="examples.html#example13">[13]</a>  <a href="examples.html#example14">[14]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  CpuLUT  Eval  Get  GetRegion  InputType  IsUniform  LUT  LUT1  Mesh  NComp  NUpload  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  GetRegion  IsUniform  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -75,7 +65,7 @@
  <p> Landau-Lifshitz damping constant </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example1">[1]</a>  <a href="examples.html#example2">[2]</a>  <a href="examples.html#example6">[6]</a>  <a href="examples.html#example9">[9]</a>  <a href="examples.html#example10">[10]</a>  <a href="examples.html#example11">[11]</a>  <a href="examples.html#example12">[12]</a>  <a href="examples.html#example13">[13]</a>  <a href="examples.html#example14">[14]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  CpuLUT  Eval  Get  GetRegion  InputType  IsUniform  LUT  LUT1  Mesh  NComp  NUpload  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  GetRegion  IsUniform  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -86,7 +76,7 @@
  <p> Cubic anisotropy direction #1 </p> 
 
 
- <p> <span style="color:grey"> <b>methods:</b>  CpuLUT  Eval  Get  GetRegion  InputType  IsUniform  LUT  LUT1  Mesh  NComp  NUpload  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  GetRegion  IsUniform  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -97,7 +87,7 @@
  <p> Cubic anisotorpy directon #2 </p> 
 
 
- <p> <span style="color:grey"> <b>methods:</b>  CpuLUT  Eval  Get  GetRegion  InputType  IsUniform  LUT  LUT1  Mesh  NComp  NUpload  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  GetRegion  IsUniform  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -108,7 +98,7 @@
  <p> Uniaxial anisotropy direction </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example2">[2]</a>  <a href="examples.html#example9">[9]</a>  <a href="examples.html#example11">[11]</a>  <a href="examples.html#example13">[13]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  CpuLUT  Eval  Get  GetRegion  InputType  IsUniform  LUT  LUT1  Mesh  NComp  NUpload  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  GetRegion  IsUniform  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -169,7 +159,7 @@
 
 
 
-<span style="color:#000088; font-size:1.3em">AutoSave</span> &nbsp; &nbsp; <span style="color:gray; font-size:0.9em"> func(engine.Getter, float64)  </span> <br/>
+<span style="color:#000088; font-size:1.3em">AutoSave</span> &nbsp; &nbsp; <span style="color:gray; font-size:0.9em"> func(engine.Slicer, float64)  </span> <br/>
 
  <p> Auto save space-dependent quantity every period (s). </p> 
 
@@ -180,9 +170,9 @@
 
 
 
-<span style="color:#000088; font-size:1.3em">average</span> &nbsp; &nbsp; <span style="color:gray; font-size:0.9em"> func(engine.Getter) []float64  </span> <br/>
+<span style="color:#000088; font-size:1.3em">average</span> &nbsp; &nbsp; <span style="color:gray; font-size:0.9em"> func(engine.Slicer) []float64  </span> <br/>
 
- <p> Average of space-dependent quantity </p> 
+ <p> Average of space-dependent quantity over magnet volume </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example6">[6]</a>  <a href="examples.html#example12">[12]</a>  </p> 
 
@@ -196,7 +186,7 @@
  <p> Anisotropy field </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example2">[2]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  Get  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -207,7 +197,7 @@
  <p> Magnetostatic field </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example2">[2]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  Get  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -218,7 +208,7 @@
  <p> Effective field </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example2">[2]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  Get  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -229,7 +219,7 @@
  <p> Exchange field (T) </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example2">[2]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  Get  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -240,7 +230,7 @@
  <p> Externally applied field </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example1">[1]</a>  <a href="examples.html#example2">[2]</a>  <a href="examples.html#example9">[9]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  Add  Eval  Get  InputType  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  Add  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -251,7 +241,7 @@
  <p> (internal) </p> 
 
 
- <p> <span style="color:grey"> <b>methods:</b>  CpuLUT  Eval  Get  GetRegion  InputType  IsUniform  LUT  LUT1  Mesh  NComp  NUpload  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  GetRegion  IsUniform  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -361,7 +351,7 @@
  <p> Dzyaloshinskii-Moriya strength </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example2">[2]</a>  <a href="examples.html#example8">[8]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  CpuLUT  Eval  Get  GetRegion  InputType  IsUniform  LUT  LUT1  Mesh  NComp  NUpload  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  GetRegion  IsUniform  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -812,7 +802,7 @@
  <p> Polarized electrical current density </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example2">[2]</a>  <a href="examples.html#example13">[13]</a>  <a href="examples.html#example14">[14]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  Add  Eval  Get  InputType  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  Add  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -823,7 +813,7 @@
  <p> (internal) </p> 
 
 
- <p> <span style="color:grey"> <b>methods:</b>  CpuLUT  Eval  Get  GetRegion  InputType  IsUniform  LUT  LUT1  Mesh  NComp  NUpload  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  GetRegion  IsUniform  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -834,7 +824,7 @@
  <p> Cubic anisotropy constant </p> 
 
 
- <p> <span style="color:grey"> <b>methods:</b>  CpuLUT  Eval  Get  GetRegion  InputType  IsUniform  LUT  LUT1  Mesh  NComp  NUpload  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  GetRegion  IsUniform  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -845,7 +835,7 @@
  <p> Uniaxial anisotropy constant </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example2">[2]</a>  <a href="examples.html#example9">[9]</a>  <a href="examples.html#example11">[11]</a>  <a href="examples.html#example13">[13]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  CpuLUT  Eval  Get  GetRegion  InputType  IsUniform  LUT  LUT1  Mesh  NComp  NUpload  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  GetRegion  IsUniform  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -878,7 +868,7 @@
  <p> Landau-Lifshitz torque/γ0 </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example2">[2]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  Get  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -944,7 +934,7 @@
  <p> Reduced magnetization (unit length) </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example1">[1]</a>  <a href="examples.html#example2">[2]</a>  <a href="examples.html#example3">[3]</a>  <a href="examples.html#example4">[4]</a>  <a href="examples.html#example6">[6]</a>  <a href="examples.html#example7">[7]</a>  <a href="examples.html#example8">[8]</a>  <a href="examples.html#example9">[9]</a>  <a href="examples.html#example10">[10]</a>  <a href="examples.html#example11">[11]</a>  <a href="examples.html#example12">[12]</a>  <a href="examples.html#example13">[13]</a>  <a href="examples.html#example14">[14]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  Eval  Get  GetCell  InputType  LoadFile  Mesh  NComp  Name  Region  Set  SetCell  SetInShape  SetRegion  SetValue  Shift  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  GetCell  LoadFile  Mesh  NComp  Name  Region  Set  SetCell  SetInShape  SetRegion  SetValue  Shift  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -955,7 +945,7 @@
  <p> Unnormalized magnetization </p> 
 
 
- <p> <span style="color:grey"> <b>methods:</b>  Get  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -1010,7 +1000,7 @@
  <p> FFT of m </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example2">[2]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  Get  Mesh  NComp  Name  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  Mesh  NComp  Name  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -1054,7 +1044,7 @@
  <p> Saturation magnetization </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example1">[1]</a>  <a href="examples.html#example2">[2]</a>  <a href="examples.html#example6">[6]</a>  <a href="examples.html#example9">[9]</a>  <a href="examples.html#example10">[10]</a>  <a href="examples.html#example11">[11]</a>  <a href="examples.html#example12">[12]</a>  <a href="examples.html#example13">[13]</a>  <a href="examples.html#example14">[14]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  CpuLUT  Eval  Get  GetRegion  InputType  IsUniform  LUT  LUT1  Mesh  NComp  NUpload  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  GetRegion  IsUniform  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -1142,7 +1132,7 @@
  <p> Outputs the region index for each cell </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example11">[11]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  Get  Gpu  Mesh  NComp  Name  SetCell  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  Gpu  Mesh  NComp  Name  SetCell  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -1181,7 +1171,7 @@
 
 
 
-<span style="color:#000088; font-size:1.3em">Save</span> &nbsp; &nbsp; <span style="color:gray; font-size:0.9em"> func(engine.Getter)  </span> <br/>
+<span style="color:#000088; font-size:1.3em">Save</span> &nbsp; &nbsp; <span style="color:gray; font-size:0.9em"> func(engine.Slicer)  </span> <br/>
 
  <p> Save space-dependent quantity once, with auto filename </p> 
 
@@ -1192,7 +1182,7 @@
 
 
 
-<span style="color:#000088; font-size:1.3em">SaveAs</span> &nbsp; &nbsp; <span style="color:gray; font-size:0.9em"> func(engine.Getter, string)  </span> <br/>
+<span style="color:#000088; font-size:1.3em">SaveAs</span> &nbsp; &nbsp; <span style="color:gray; font-size:0.9em"> func(engine.Slicer, string)  </span> <br/>
 
  <p> Save space-dependent with custom filename </p> 
 
@@ -1307,7 +1297,7 @@
  <p> Spin-transfer torque/γ0 </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example2">[2]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  Get  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -1384,7 +1374,7 @@
  <p> Total torque/γ0 </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example2">[2]</a>  <a href="examples.html#example13">[13]</a>  <a href="examples.html#example14">[14]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  Get  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  Mesh  NComp  Name  Region  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
@@ -1472,7 +1462,7 @@
  <p> Non-adiabaticity of spin-transfer-torque </p> 
 
  <p> <b>examples:</b>  <a href="examples.html#example2">[2]</a>  <a href="examples.html#example8">[8]</a>  <a href="examples.html#example13">[13]</a>  <a href="examples.html#example14">[14]</a>  </p> 
- <p> <span style="color:grey"> <b>methods:</b>  CpuLUT  Eval  Get  GetRegion  InputType  IsUniform  LUT  LUT1  Mesh  NComp  NUpload  Name  Region  SetRegion  SetValue  TableData  Type  Unit  </span> </p> 
+ <p> <span style="color:grey"> <b>methods:</b>  GetRegion  IsUniform  Mesh  NComp  Name  Region  SetRegion  SetValue  TableData  Unit  </span> </p> 
 
 <br/><hr/>
 
