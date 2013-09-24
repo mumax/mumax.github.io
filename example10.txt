@@ -1,25 +1,31 @@
-setgridsize(128, 128, 1)
-setcellsize(2e-9, 2e-9, 2e-9)
+N := 128
+setgridsize(N, N, 1)
+setcellsize(4e-9, 4e-9, 4e-9)
+d := 4e-9 * N  
 
-d      := 200e-9
-square := rect(d, d)                 // square with side d
+// disk with different anisotropy in left and right half
+defregion(1, xrange(0, inf))
+defregion(2, xrange(-inf, 0))
+defregion(0, cylinder(d, d).inverse()) // everything outside is vacuum
+save(regions)
 
-h     := 50e-9
-hole  := cylinder(h, h)              // circle with diameter h
-hole1 := hole.transl(100e-9, 0, 0)   // translated circle #1
-hole2 := hole.transl(0, -50e-9, 0)   // translated cricle #2
-cheese:= square.sub(hole1).sub(hole2)// subtract the circles form the square (makes holes).
-setgeom(cheese)
+Ku1.setregion(1, .1e6)
+anisU.setRegion(1, vector(1, 0, 0))
 
-msat = 600e3
-aex = 12e-13
-alpha = 3
+Ku1.setregion(2, .1e6)
+anisU.setRegion(2, vector(0, 1, 0))
 
-// rotate the cheese.
-for i:=0; i<=90; i=i+30{
-	angle := i*pi/180
-	setgeom(cheese.rotz(angle))
-	m = uniform(cos(angle), sin(angle), 0)
-	run(1e-9)
-	save(m)
-}
+save(Ku1)
+save(anisU)
+
+Msat = 800e3 // sets it everywhere
+save(Msat)
+
+Aex = 12e-13
+alpha = 1
+
+m.setRegion(1, uniform(1, 1, 0))
+m.setRegion(2, uniform(-1, 1, 0))
+saveas(m, "m_inital")
+run(.1e-9)
+saveas(m, "m_final")

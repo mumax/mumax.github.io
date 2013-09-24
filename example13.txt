@@ -1,28 +1,34 @@
-// In this example we drive a domain wall in PMA material by spin-transfer torque.
+// In this example we drive a vortex wall in Permalloy by spin-transfer torque.
 // We set up a post-step function that makes the simulation box "follow" the domain
-// wall. Like this, only a small number of cells is needed to simulate an infinitely
-// long magnetic wire.
+// wall. By removing surface charges at the left and right ends, we mimic an infintely
+// long wire.
 
-setgridsize(128, 128, 1)
-setcellsize(2e-9, 2e-9, 1e-9)
+setgridsize(256, 64, 1)
+setcellsize(3e-9, 3e-9, 30e-9)
 
-msat    = 600e3
-aex     = 10e-12
-anisU   = vector(0, 0, 1)
-Ku1     = 0.59e6
-xi      = 0.2
-alpha   = 3                                   // high damping for fast relax
+Msat    = 860e3
+Aex     = 13e-12
+Xi      = 0.1
+m       = vortexwall(1, -1, 1, 1)
 
-m     = twoDomain(0, 0, 1, 1, 1, 0, 0, 0, -1) // up-down domains with wall between Bloch and Néél type
-run(0.1e-9)                                   // relax
-alpha = 0.02                                  // normal damping
+// Remove surface charges from left (mx=1) and right (mx=-1) sides to mimic infinitely long wire. We have to specify the region (0) at the boundaries.
+ext_rmSurfaceCharge(0, 1, -1)
 
 // Set post-step function that centers simulation window on domain wall.
-postStep(ext_centerPMAwall)
+PostStep(ext_centerInplaneWall)
+
+// Relax
+Alpha = 3    // high damping for fast relax
+Run(1e-9)    // relax
+Alpha = 0.02 // restore normal damping
 
 // Schedule output
 autosave(m, 100e-12)
+tableadd(ext_dwpos)   // domain wall position
+tableadd(ext_dwspeed) // domain wall speed
+tableautosave(10e-12)
 
-// Run for 1ns with current through the sample
-jpol = vector(1.5e13, 0, 0)
-run(.5e-9)
+// Run the simulation with current through the sample
+SpinPol:= 0.56
+JPol    = vector(-8e12 * SpinPol, 0, 0)
+Run(1e-9)

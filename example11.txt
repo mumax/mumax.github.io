@@ -1,31 +1,27 @@
-N := 128
-setgridsize(N, N, 1)
-setcellsize(4e-9, 4e-9, 4e-9)
-d := 4e-9 * N  
+/*
+Exchange spring consisting of bottom Fe layer and top Ni layer.
+Interlayer exchange estimated from geometrical average of Fe and Ni exchange lengths.
+*/
+Nx := 16
+Ny := 16
+Nz := 8
+setgridsize(Nx, Ny, Nz)
+setcellsize(4e-9, 4e-9, 3e-9)
 
-// disk with different anisotropy in left and right half
-defregion(1, xrange(0, inf))
-defregion(2, xrange(-inf, 0))
-defregion(0, cylinder(d, d).inverse()) // everything outside is vacuum
-save(regions)
+// Fe
+defregion(1, layers(0, Nz/2))
+Msat.setRegion (1, 1700e3)
+Aex.setRegion  (1, 21e-12)
+alpha.setRegion(1, 0.1)
 
-Ku1.setregion(1, .1e6)
-anisU.setRegion(1, vector(1, 0, 0))
+// Ni
+defregion(2, layers(Nz/2, Nz))
+Msat.setRegion (2, 490e3)
+Aex.setRegion  (2, 9e-12)
+alpha.setRegion(2, 0.05)
 
-Ku1.setregion(2, .1e6)
-anisU.setRegion(2, vector(0, 1, 0))
-
-save(Ku1)
-save(anisU)
-
-Msat = 800e3 // sets it everywhere
-save(Msat)
-
-Aex = 12e-13
-alpha = 1
-
-m.setRegion(1, uniform(1, 1, 0))
-m.setRegion(2, uniform(-1, 1, 0))
-saveas(m, "m_inital")
-run(.1e-9)
-saveas(m, "m_final")
+// define an intermaterial exchange
+lex2Fe := 21e-12/1700e3
+lex2Ni :=  9e-12/ 490e3
+lex := sqrt(2/(1/lex2Fe + 1/lex2Ni))
+setExLen(1, 2, lex)  // set exchange length between Ni and Fe

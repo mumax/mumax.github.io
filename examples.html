@@ -13,10 +13,14 @@
 <h1>mumax<sup>3</sup> examples</h1>
 <hr/>
 
-mumax3 input files are run with the command
+<p>These are example input scripts, the full API can be found <a href="http://mumax.github.io/api.html">here</a>.</p>
+
+mumax<sup>3</sup> input files are run with the command
+
 <pre>mumax3 myfile.txt</pre>
-Output is automatically stored in the "myfile.out" directory. Additionally, a web interface provides live output. Default is localhost:35367.<br/>
-For more details refer to the <a href="http://godoc.org/code.google.com/p/mx3">godoc documentation</a>.
+
+Output is automatically stored in the "myfile.out" directory. Additionally, a web interface provides live output. Default is <code><a href="http://localhost:35367">http://localhost:35367</a></code>.<br/>
+For more details, run <code>mumax3 -help</code> which will show the available command-line flags (e.g. to select a certain GPU).
 
 <hr/><h2>Getting started with Standard Problem #4</h2>
 
@@ -39,9 +43,9 @@ alpha = 0.02
 B_ext = vector(-24.6E-3, 4.3E-3, 0)
 run(1e-9)</pre>
 
-<p>This example should be pretty straight-forward to follow. Space-dependent output is stored in the efficient ".dump" format, which can be converted with <a href=http://godoc.org/code.google.com/p/mx3/tools/mx3-convert>mx3-convert</a>. Below is the output converted to PNG.</p>
+<p>This example should be pretty straight-forward to follow. Space-dependent output is stored in the efficient ".dump" format, which can be converted with <code>mx3-convert</code>. Below is the output converted to PNG.</p>
 
-<p>The data table is stored in a simple text format compatible with <a href=http://www.gnuplot.info>gnuplot</a>. The plot below was created with <a href=http://godoc.org/code.google.com/p/mx3/tools/mx3-plot>mx3-plot</a>.
+<p>The data table is stored in a simple text format compatible with <a href=http://www.gnuplot.info>gnuplot</a>. The plot below was created with <code>mx3-plot</code>.
 </p>
 
 <h3>output</h3> 
@@ -229,7 +233,7 @@ This example saves the remanent magnetization state, and verifies the average ma
 
 <hr/><h2>Geometry</h2>
 
-mumax3 has powerful API to programatically define geometries. A number of primitive shapes are defined, like ellipses, rectangles, etc. They can be transformed (rotated, translated) and combined using boolean logic (add, sub, inverse). See the full <a href="http://godoc.org/code.google.com/p/mx3/engine#Shape">API</a>.
+mumax3 has powerful API to programatically define geometries. A number of primitive shapes are defined, like ellipses, rectangles, etc. They can be transformed (rotated, translated) and combined using boolean logic (add, sub, inverse). See the full <a href="http://mumax.github.io/api.html">API</a>.
 
 
 <a id=example7></a><pre>setgridsize(100, 100, 50)
@@ -239,11 +243,11 @@ setgeom( rect(800e-9, 500e-9) )
 m=uniform(1,1,0)
 saveas(m, &#34;rect&#34;)
 
-setgeom( cylinder(800e-9, 600e-9) )
+setgeom( cylinder(800e-9, inf) )
 m=uniform(1,1,0)
 saveas(m, &#34;cylinder&#34;)
 
-setgeom( cylinder(800e-9, 600e-9).inverse() )
+setgeom( cylinder(800e-9, inf).inverse() )
 m=uniform(1,1,0)
 saveas(m, &#34;cylinder_inverse&#34;)
 
@@ -356,7 +360,7 @@ Note: these are 3D geometries seen from above. The displayed magnetization is av
 
 
 <hr/><h2>Initial Magnetization</h2>
-Some initial magnetization functions are provided, as well as transformations similar to those on Shapes. See the Config <a href="http://godoc.org/code.google.com/p/mx3/engine#Config">API</a>.
+Some initial magnetization functions are provided, as well as transformations similar to those on Shapes. See the Config <a href="http://mumax.github.io/api.html">API</a>.
 
 <a id=example8></a><pre>setgridsize(200, 100, 1)
 setcellsize(5e-9, 5e-9, 5e-9)
@@ -429,60 +433,11 @@ These initial states are approximate, after setting them it is a good idea to re
 The magnetization can also be set in separate regions, see below.
 
 
-
-<hr/><h2>Hysteresis</h2>
-
-<a id=example9></a><pre>nx := 512
-ny := 256
-setgridsize(nx, ny, 1)
-setcellsize(2e-6/Nx, 1e-6/Ny, 20e-9)
-
-Aex   = 1.3e-11
-Msat  = 8e5
-Ku1   = 5e2
-AnisU = vector(1, 0, 0)
-alpha = 3
-
-m = vortex(1, 1)
-run(3e-9)
-
-tableadd(B_ext)
-
-th := 0.0001 // field direction
-
-saveas(m, &#34;m_initial&#34;)
-
-// Scan the hysteresis loop:
-for B:=0.; B&lt;100e-3; B+=10e-3{
-	B_ext = vector(B*cos(th), B*sin(th), 0)
-	run(.1e-9)
-	tablesave()
-}
-
-saveas(m, &#34;m_saturated&#34;)</pre><h3>output</h3> 
-<figure style="float:left">
-	<img src="example9.out/m_initial.png"/>
-	<figcaption> m_initial </figcaption>
-</figure>
-<figure style="float:left">
-	<img src="example9.out/m_saturated.png"/>
-	<figcaption> m_saturated </figcaption>
-</figure><br style="clear:both"/> 
-<figure>
-	<img src="example9.out/B_ext_perRegion.svg"/>
-	<figcaption> B_ext_perRegion.svg </figcaption>
-</figure>
-<figure>
-	<img src="example9.out/m.svg"/>
-	<figcaption> m.svg </figcaption>
-</figure>
-
-
 <hr/><h2>Interlude: Rotating Cheese</h2>
 
 In this example we define a geometry that looks like a slice of cheese and have it rotate in time.
 
-<a id=example10></a><pre>setgridsize(128, 128, 1)
+<a id=example9></a><pre>setgridsize(128, 128, 1)
 setcellsize(2e-9, 2e-9, 2e-9)
 
 d      := 200e-9
@@ -510,19 +465,19 @@ for i:=0; i&lt;=90; i=i+30{
 
 <h3>output</h3> 
 <figure style="float:left">
-	<img src="example10.out/m000000.png"/>
+	<img src="example9.out/m000000.png"/>
 	<figcaption> m000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example10.out/m000001.png"/>
+	<img src="example9.out/m000001.png"/>
 	<figcaption> m000001 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example10.out/m000002.png"/>
+	<img src="example9.out/m000002.png"/>
 	<figcaption> m000002 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example10.out/m000003.png"/>
+	<img src="example9.out/m000003.png"/>
 	<figcaption> m000003 </figcaption>
 </figure><br style="clear:both"/> 
 
@@ -531,7 +486,7 @@ for i:=0; i&lt;=90; i=i+30{
 
 <p>Space-dependent parameters are defined using material <i>regions</i>. Regions are numbered 0-255 and represent different materials. Region 0 conventionally everything outside your magnet (the vacuum), so setting material parameters starts at 1.</p>
 
-<p>Regions are defined with <code>defregion(number, shape)</code>, where <code>shape</code> is a <a href="http://godoc.org/code.google.com/p/mx3/engine#Shape">Shape</a> as explained in the geometry example.</p>
+<p>Regions are defined with <code>defregion(number, shape)</code>, where <code>shape</code> is explained in the geometry example.</p>
 
 <p>When you're not using regions, like in the above examples, you'll probably set parameters with a simple assign:
 <pre>Aex = 12e-13</pre>
@@ -540,7 +495,7 @@ Behind the screens, this sets Aex in <i>all</i> regions.
 
 <p>It's always a good idea to output the <code>regions</code> quantity, as well as all your material parameters. </p>
 
-<a id=example11></a><pre>N := 128
+<a id=example10></a><pre>N := 128
 setgridsize(N, N, 1)
 setcellsize(4e-9, 4e-9, 4e-9)
 d := 4e-9 * N  
@@ -574,27 +529,27 @@ saveas(m, &#34;m_final&#34;)</pre>
 
 <h3>output</h3> 
 <figure style="float:left">
-	<img src="example11.out/Ku1000000.png"/>
+	<img src="example10.out/Ku1000000.png"/>
 	<figcaption> Ku1000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example11.out/Msat000000.png"/>
+	<img src="example10.out/Msat000000.png"/>
 	<figcaption> Msat000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example11.out/anisU000000.png"/>
+	<img src="example10.out/anisU000000.png"/>
 	<figcaption> anisU000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example11.out/m_final.png"/>
+	<img src="example10.out/m_final.png"/>
 	<figcaption> m_final </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example11.out/m_inital.png"/>
+	<img src="example10.out/m_inital.png"/>
 	<figcaption> m_inital </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example11.out/regions000000.png"/>
+	<img src="example10.out/regions000000.png"/>
 	<figcaption> regions000000 </figcaption>
 </figure><br style="clear:both"/> 
 
@@ -603,7 +558,7 @@ saveas(m, &#34;m_final&#34;)</pre>
 
 The example above showed how to set material parameters in different regions. However, we can also specify the exchange interaction <i>between</i> different regions (instead of just inside one region). Physically it is not always clear how strong the exchange between different materials should be. Therefore, when using regions, the exchange between different regions defaults to zero. We specify the exchange between regions in terms of the <i>exchange length</i> sqrt(2*Aex/Msat), as this quantity is unambiguous in case of different Msat.
 
-<a id=example12></a><pre>/*
+<a id=example11></a><pre>/*
 Exchange spring consisting of bottom Fe layer and top Ni layer.
 Interlayer exchange estimated from geometrical average of Fe and Ni exchange lengths.
 */
@@ -633,7 +588,7 @@ setExLen(1, 2, lex)  // set exchange length between Ni and Fe</pre>
 
 
 <hr/><h2>PMA Racetrack</h2>
-<a id=example13></a><pre>// In this example we drive a domain wall in PMA material by spin-transfer torque.
+<a id=example12></a><pre>// In this example we drive a domain wall in PMA material by spin-transfer torque.
 // We set up a post-step function that makes the simulation box &#34;follow&#34; the domain
 // wall. Like this, only a small number of cells is needed to simulate an infinitely
 // long magnetic wire.
@@ -664,23 +619,23 @@ run(.5e-9)</pre>
 
 <h3>output</h3> 
 <figure style="float:left">
-	<img src="example13.out/m000000.png"/>
+	<img src="example12.out/m000000.png"/>
 	<figcaption> m000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example13.out/m000001.png"/>
+	<img src="example12.out/m000001.png"/>
 	<figcaption> m000001 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example13.out/m000002.png"/>
+	<img src="example12.out/m000002.png"/>
 	<figcaption> m000002 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example13.out/m000003.png"/>
+	<img src="example12.out/m000003.png"/>
 	<figcaption> m000003 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example13.out/m000004.png"/>
+	<img src="example12.out/m000004.png"/>
 	<figcaption> m000004 </figcaption>
 </figure><br style="clear:both"/> 
 
@@ -689,7 +644,7 @@ Since we center on the domain wall we can not see that it is actually moving, bu
 
 <hr/><h2>Py Racetrack</h2>
 
-<a id=example14></a><pre>// In this example we drive a vortex wall in Permalloy by spin-transfer torque.
+<a id=example13></a><pre>// In this example we drive a vortex wall in Permalloy by spin-transfer torque.
 // We set up a post-step function that makes the simulation box &#34;follow&#34; the domain
 // wall. By removing surface charges at the left and right ends, we mimic an infintely
 // long wire.
@@ -726,55 +681,55 @@ Run(1e-9)</pre>
 
 <h3>output</h3> 
 <figure style="float:left">
-	<img src="example14.out/m000000.png"/>
+	<img src="example13.out/m000000.png"/>
 	<figcaption> m000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example14.out/m000001.png"/>
+	<img src="example13.out/m000001.png"/>
 	<figcaption> m000001 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example14.out/m000002.png"/>
+	<img src="example13.out/m000002.png"/>
 	<figcaption> m000002 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example14.out/m000003.png"/>
+	<img src="example13.out/m000003.png"/>
 	<figcaption> m000003 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example14.out/m000004.png"/>
+	<img src="example13.out/m000004.png"/>
 	<figcaption> m000004 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example14.out/m000005.png"/>
+	<img src="example13.out/m000005.png"/>
 	<figcaption> m000005 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example14.out/m000006.png"/>
+	<img src="example13.out/m000006.png"/>
 	<figcaption> m000006 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example14.out/m000007.png"/>
+	<img src="example13.out/m000007.png"/>
 	<figcaption> m000007 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example14.out/m000008.png"/>
+	<img src="example13.out/m000008.png"/>
 	<figcaption> m000008 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example14.out/m000009.png"/>
+	<img src="example13.out/m000009.png"/>
 	<figcaption> m000009 </figcaption>
 </figure><br style="clear:both"/> 
 <figure>
-	<img src="example14.out/dwpos.svg"/>
+	<img src="example13.out/dwpos.svg"/>
 	<figcaption> dwpos.svg </figcaption>
 </figure>
 <figure>
-	<img src="example14.out/dwspeed.svg"/>
+	<img src="example13.out/dwspeed.svg"/>
 	<figcaption> dwspeed.svg </figcaption>
 </figure>
 <figure>
-	<img src="example14.out/m.svg"/>
+	<img src="example13.out/m.svg"/>
 	<figcaption> m.svg </figcaption>
 </figure>
 

@@ -5,11 +5,11 @@ setgeom( rect(800e-9, 500e-9) )
 m=uniform(1,1,0)
 saveas(m, "rect")
 
-setgeom( cylinder(800e-9, 600e-9) )
+setgeom( cylinder(800e-9, inf) )
 m=uniform(1,1,0)
 saveas(m, "cylinder")
 
-setgeom( cylinder(800e-9, 600e-9).inverse() )
+setgeom( cylinder(800e-9, inf).inverse() )
 m=uniform(1,1,0)
 saveas(m, "cylinder_inverse")
 
