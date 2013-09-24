@@ -6,5 +6,6 @@ table{ border:"10"; }
 hr   { border-style: none; border-top: 1px solid #CCCCCC; margin-top: 10px; margin-bottom: 40px }
 a    { color: #000066; text-decoration: none; }
 div  { margin-left: 20px; margin-top: 10px; margin-bottom: 20px; }
-div#footer { font-color: #555555 }
+div#footer { color: #777777; text-align: center }
 pre  { margin-left: 50px; margin-top: 10px; margin-bottom: 20px; color: #000044; font-size: 12px; background-color: #EEEEFF; padding:10px; }
+figcaption { color: #777777; }
