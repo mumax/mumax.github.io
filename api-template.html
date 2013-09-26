@@ -1,0 +1,156 @@
+
+{{define "entry"}}
+	<p><span style="color:#000088; font-size:1.3em"> <b>{{.Name}}</b>{{.Ins}} </span> 
+	{{with .Doc}} <p style="margin-left:40px"> {{.}} </p> {{end}}
+
+	{{with .Methods}} 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		{{range .}} {{.}} &nbsp;{{end}} 
+		</span> </p> 
+	{{end}}
+
+	{{with .Examples}} <p style="margin-left:40px; color:grey"> examples: 
+		{{range .}} 
+			<a href="examples.html#example{{.}}">[{{.}}]</a> 
+		{{end}} 
+		</p> 
+	{{end}}
+
+	</p>
+{{end}}
+
+
+{{.Include "head.html"}}
+
+<h1> mumax<sup>3</sup> API </h1>
+
+This is a complete overview of all available functions for writing an input script.
+
+<hr/><h1> Setting  the mesh size</h1>
+The simulation mesh defines the size of the box around your magnet. It should be set at the beginning of the script. The number of cells should preferably be powers of two, or at least have small prime factors (2,3,5,7). E.g.:
+<pre><code>Nx := 128
+Ny := 64
+Nz := 2
+sizeX := 500e-9
+sizeY := 250e-9
+sizeZ := 10e-9
+SetGridSize(Nx, Ny, Nz)
+SetCellSize(sizeX/Nx, sizeY/Ny, sizeZ/Nz)
+</code></pre>
+
+{{range .FilterName "setgridsize" "setcellsize"}} {{template "entry" .}} {{end}}
+
+
+<hr/><h1> Setting a geometry </h1>
+
+Optionally a magnet Shape other than the full simulation box can be specified. One can specify primitive shapes, constructed at the origin (box center), and translate/rotate them if needed. E.g.:
+<pre><code> SetGeom(cylinder(400e-9, 20e-9).RotX().Transl(1e-6,0,0))
+</code></pre>
+
+{{range .FilterName "setgeom"}} {{template "entry" .}} {{end}}
+{{range .FilterReturn "Shape"}} {{template "entry" .}} {{end}}
+
+
+<hr/><h1> Defining regions </h1>
+Optionally, up to 256 regions can be defined. Each region can have its own material parameters. E.g.:
+<pre><code>DefRegion(1, circle(1e-6))
+DefRegion(0, circle(1e-6).Inverse())
+</code></pre>
+
+{{range .FilterName "DefRegion" }} {{template "entry" .}} {{end}}
+
+
+<hr/><h1> Initial magnetization </h1>
+
+The initial magnetization is set by assigning a <code>Config</code> to m, setting it in separate regions, or by loading a file directly.
+<pre><code>m = uniform(1, 0, 0)
+m.SetRegion(1, vortex(1, 1))
+m.LoadFile("config.dump")
+</code></pre>
+
+{{range .FilterName "m"}} {{template "entry" .}} {{end}}
+{{range .FilterReturn "Config"}} {{template "entry" .}} {{end}}
+
+
+<hr/><h1> Material parameters </h1>
+
+Assigning to a material parameter sets a value in all regions. E.g.:
+<pre><code>Msat  = 800e3
+AnisU = vector(1, 0, 0)
+</code></pre>
+
+When regions are defined, they can also be set region-wise:
+<pre><code>Msat.SetRegion(0, 800e3)
+Msat.SetRegion(1, 540e3)
+</code></pre>
+
+Material parameters can be functions of time as well. E.g.:
+<pre><code>f := 500e6
+Ku1 = 500 * sin(2*pi*f*t)
+</code></pre>
+
+{{range .FilterType "*engine.ScalarParam" "*engine.VectorParam"}} {{template "entry" .}} {{end}}
+
+
+<hr/><h1> Excitation </h1>
+
+Field or current excitations can be set in the same way as material parameters:
+<pre><code>B_ext = vector(0.01, 1e-6*sin(2*pi*f*t), 0)
+B_ext.SetRegion(1, vector(0, 0, 0.1))
+</code></pre>
+Additionally, an arbitrary number of time- and space-dependent vector fields of the form <code> g(x,y,z) * f(t) </code> may be added. (E.g., to simulate the field of an antenna or an arbitrary current running through the magnet)
+<pre><code>B_ext.Add(LoadFile("antenna.dump"), sin(2*pi*f*t))
+JPol.Add(LoadFile("current.dump"), 1)
+</code></pre>
+
+{{range .FilterType "*engine.Excitation"}} {{template "entry" .}} {{end}}
+{{range .FilterName "LoadFile"}} {{template "entry" .}} {{end}}
+
+<hr/><h1> Output quantities </h1>
+
+{{range .FilterType "*engine.setter" "*engine.adder" "*engine.buffered" "*engine.GetFunc" "*engine.FFTM" "*engine.Regions"}} {{template "entry" .}} {{end}}
+
+
+<hr/><h1> Scheduling output </h1>
+
+All input and output quantities (as described above) can be saved in a space-dependent way (".dump" file), or as spatial averages (table output). The data table ("table.txt") contains by default the time and average magnetization. More coulumns can be added with <code>TableAdd()</code>.
+<pre><code>save(B_ext)
+
+tableadd(B_ext)
+tablesave()
+</code></pre>
+Optionally, the output/averaging can be done over a single region:
+<pre><code>save(m.Region(1))
+tableadd(m.Region(1)) 
+</code></pre>
+
+{{range .FilterName "tableadd" "tablesave" "tableautosave" "save" "saveas" "autosave"}} {{template "entry" .}} {{end}}
+
+<hr/><h1> Running </h1>
+
+<code>Run(time)</code> runs the simulation for a given time in seconds, using sensible error settings. 
+<pre><code>Run(1e-9)
+</code></pre>
+Optionally, the solver accuracy may be fine-tuned. E.g.:
+<pre><code>MaxDt = 1e-12
+MinDt = 1e-15
+MaxErr = 1e-6
+</code></pre>
+
+{{range .FilterName "run" "steps" }} {{template "entry" .}} {{end}}
+{{range .FilterName "t" "dt" "MinDt" "MaxDt" "FixDt" "HeadRoom" "MaxErr"}} {{template "entry" .}} {{end}}
+
+
+<hr/><h1> Extensions </h1>
+
+Extensions are extra functionalities that are not officially supported. They are aimed at rather specific problems and may not work as expected for your particular situation. Their API and functionality may change in future releases.
+
+{{range .FilterPrefix "ext_"}} {{template "entry" .}} {{end}}
+{{range .FilterName "enabledemag" "average" "fprintln" "setexlen" "expect" "PostStep"}} {{template "entry" .}} {{end}}
+
+<hr/><h1> Misc </h1>
+Other available functions.
+{{range .FilterLeftovers}} {{template "entry" .}} {{end}}
+
+</body>
+

@@ -107,7 +107,7 @@
 		<text> 2.1</text>
 	</g>
 	<path  d='M60.5,14.1 L60.5,252.0 L378.9,252.0 L378.9,14.1 L60.5,14.1 Z  h0.01'/>	<g transform="translate(14.7,133.1) rotate(270)" style="stroke:none; fill:black; font-family:Arial; font-size:10.00pt; text-anchor:middle">
-		<text>dwspeed (m/s)</text>
+		<text>ext_dwspeed (m/s)</text>
 	</g>
 	<g transform="translate(219.7,293.2)" style="stroke:none; fill:black; font-family:Arial; font-size:10.00pt; text-anchor:middle">
 		<text>t(ns)</text>
@@ -116,7 +116,7 @@
 	<g id="gnuplot_plot_1" ><title>gnuplot_plot_1</title>
 <g style="fill:none; color:red; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
 	<g transform="translate(322.4,32.8)" style="stroke:none; fill:black; font-family:Arial; font-size:10.00pt; text-anchor:end">
-		<text>dwspeed</text>
+		<text>ext_dwspeed</text>
 	</g>
 	<path  d='M329.4,29.1 L364.9,29.1 M63.4,231.0 L66.3,165.6 L69.2,100.4 L72.1,230.4 L75.0,100.6 L77.9,230.4 
 		L80.8,100.5 L83.7,100.5 L86.6,165.5 L89.4,165.5 L92.4,198.0 L95.2,100.6 L98.1,100.6 L101.0,165.5 
@@ -126,7 +126,7 @@
 		L173.4,165.4 L176.3,198.0 L179.2,100.6 L182.1,100.6 L185.0,165.5 L187.9,165.5 L190.8,165.5 L193.7,165.5 
 		L196.6,100.7 L199.4,165.5 L202.3,100.4 L205.2,165.6 L208.1,100.4 L211.0,100.4 L213.9,165.6 L216.8,165.5 
 		L219.7,100.3 L222.6,100.7 L225.5,165.5 L228.4,100.7 L231.3,100.6 L234.2,100.6 L237.1,100.6 L240.0,133.1 
-		L242.9,133.1 L245.8,165.4 L248.6,100.6 L251.6,165.6 L254.4,165.5 L257.3,100.7 L260.2,100.5 L263.1,100.5 
+		L242.9,133.1 L245.8,165.4 L248.6,100.6 L251.5,165.6 L254.4,165.5 L257.3,100.7 L260.2,100.5 L263.1,100.5 
 		L266.0,165.5 L268.9,100.7 L271.8,100.7 L274.7,100.7 L277.6,100.6 L280.5,100.6 L283.4,100.6 L286.3,100.4 
 		L289.2,165.5 L292.1,35.7 L295.0,165.5 L297.9,165.5 L300.8,35.8 L303.7,165.5 L306.5,100.3 L309.4,100.7 
 		L312.3,165.5 L315.2,35.6 L318.1,100.7 L321.0,165.4 L323.9,165.5 L326.8,100.5 L329.7,100.8 L332.6,35.4 
