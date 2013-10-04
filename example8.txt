@@ -1,32 +1,27 @@
-setgridsize(200, 100, 1)
-setcellsize(5e-9, 5e-9, 5e-9)
+/*
+Exchange spring consisting of bottom Fe layer and top Ni layer.
+Interlayer exchange estimated from geometrical average of Fe and Ni exchange lengths.
+*/
+Nx := 16
+Ny := 16
+Nz := 8
+setgridsize(Nx, Ny, Nz)
+setcellsize(4e-9, 4e-9, 3e-9)
 
-m = uniform(1, 1, 0)  // no need to normalize length
-saveas(m, "uniform")
+// Fe
+defregion(1, layers(0, Nz/2))
+Msat.setRegion (1, 1700e3)
+Aex.setRegion  (1, 21e-12)
+alpha.setRegion(1, 0.1)
 
-m = vortex(1, -1)     // circulation, polarization
-saveas(m, "vortex")
+// Ni
+defregion(2, layers(Nz/2, Nz))
+Msat.setRegion (2, 490e3)
+Aex.setRegion  (2, 9e-12)
+alpha.setRegion(2, 0.05)
 
-m = twodomain(1,0,0,  0,1,0,  -1,0,0) // Néel wall
-saveas(m, "twodomain")
-
-m = twodomain(1,0,0,  0,1,0,  -1,0,0).rotz(-pi/4)
-saveas(m, "twodomain_rot")
-
-m = vortexwall(1, -1, 1, 1) 
-saveas(m, "vortexwall")
-
-m = vortexwall(1, -1, 1, 1).scale(1/2, 1, 1)
-saveas(m, "vortexwall_scale")
-
-m = vortex(1,-1).transl(100e-9, 50e-9, 0)
-saveas(m, "vortex_transl")
-
-// set m in only a part of space, or a single cell:
-m = uniform(1, 1, 1)
-m.setInShape(cylinder(400e-9, 100e-9), vortex(1, -1))
-m.setCell(20, 10, 0, 0.1, 0.1, -0.9) // set in cell index  [20,10,0]
-saveas(m, "setInShape_setCell")
-
-// Read m form .dump file, assuming it exists:
-// m.loadfile("myfile.dump")
+// define an intermaterial exchange
+lex2Fe := 21e-12/1700e3
+lex2Ni :=  9e-12/ 490e3
+lex := sqrt(2/(1/lex2Fe + 1/lex2Ni))
+setExLen(1, 2, lex)  // set exchange length between Ni and Fe

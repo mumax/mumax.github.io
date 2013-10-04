@@ -1,25 +1,28 @@
+// In this example we drive a domain wall in PMA material by spin-transfer torque.
+// We set up a post-step function that makes the simulation box "follow" the domain
+// wall. Like this, only a small number of cells is needed to simulate an infinitely
+// long magnetic wire.
+
 setgridsize(128, 128, 1)
-setcellsize(2e-9, 2e-9, 2e-9)
+setcellsize(2e-9, 2e-9, 1e-9)
 
-d      := 200e-9
-square := rect(d, d)                 // square with side d
+msat    = 600e3
+aex     = 10e-12
+anisU   = vector(0, 0, 1)
+Ku1     = 0.59e6
+xi      = 0.2
+alpha   = 3                                   // high damping for fast relax
 
-h     := 50e-9
-hole  := cylinder(h, h)              // circle with diameter h
-hole1 := hole.transl(100e-9, 0, 0)   // translated circle #1
-hole2 := hole.transl(0, -50e-9, 0)   // translated cricle #2
-cheese:= square.sub(hole1).sub(hole2)// subtract the circles form the square (makes holes).
-setgeom(cheese)
+m     = twoDomain(0, 0, 1, 1, 1, 0, 0, 0, -1) // up-down domains with wall between Bloch and Néél type
+run(0.1e-9)                                   // relax
+alpha = 0.02                                  // normal damping
 
-msat = 600e3
-aex = 12e-13
-alpha = 3
+// Set post-step function that centers simulation window on domain wall.
+postStep(ext_centerPMAwall)
 
-// rotate the cheese.
-for i:=0; i<=90; i=i+30{
-	angle := i*pi/180
-	setgeom(cheese.rotz(angle))
-	m = uniform(cos(angle), sin(angle), 0)
-	run(1e-9)
-	save(m)
-}
+// Schedule output
+autosave(m, 100e-12)
+
+// Run for 1ns with current through the sample
+jpol = vector(1.5e13, 0, 0)
+run(.5e-9)

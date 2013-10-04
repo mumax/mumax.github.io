@@ -97,40 +97,7 @@ save(STTorque) // Spin-transfer torque/γ0
 
 `}}{{.Output}}
 
-<hr/><h2>Interlude on Syntax</h2>
 
-<p>
-Before we continue we might have a look at the mumax3 input syntax. It is a subset of <a href=http://golang.org>Go</a>'s syntax, somewhat similar to C. It is case-independent however, so msat is the same as Msat or MSAT.</p>
-
-<h3>Defining variables</h3>
-{{.Example `
-i := 7    // defines a new variable i, type automatically detected to be int
-print(i)  // now we can use i
-i = 5     // assign new value, don't use ':=' (attempt to re-declare)
-
-str := "hello" // defines str, type automatically is string
-//str = 1      // would fail, cannot assign int to string
-`}}
-
-<h3>Arithmetic</h3>
-Most common arithmetic operations are possible. Also Go's <a href=http://golang.org/pkg/math>math</a> library and some common constants are available. For raise-to-the-power, pow(x,y) should be used.
-
-{{.Example `
-x := pi*(3+4)/5
-x = pow(x, 3)
-x++
-y := abs(cbrt(cosh(erf(erfc(gamma(J0(Y0(2))))))))
-`}}
-
-<h3>Control structures</h3>
-Loops are possible as well:
-{{.Example `
-
-for i:=0; i<10; i++{
-	print(i)
-}
-
-`}}
 
 <hr/><h2>Standard Problem #2</h2>
 
@@ -492,6 +459,72 @@ Run(1e-9)
 {{.Output}}
 
 Since we center on the domain wall we can not really see the motion, despite the vortex wall moving pretty fast. Note the absence of closure domains at the edges due to the surface charges being removed there.
+
+
+
+<hr/><h2>Voronoi tessellation</h2>
+
+In this example we use regions to specify grains in a material. The built-in extension <code>ext_makegrains</code> is used to define grain-like regions using Voronoi tessellation. We vary the material parameters in each grain, as well as the inter-grain exchange coupling.
+
+{{.Example `
+N := 256
+c := 4e-9
+d := 40e-9
+setgridsize(N, N, 1)
+setcellsize(c, c, d)
+
+setGeom(circle(N*c))
+
+// We want grains the same size as the film thickness
+// Number of grains is box surface / grain surface
+surf := N*N*c*c
+Ngrain := ceil(surf / (d*d))
+
+// define grains with region number 1-100
+maxReg := 100
+randSeed(0)
+ext_makegrains(1, maxReg, Ngrain)
+
+// define region 0 as outside our dot
+defregion(0, circle(N*c).Inverse())
+
+alpha = 3
+Kc1 = 1000
+
+A   := 13e-12
+Ms  := 860e3
+lex := sqrt(2* A / Ms) // exchange legth
+
+for i:=1; i<maxReg; i++{
+	// random parameter variation by 10%
+	Msat.SetRegion(i, Ms + randNorm() * 0.1 * Ms)
+	
+	// random cubic anisotropy direction
+	phi := rand() * 2 * pi
+	theta := rand() * pi
+	x := sin(theta) * cos(phi)
+	y := sin(theta) * sin(phi)
+	z := cos(theta)
+	AnisC1.SetRegion(i, vector(x, y, z))
+	AnisC2.SetRegion(i, vector(x, y, z))
+
+	// inter-grain exchange reduction between all pairs of regions
+	red := 0.5
+	for j:=i+1; j<maxReg; j++{
+		SetExLen(i, j, sqrt(red) * lex)
+	}
+}
+
+save(regions)
+save(Msat)
+
+m = vortex(1, 1)
+run(10e-9)
+
+save(m)
+`}}
+
+{{.Output}}
 
 </body>
 </html>

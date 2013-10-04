@@ -1,26 +1,25 @@
-Msat  = 1000e3
-Aex   = 10e-12
+setgridsize(128, 128, 1)
+setcellsize(2e-9, 2e-9, 2e-9)
+
+d      := 200e-9
+square := rect(d, d)                 // square with side d
+
+h     := 50e-9
+hole  := cylinder(h, h)              // circle with diameter h
+hole1 := hole.transl(100e-9, 0, 0)   // translated circle #1
+hole2 := hole.transl(0, -50e-9, 0)   // translated cricle #2
+cheese:= square.sub(hole1).sub(hole2)// subtract the circles form the square (makes holes).
+setgeom(cheese)
+
+msat = 600e3
+aex = 12e-13
 alpha = 3
 
-// define exchange length
-lex := sqrt(Aex.GetRegion(1) / (0.5 * mu0 * pow(Msat.GetRegion(1),2)))
-
-d     := 30 * lex                        // we test for d/lex = 30
-Sizex := 5*d                             // magnet size x
-Sizey := 1*d
-Sizez := 0.1*d
-
-nx := pow(2, ilogb(Sizex / (0.75*lex)))  // power-of-two number of cells
-ny := pow(2, ilogb(Sizey / (0.75*lex)))  // not larger than 0.75 exchange lengths
-
-SetGridSize(nx, ny, 1)
-SetCellSize(Sizex/nx, Sizey/ny, Sizez)
-
-m = Uniform(1, 0.1, 0)                   // initial mag
-Run(5e-9)                                // relax
-
-save(m)                                  // remanent magnetization
-m_ := average(m)                         
-expect("mx", m_[0], 0.9627, 1e-3)        // test m against known value
-expect("my", m_[1], 0.0756, 1e-3)
-expect("mz", m_[2], 0, 1e-3)
+// rotate the cheese.
+for i:=0; i<=90; i=i+30{
+	angle := i*pi/180
+	setgeom(cheese.rotz(angle))
+	m = uniform(cos(angle), sin(angle), 0)
+	run(1e-9)
+	save(m)
+}

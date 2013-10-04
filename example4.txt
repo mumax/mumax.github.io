@@ -1,4 +1,61 @@
-x := pi*(3+4)/5
-x = pow(x, 3)
-x++
-y := abs(cbrt(cosh(erf(erfc(gamma(J0(Y0(2))))))))
+setgridsize(100, 100, 50)
+setcellsize(1e-6/100, 1e-6/100, 1e-6/50)
+
+setgeom( rect(800e-9, 500e-9) )
+m=uniform(1,1,0)
+saveas(m, "rect")
+
+setgeom( cylinder(800e-9, inf) )
+m=uniform(1,1,0)
+saveas(m, "cylinder")
+
+setgeom( cylinder(800e-9, inf).inverse() )
+m=uniform(1,1,0)
+saveas(m, "cylinder_inverse")
+
+setgeom( cylinder(800e-9, 600e-9).transl(200e-9, 100e-9, 0) )
+m=uniform(1,1,0)
+saveas(m, "cylinder_transl")
+
+setgeom( ellipsoid(800e-9, 600e-9, 500e-9) )
+m=uniform(1,1,0)
+saveas(m, "ellipsoid")
+
+setgeom( cuboid(800e-9, 600e-9, 500e-9) )
+m=uniform(1,1,0)
+saveas(m, "cuboid")
+
+setgeom( cuboid(800e-9, 600e-9, 500e-9).rotz(-10*pi/180) )
+m=uniform(1,1,0)
+saveas(m, "cuboid_rotZ")
+
+setgeom( layers(0, 25) )
+m=uniform(1,1,0)
+saveas(m, "layers")
+
+setgeom( cell(50, 20, 0) )
+m=uniform(1,1,0)
+saveas(m, "cell")
+
+setgeom( xrange(0, inf) )
+m=uniform(1,1,0)
+saveas(m, "xrange")
+
+a := cylinder(600e-9, 600e-9).transl(-150e-9, 50e-9, 0 )
+b := rect(600e-9, 600e-9).transl(150e-9, -50e-9, 0)
+
+setgeom( a.add(b) )
+m=uniform(1,1,0)
+saveas(m, "logicAdd")
+
+setgeom( a.sub(b) )
+m=uniform(1,1,0)
+saveas(m, "logicSub")
+
+setgeom( a.intersect(b) )
+m=uniform(1,1,0)
+saveas(m, "logicAnd")
+
+setgeom( a.xor(b) )
+m=uniform(1,1,0)
+saveas(m, "logicXor")

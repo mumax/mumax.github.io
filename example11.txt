@@ -1,27 +1,55 @@
-/*
-Exchange spring consisting of bottom Fe layer and top Ni layer.
-Interlayer exchange estimated from geometrical average of Fe and Ni exchange lengths.
-*/
-Nx := 16
-Ny := 16
-Nz := 8
-setgridsize(Nx, Ny, Nz)
-setcellsize(4e-9, 4e-9, 3e-9)
+N := 256
+c := 4e-9
+d := 40e-9
+setgridsize(N, N, 1)
+setcellsize(c, c, d)
 
-// Fe
-defregion(1, layers(0, Nz/2))
-Msat.setRegion (1, 1700e3)
-Aex.setRegion  (1, 21e-12)
-alpha.setRegion(1, 0.1)
+setGeom(circle(N*c))
 
-// Ni
-defregion(2, layers(Nz/2, Nz))
-Msat.setRegion (2, 490e3)
-Aex.setRegion  (2, 9e-12)
-alpha.setRegion(2, 0.05)
+// We want grains the same size as the film thickness
+// Number of grains is box surface / grain surface
+surf := N*N*c*c
+Ngrain := ceil(surf / (d*d))
 
-// define an intermaterial exchange
-lex2Fe := 21e-12/1700e3
-lex2Ni :=  9e-12/ 490e3
-lex := sqrt(2/(1/lex2Fe + 1/lex2Ni))
-setExLen(1, 2, lex)  // set exchange length between Ni and Fe
+// define grains with region number 1-100
+maxReg := 100
+randSeed(0)
+ext_makegrains(1, maxReg, Ngrain)
+
+// define region 0 as outside our dot
+defregion(0, circle(N*c).Inverse())
+
+alpha = 3
+Kc1 = 1000
+
+A   := 13e-12
+Ms  := 860e3
+lex := sqrt(2* A / Ms) // exchange legth
+
+for i:=1; i<maxReg; i++{
+	// random parameter variation by 10%
+	Msat.SetRegion(i, Ms + randNorm() * 0.1 * Ms)
+	
+	// random cubic anisotropy direction
+	phi := rand() * 2 * pi
+	theta := rand() * pi
+	x := sin(theta) * cos(phi)
+	y := sin(theta) * sin(phi)
+	z := cos(theta)
+	AnisC1.SetRegion(i, vector(x, y, z))
+	AnisC2.SetRegion(i, vector(x, y, z))
+
+	// inter-grain exchange reduction between all pairs of regions
+	red := 0.5
+	for j:=i+1; j<maxReg; j++{
+		SetExLen(i, j, sqrt(red) * lex)
+	}
+}
+
+save(regions)
+save(Msat)
+
+m = vortex(1, 1)
+run(10e-9)
+
+save(m)
