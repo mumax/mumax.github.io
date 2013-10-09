@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>mumax3</title>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+<div style="float:left">
+	<img src="nimble-cubes128.png"/>
+</div>
+
+<div style="float:left">
+<span style="font-size:48px"><b>mumax</b><sup>3</sup><br/></span>
+	GPU-accelerated micromagnetism <br/><br/>
+	<a class="pure-button pure-button-primary" href="index.html">Home</a>
+	<a class="pure-button pure-button-primary" href="https://github.com/mumax/3/releases">Download</a>
+	<a class="pure-button pure-button-primary" href="examples.html">Examples</a>
+	<a class="pure-button pure-button-primary" href="api.html">API</a>
+</div>
+<br style="clear:both"/> 
+
+<hr/>
+
+
+<h1>mumax<sup>3</sup> examples</h1>
+
+<p>These are example input scripts, the full API can be found <a href="http://mumax.github.io/api.html">here</a>.</p>
+
+mumax<sup>3</sup> input files are run with the command
+
+<pre>mumax3 myfile.txt</pre>
+
+Output is automatically stored in the "myfile.out" directory. Additionally, a web interface provides live output. Default is <code><a href="http://localhost:35367">http://localhost:35367</a></code>.<br/>
+For more details, run <code>mumax3 -help</code> which will show the available command-line flags (e.g. to select a certain GPU).
+
+<hr/><h2>Getting started with Standard Problem #4</h2>
+
+Let's start with the classic mumag standard problem 4, as defined <a href="http://www.ctcms.nist.gov/~rdm/mumag.org.html">here</a>.
+
+<a id=example1></a><pre>SetGridsize(128, 32, 1)
+SetCellsize(500e-9/128, 125e-9/32, 3e-9)
+
+alpha = 1.0
+Msat  = 800e3
+Aex   = 13e-12
+m     = uniform(1, .1, 0)
+
+run(3e-9)  // relax
+save(m)    // relaxed state
+
+autosave(m, 200e-12)
+tableautosave(10e-12)
+alpha = 0.02
+B_ext = vector(-24.6E-3, 4.3E-3, 0)
+run(1e-9)</pre>
+
+<p>This example should be pretty straight-forward to follow. Space-dependent output is stored in the efficient ".dump" format, which can be converted with <code>mumax3-convert</code>. Below is the output converted to PNG.</p>
+
+<p>The data table is stored in a simple text format compatible with <a href=http://www.gnuplot.info>gnuplot</a>. The plot below was created with <code>mumax3-plot</code>.
+</p>
+
+<h3>output</h3> 
+<figure style="float:left">
+	<img src="example1.out/m000000.png"/>
+	<figcaption> m000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example1.out/m000001.png"/>
+	<figcaption> m000001 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example1.out/m000002.png"/>
+	<figcaption> m000002 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example1.out/m000003.png"/>
+	<figcaption> m000003 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example1.out/m000004.png"/>
+	<figcaption> m000004 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example1.out/m000005.png"/>
+	<figcaption> m000005 </figcaption>
+</figure><br style="clear:both"/> 
+<figure>
+	<img src="example1.out/m.svg"/>
+	<figcaption> m.svg </figcaption>
+</figure>
+
+<hr/><h2>Input and Output Parameters</h2>
+
+In this example we set all possible input parameters, to showcase them. Setting a parameter automatically "enables" the corresponding physics (e.g. setting j enables spin-transfer torque). Demag can be explicitly turned on/off with <code>enableDemag=false</code> (it is enabled by default).
+
+<a id=example2></a><pre>setgridsize(100, 100, 1)
+setcellsize(4e-9, 4e-9, 8e-9)
+
+/* Input parameters */
+
+Msat  = 1000e3        // Saturation magnetization in A/m
+Aex   = 13e-12        // Exchange stiffness in J/m
+alpha = 0.02          // Gilbert damping constant
+B_ext = vector(0.1,0,0) // Applied field in T
+
+anisU = vector(1,0,0) // Uniaxial anisotropy axis
+Ku1   = 500e3         // Uniaxial anisotropy in J/m3
+
+xi   = 0.04                   // Spin-transfer torque degree of non-adiabaticity
+pol  = 0.56                   // Spin polarization
+j    = vector(1e14, 0, 0)     // current density in A/m2
+
+Dex = 1e-2            // Dzyaloshinskii-Moriya interaction in J/m2
+
+m = vortex(1, 1)      // Initial magnetization
+
+/* Tabular output 
+   Default columns: t, m. More can be added */
+tableadd(E_total)
+tableadd(E_Zeeman)
+tableadd(E_exch)
+tableadd(E_demag)
+tableautosave(10e-12)
+
+/* Space-dependent output */
+
+save(m)        // reduced magnetization
+save(mFFT)     // FFT of m
+
+save(B_eff)    // effective field in T
+save(B_demag)  // demagnetizing field in T
+save(B_exch)   // exchange field in T
+save(B_anis)   // uniaxial anisotropy field in T
+
+save(torque)   // total torque/γ0
+save(LLTorque) // Landau-Lifshitz torque/γ0
+save(STTorque) // Spin-transfer torque/γ0
+
+// The input parameters (Msat, Aex, ...) can be saved as well,
+// but that&#39;s only useful when they are defined space- or time-dependent.</pre><h3>output</h3> 
+<figure style="float:left">
+	<img src="example2.out/B_anis000000.png"/>
+	<figcaption> B_anis000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example2.out/B_demag000000.png"/>
+	<figcaption> B_demag000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example2.out/B_eff000000.png"/>
+	<figcaption> B_eff000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example2.out/B_exch000000.png"/>
+	<figcaption> B_exch000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example2.out/LLtorque000000.png"/>
+	<figcaption> LLtorque000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example2.out/STtorque000000.png"/>
+	<figcaption> STtorque000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example2.out/m000000.png"/>
+	<figcaption> m000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example2.out/mFFT000000.png"/>
+	<figcaption> mFFT000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example2.out/torque000000.png"/>
+	<figcaption> torque000000 </figcaption>
+</figure><br style="clear:both"/> 
+
+
+
+<hr/><h2>Standard Problem #2</h2>
+
+Using the scripting language explained above, relatively complex input files can be easily defined. E.g. <a href="http://www.ctcms.nist.gov/~rdm/std2/spec2.html">micromagnetic standard problem #2</a> specifies the simulation size in exchange lengths. The script below calculates the exchange length and chooses cells not larger than 0.75 exchange lengths so that the number of cells is a power of two (for best performance).
+
+
+<a id=example3></a><pre>Msat  = 1000e3
+Aex   = 10e-12
+alpha = 3
+
+// define exchange length
+lex := sqrt(Aex.GetRegion(1) / (0.5 * mu0 * pow(Msat.GetRegion(1),2)))
+
+d     := 30 * lex                        // we test for d/lex = 30
+Sizex := 5*d                             // magnet size x
+Sizey := 1*d
+Sizez := 0.1*d
+
+nx := pow(2, ilogb(Sizex / (0.75*lex)))  // power-of-two number of cells
+ny := pow(2, ilogb(Sizey / (0.75*lex)))  // not larger than 0.75 exchange lengths
+
+SetGridSize(nx, ny, 1)
+SetCellSize(Sizex/nx, Sizey/ny, Sizez)
+
+m = Uniform(1, 0.1, 0)                   // initial mag
+Run(5e-9)                                // relax
+
+save(m)                                  // remanent magnetization
+m_ := average(m)                         
+expect(&#34;mx&#34;, m_[0], 0.9627, 1e-3)        // test m against known value
+expect(&#34;my&#34;, m_[1], 0.0756, 1e-3)
+expect(&#34;mz&#34;, m_[2], 0, 1e-3)</pre>
+
+<h3>output</h3> 
+<figure style="float:left">
+	<img src="example3.out/m000000.png"/>
+	<figcaption> m000000 </figcaption>
+</figure><br style="clear:both"/> 
+
+This example saves the remanent magnetization state, and verifies the average magnetization has the correct value.
+
+<hr/><h2>Geometry</h2>
+
+mumax3 has powerful API to programatically define geometries. A number of primitive shapes are defined, like ellipses, rectangles, etc. They can be transformed (rotated, translated) and combined using boolean logic (add, sub, inverse). See the full <a href="http://mumax.github.io/api.html">API</a>.
+
+
+<a id=example4></a><pre>setgridsize(100, 100, 50)
+setcellsize(1e-6/100, 1e-6/100, 1e-6/50)
+
+setgeom( rect(800e-9, 500e-9) )
+m=uniform(1,1,0)
+saveas(m, &#34;rect&#34;)
+
+setgeom( cylinder(800e-9, inf) )
+m=uniform(1,1,0)
+saveas(m, &#34;cylinder&#34;)
+
+setgeom( circle(200e-9).repeat(300e-9, 400e-9, 0) )
+m=uniform(1,1,0)
+saveas(m, &#34;circle_repeat&#34;)
+
+setgeom( cylinder(800e-9, inf).inverse() )
+m=uniform(1,1,0)
+saveas(m, &#34;cylinder_inverse&#34;)
+
+setgeom( cylinder(800e-9, 600e-9).transl(200e-9, 100e-9, 0) )
+m=uniform(1,1,0)
+saveas(m, &#34;cylinder_transl&#34;)
+
+setgeom( ellipsoid(800e-9, 600e-9, 500e-9) )
+m=uniform(1,1,0)
+saveas(m, &#34;ellipsoid&#34;)
+
+setgeom( cuboid(800e-9, 600e-9, 500e-9) )
+m=uniform(1,1,0)
+saveas(m, &#34;cuboid&#34;)
+
+setgeom( cuboid(800e-9, 600e-9, 500e-9).rotz(-10*pi/180) )
+m=uniform(1,1,0)
+saveas(m, &#34;cuboid_rotZ&#34;)
+
+setgeom( layers(0, 25) )
+m=uniform(1,1,0)
+saveas(m, &#34;layers&#34;)
+
+setgeom( cell(50, 20, 0) )
+m=uniform(1,1,0)
+saveas(m, &#34;cell&#34;)
+
+setgeom( xrange(0, inf) )
+m=uniform(1,1,0)
+saveas(m, &#34;xrange&#34;)
+
+a := cylinder(600e-9, 600e-9).transl(-150e-9, 50e-9, 0 )
+b := rect(600e-9, 600e-9).transl(150e-9, -50e-9, 0)
+
+setgeom( a.add(b) )
+m=uniform(1,1,0)
+saveas(m, &#34;logicAdd&#34;)
+
+setgeom( a.sub(b) )
+m=uniform(1,1,0)
+saveas(m, &#34;logicSub&#34;)
+
+setgeom( a.intersect(b) )
+m=uniform(1,1,0)
+saveas(m, &#34;logicAnd&#34;)
+
+setgeom( a.xor(b) )
+m=uniform(1,1,0)
+saveas(m, &#34;logicXor&#34;)</pre>
+
+<h3>output</h3> 
+<figure style="float:left">
+	<img src="example4.out/cell.png"/>
+	<figcaption> cell </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/circle_repeat.png"/>
+	<figcaption> circle_repeat </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/cuboid.png"/>
+	<figcaption> cuboid </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/cuboid_rotZ.png"/>
+	<figcaption> cuboid_rotZ </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/cylinder.png"/>
+	<figcaption> cylinder </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/cylinder_inverse.png"/>
+	<figcaption> cylinder_inverse </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/cylinder_transl.png"/>
+	<figcaption> cylinder_transl </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/ellipsoid.png"/>
+	<figcaption> ellipsoid </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/layers.png"/>
+	<figcaption> layers </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/logicAdd.png"/>
+	<figcaption> logicAdd </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/logicAnd.png"/>
+	<figcaption> logicAnd </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/logicSub.png"/>
+	<figcaption> logicSub </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/logicXor.png"/>
+	<figcaption> logicXor </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/rect.png"/>
+	<figcaption> rect </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/xrange.png"/>
+	<figcaption> xrange </figcaption>
+</figure><br style="clear:both"/> 
+
+Note: these are 3D geometries seen from above. The displayed magnetization is averaged along the thickness (notable in ellipse and layers example). Also, when setting a geometry, the magnetization outside the geometry is removed (set to zero). So each time we set a new geometry we have re-initialized m.
+
+
+<hr/><h2>Initial Magnetization</h2>
+Some initial magnetization functions are provided, as well as transformations similar to those on Shapes. See the Config <a href="http://mumax.github.io/api.html">API</a>.
+
+<a id=example5></a><pre>setgridsize(200, 100, 1)
+setcellsize(5e-9, 5e-9, 5e-9)
+
+m = uniform(1, 1, 0)  // no need to normalize length
+saveas(m, &#34;uniform&#34;)
+
+m = vortex(1, -1)     // circulation, polarization
+saveas(m, &#34;vortex&#34;)
+
+m = twodomain(1,0,0,  0,1,0,  -1,0,0) // Néel wall
+saveas(m, &#34;twodomain&#34;)
+
+m = twodomain(1,0,0,  0,1,0,  -1,0,0).rotz(-pi/4)
+saveas(m, &#34;twodomain_rot&#34;)
+
+m = vortexwall(1, -1, 1, 1) 
+saveas(m, &#34;vortexwall&#34;)
+
+m = vortexwall(1, -1, 1, 1).scale(1/2, 1, 1)
+saveas(m, &#34;vortexwall_scale&#34;)
+
+m = vortex(1,-1).transl(100e-9, 50e-9, 0)
+saveas(m, &#34;vortex_transl&#34;)
+
+// set m in only a part of space, or a single cell:
+m = uniform(1, 1, 1)
+m.setInShape(cylinder(400e-9, 100e-9), vortex(1, -1))
+m.setCell(20, 10, 0, 0.1, 0.1, -0.9) // set in cell index  [20,10,0]
+saveas(m, &#34;setInShape_setCell&#34;)
+
+// Read m form .dump file, assuming it exists:
+// m.loadfile(&#34;myfile.dump&#34;)</pre>
+<h3>output</h3> 
+<figure style="float:left">
+	<img src="example5.out/setInShape_setCell.png"/>
+	<figcaption> setInShape_setCell </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example5.out/twodomain.png"/>
+	<figcaption> twodomain </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example5.out/twodomain_rot.png"/>
+	<figcaption> twodomain_rot </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example5.out/uniform.png"/>
+	<figcaption> uniform </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example5.out/vortex.png"/>
+	<figcaption> vortex </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example5.out/vortex_transl.png"/>
+	<figcaption> vortex_transl </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example5.out/vortexwall.png"/>
+	<figcaption> vortexwall </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example5.out/vortexwall_scale.png"/>
+	<figcaption> vortexwall_scale </figcaption>
+</figure><br style="clear:both"/> 
+
+These initial states are approximate, after setting them it is a good idea to relax the magnetization to the actual ground state.
+
+The magnetization can also be set in separate regions, see below.
+
+
+<hr/><h2>Interlude: Rotating Cheese</h2>
+
+In this example we define a geometry that looks like a slice of cheese and have it rotate in time.
+
+<a id=example6></a><pre>setgridsize(128, 128, 1)
+setcellsize(2e-9, 2e-9, 2e-9)
+
+d      := 200e-9
+square := rect(d, d)                 // square with side d
+
+h     := 50e-9
+hole  := cylinder(h, h)              // circle with diameter h
+hole1 := hole.transl(100e-9, 0, 0)   // translated circle #1
+hole2 := hole.transl(0, -50e-9, 0)   // translated cricle #2
+cheese:= square.sub(hole1).sub(hole2)// subtract the circles form the square (makes holes).
+setgeom(cheese)
+
+msat = 600e3
+aex = 12e-13
+alpha = 3
+
+// rotate the cheese.
+for i:=0; i&lt;=90; i=i+30{
+	angle := i*pi/180
+	setgeom(cheese.rotz(angle))
+	m = uniform(cos(angle), sin(angle), 0)
+	run(1e-9)
+	save(m)
+}</pre>
+
+<h3>output</h3> 
+<figure style="float:left">
+	<img src="example6.out/m000000.png"/>
+	<figcaption> m000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example6.out/m000001.png"/>
+	<figcaption> m000001 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example6.out/m000002.png"/>
+	<figcaption> m000002 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example6.out/m000003.png"/>
+	<figcaption> m000003 </figcaption>
+</figure><br style="clear:both"/> 
+
+
+<hr/><h2>Regions: Space-dependent Parameters</h2>
+
+<p>Space-dependent parameters are defined using material <i>regions</i>. Regions are numbered 0-255 and represent different materials. Region 0 conventionally everything outside your magnet (the vacuum), so setting material parameters starts at 1.</p>
+
+<p>Regions are defined with <code>defregion(number, shape)</code>, where <code>shape</code> is explained in the geometry example.</p>
+
+<p>When you're not using regions, like in the above examples, you'll probably set parameters with a simple assign:
+<pre>Aex = 12e-13</pre>
+Behind the screens, this sets Aex in <i>all</i> regions.
+</p>
+
+<p>It's always a good idea to output the <code>regions</code> quantity, as well as all your material parameters. </p>
+
+<a id=example7></a><pre>N := 128
+setgridsize(N, N, 1)
+setcellsize(4e-9, 4e-9, 4e-9)
+d := 4e-9 * N  
+
+// disk with different anisotropy in left and right half
+defregion(1, xrange(0, inf))
+defregion(2, xrange(-inf, 0))
+defregion(0, cylinder(d, d).inverse()) // everything outside is vacuum
+save(regions)
+
+Ku1.setregion(1, .1e6)
+anisU.setRegion(1, vector(1, 0, 0))
+
+Ku1.setregion(2, .1e6)
+anisU.setRegion(2, vector(0, 1, 0))
+
+save(Ku1)
+save(anisU)
+
+Msat = 800e3 // sets it everywhere
+save(Msat)
+
+Aex = 12e-13
+alpha = 1
+
+m.setRegion(1, uniform(1, 1, 0))
+m.setRegion(2, uniform(-1, 1, 0))
+saveas(m, &#34;m_inital&#34;)
+run(.1e-9)
+saveas(m, &#34;m_final&#34;)</pre>
+
+<h3>output</h3> 
+<figure style="float:left">
+	<img src="example7.out/Ku1000000.png"/>
+	<figcaption> Ku1000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example7.out/Msat000000.png"/>
+	<figcaption> Msat000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example7.out/anisU000000.png"/>
+	<figcaption> anisU000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example7.out/m_final.png"/>
+	<figcaption> m_final </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example7.out/m_inital.png"/>
+	<figcaption> m_inital </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example7.out/regions000000.png"/>
+	<figcaption> regions000000 </figcaption>
+</figure><br style="clear:both"/> 
+
+
+<hr/><h2>Exchange Spring</h2>
+
+The example above showed how to set material parameters in different regions. However, we can also specify the exchange interaction <i>between</i> different regions (instead of just inside one region). Physically it is not always clear how strong the exchange between different materials should be. Therefore, when using regions, the exchange between different regions defaults to zero. We specify the exchange between regions in terms of the <i>exchange length</i> sqrt(2*Aex/Msat), as this quantity is unambiguous in case of different Msat.
+
+<a id=example8></a><pre>/*
+Exchange spring consisting of bottom Fe layer and top Ni layer.
+Interlayer exchange estimated from geometrical average of Fe and Ni exchange lengths.
+*/
+Nx := 16
+Ny := 16
+Nz := 8
+setgridsize(Nx, Ny, Nz)
+setcellsize(4e-9, 4e-9, 3e-9)
+
+// Fe
+defregion(1, layers(0, Nz/2))
+Msat.setRegion (1, 1700e3)
+Aex.setRegion  (1, 21e-12)
+alpha.setRegion(1, 0.1)
+
+// Ni
+defregion(2, layers(Nz/2, Nz))
+Msat.setRegion (2, 490e3)
+Aex.setRegion  (2, 9e-12)
+alpha.setRegion(2, 0.05)
+
+// define an intermaterial exchange
+lex2Fe := 21e-12/1700e3
+lex2Ni :=  9e-12/ 490e3
+lex := sqrt(2/(1/lex2Fe + 1/lex2Ni))
+setExLen(1, 2, lex)  // set exchange length between Ni and Fe</pre>
+
+
+<hr/><h2>PMA Racetrack</h2>
+<a id=example9></a><pre>// In this example we drive a domain wall in PMA material by spin-transfer torque.
+// We set up a post-step function that makes the simulation box &#34;follow&#34; the domain
+// wall. Like this, only a small number of cells is needed to simulate an infinitely
+// long magnetic wire.
+
+setgridsize(128, 128, 1)
+setcellsize(2e-9, 2e-9, 1e-9)
+
+msat    = 600e3
+aex     = 10e-12
+anisU   = vector(0, 0, 1)
+Ku1     = 0.59e6
+xi      = 0.2
+alpha   = 3                                   // high damping for fast relax
+
+m     = twoDomain(0, 0, 1, 1, 1, 0, 0, 0, -1) // up-down domains with wall between Bloch and Néél type
+run(0.1e-9)                                   // relax
+alpha = 0.02                                  // normal damping
+
+// Set post-step function that centers simulation window on domain wall.
+postStep(ext_centerPMAwall)
+
+// Schedule output
+autosave(m, 100e-12)
+
+// Run for 1ns with current through the sample
+j   = vector(1.5e13, 0, 0)
+pol = 1
+run(.5e-9)</pre>
+
+<h3>output</h3> 
+<figure style="float:left">
+	<img src="example9.out/m000000.png"/>
+	<figcaption> m000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example9.out/m000001.png"/>
+	<figcaption> m000001 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example9.out/m000002.png"/>
+	<figcaption> m000002 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example9.out/m000003.png"/>
+	<figcaption> m000003 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example9.out/m000004.png"/>
+	<figcaption> m000004 </figcaption>
+</figure><br style="clear:both"/> 
+
+Since we center on the domain wall we can not see that it is actually moving, but the domain wall breakdown is visible.
+
+
+<hr/><h2>Py Racetrack</h2>
+
+<a id=example10></a><pre>// In this example we drive a vortex wall in Permalloy by spin-transfer torque.
+// We set up a post-step function that makes the simulation box &#34;follow&#34; the domain
+// wall. By removing surface charges at the left and right ends, we mimic an infintely
+// long wire.
+
+setgridsize(256, 32, 1)
+setcellsize(3e-9, 3e-9, 10e-9)
+
+Msat    = 860e3
+Aex     = 13e-12
+Xi      = 0.1
+m       = twodomain(1,0,0,  0,1,0,  -1,0,0)
+
+notch := rect(20e-9, 20e-9).RotZ(45*pi/180).transl(0, 16*3e-9, 0).inverse()
+setGeom(notch.Repeat(200e-9, 32*3e-9, 0))
+
+
+// Remove surface charges from left (mx=1) and right (mx=-1) sides to mimic infinitely long wire. We have to specify the region (0) at the boundaries.
+ext_rmSurfaceCharge(0, 1, -1)
+
+
+// Relax
+Alpha = 3    // high damping for fast relax
+RunWhile(MaxTorque &gt; 1e-3)    // relax
+Alpha = 0.02 // restore normal damping
+
+// Set post-step function that centers simulation window on domain wall.
+PostStep(ext_centerInplaneWall)
+
+// Schedule output
+autosave(m, 100e-12)
+tableadd(ext_dwpos)   // domain wall position
+tableadd(ext_dwspeed) // domain wall speed
+tableautosave(10e-12)
+
+// Run the simulation with current through the sample
+pol = 0.56
+J   = vector(-8e12, 0, 0)
+Run(1e-9)</pre>
+
+<h3>output</h3> 
+<figure style="float:left">
+	<img src="example10.out/m000000.png"/>
+	<figcaption> m000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example10.out/m000001.png"/>
+	<figcaption> m000001 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example10.out/m000002.png"/>
+	<figcaption> m000002 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example10.out/m000003.png"/>
+	<figcaption> m000003 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example10.out/m000004.png"/>
+	<figcaption> m000004 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example10.out/m000005.png"/>
+	<figcaption> m000005 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example10.out/m000006.png"/>
+	<figcaption> m000006 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example10.out/m000007.png"/>
+	<figcaption> m000007 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example10.out/m000008.png"/>
+	<figcaption> m000008 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example10.out/m000009.png"/>
+	<figcaption> m000009 </figcaption>
+</figure><br style="clear:both"/> 
+<figure>
+	<img src="example10.out/ext_dwpos.svg"/>
+	<figcaption> ext_dwpos.svg </figcaption>
+</figure>
+<figure>
+	<img src="example10.out/ext_dwspeed.svg"/>
+	<figcaption> ext_dwspeed.svg </figcaption>
+</figure>
+<figure>
+	<img src="example10.out/m.svg"/>
+	<figcaption> m.svg </figcaption>
+</figure>
+
+Since we center on the domain wall we can not really see the motion, despite the vortex wall moving pretty fast. Note the absence of closure domains at the edges due to the surface charges being removed there.
+
+
+
+<hr/><h2>Voronoi tessellation</h2>
+
+In this example we use regions to specify grains in a material. The built-in extension <code>ext_makegrains</code> is used to define grain-like regions using Voronoi tessellation. We vary the material parameters in each grain, as well as the inter-grain exchange coupling.
+
+<a id=example11></a><pre>N := 256
+c := 4e-9
+d := 40e-9
+setgridsize(N, N, 1)
+setcellsize(c, c, d)
+
+setGeom(circle(N*c))
+
+// We want grains the same size as the film thickness
+// Number of grains is box surface / grain surface
+surf := N*N*c*c
+Ngrain := ceil(surf / (d*d))
+
+// define grains with region number 1-100
+maxReg := 100
+randSeed(0)
+ext_makegrains(1, maxReg, Ngrain)
+
+// define region 0 as outside our dot
+defregion(0, circle(N*c).Inverse())
+
+alpha = 3
+Kc1 = 1000
+
+Aex  = 13e-12
+Msat = 860e3
+
+for i:=1; i&lt;maxReg; i++{
+	// random cubic anisotropy direction
+	phi := rand() * 2 * pi
+	theta := rand() * pi
+
+	x1 := sin(theta) * cos(phi)
+	y1 := sin(theta) * sin(phi)
+	z1 := cos(theta)
+	AnisC1.SetRegion(i, vector(x1, y1, z1))
+
+	x2 := sin(theta + pi/2) * cos(phi)
+	y2 := sin(theta + pi/2) * sin(phi)
+	z2 := cos(theta + pi/2)
+	AnisC2.SetRegion(i, vector(x2, y2, z2))
+
+	// random 10% anisotropy variation
+	K := 1e5
+	Kc1.SetRegion(i, K + randNorm() * 0.1 * K)
+}
+
+save(regions)
+save(Kc1)
+save(AnisC1)
+save(AnisC2)
+
+m = vortex(1, 1)
+run(.1e-9)
+
+save(m)</pre>
+
+<h3>output</h3> 
+<figure style="float:left">
+	<img src="example11.out/Kc1000000.png"/>
+	<figcaption> Kc1000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example11.out/anisC1000000.png"/>
+	<figcaption> anisC1000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example11.out/anisC2000000.png"/>
+	<figcaption> anisC2000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example11.out/m000000.png"/>
+	<figcaption> m000000 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example11.out/regions000000.png"/>
+	<figcaption> regions000000 </figcaption>
+</figure><br style="clear:both"/> 
+
+</body>
+</html>
+
