@@ -1,27 +1,29 @@
-/*
-Exchange spring consisting of bottom Fe layer and top Ni layer.
-Interlayer exchange estimated from geometrical average of Fe and Ni exchange lengths.
-*/
-Nx := 16
-Ny := 16
-Nz := 8
-setgridsize(Nx, Ny, Nz)
-setcellsize(4e-9, 4e-9, 3e-9)
+// In this example we drive a domain wall in PMA material by spin-transfer torque.
+// We set up a post-step function that makes the simulation box "follow" the domain
+// wall. Like this, only a small number of cells is needed to simulate an infinitely
+// long magnetic wire.
 
-// Fe
-defregion(1, layers(0, Nz/2))
-Msat.setRegion (1, 1700e3)
-Aex.setRegion  (1, 21e-12)
-alpha.setRegion(1, 0.1)
+setgridsize(128, 128, 1)
+setcellsize(2e-9, 2e-9, 1e-9)
 
-// Ni
-defregion(2, layers(Nz/2, Nz))
-Msat.setRegion (2, 490e3)
-Aex.setRegion  (2, 9e-12)
-alpha.setRegion(2, 0.05)
+msat    = 600e3
+aex     = 10e-12
+anisU   = vector(0, 0, 1)
+Ku1     = 0.59e6
+xi      = 0.2
+alpha   = 3                                   // high damping for fast relax
 
-// define an intermaterial exchange
-lex2Fe := 21e-12/1700e3
-lex2Ni :=  9e-12/ 490e3
-lex := sqrt(2/(1/lex2Fe + 1/lex2Ni))
-setExLen(1, 2, lex)  // set exchange length between Ni and Fe
+m     = twoDomain(0, 0, 1, 1, 1, 0, 0, 0, -1) // up-down domains with wall between Bloch and Néél type
+run(0.1e-9)                                   // relax
+alpha = 0.02                                  // normal damping
+
+// Set post-step function that centers simulation window on domain wall.
+postStep(ext_centerPMAwall)
+
+// Schedule output
+autosave(m, 100e-12)
+
+// Run for 1ns with current through the sample
+j   = vector(1.5e13, 0, 0)
+pol = 1
+run(.5e-9)

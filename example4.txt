@@ -1,65 +1,32 @@
-setgridsize(100, 100, 50)
-setcellsize(1e-6/100, 1e-6/100, 1e-6/50)
+setgridsize(200, 100, 1)
+setcellsize(5e-9, 5e-9, 5e-9)
 
-setgeom( rect(800e-9, 500e-9) )
-m=uniform(1,1,0)
-saveas(m, "rect")
+m = uniform(1, 1, 0)  // no need to normalize length
+saveas(m, "uniform")
 
-setgeom( cylinder(800e-9, inf) )
-m=uniform(1,1,0)
-saveas(m, "cylinder")
+m = vortex(1, -1)     // circulation, polarization
+saveas(m, "vortex")
 
-setgeom( circle(200e-9).repeat(300e-9, 400e-9, 0) )
-m=uniform(1,1,0)
-saveas(m, "circle_repeat")
+m = twodomain(1,0,0,  0,1,0,  -1,0,0) // Néel wall
+saveas(m, "twodomain")
 
-setgeom( cylinder(800e-9, inf).inverse() )
-m=uniform(1,1,0)
-saveas(m, "cylinder_inverse")
+m = twodomain(1,0,0,  0,1,0,  -1,0,0).rotz(-pi/4)
+saveas(m, "twodomain_rot")
 
-setgeom( cylinder(800e-9, 600e-9).transl(200e-9, 100e-9, 0) )
-m=uniform(1,1,0)
-saveas(m, "cylinder_transl")
+m = vortexwall(1, -1, 1, 1) 
+saveas(m, "vortexwall")
 
-setgeom( ellipsoid(800e-9, 600e-9, 500e-9) )
-m=uniform(1,1,0)
-saveas(m, "ellipsoid")
+m = vortexwall(1, -1, 1, 1).scale(1/2, 1, 1)
+saveas(m, "vortexwall_scale")
 
-setgeom( cuboid(800e-9, 600e-9, 500e-9) )
-m=uniform(1,1,0)
-saveas(m, "cuboid")
+m = vortex(1,-1).transl(100e-9, 50e-9, 0)
+saveas(m, "vortex_transl")
 
-setgeom( cuboid(800e-9, 600e-9, 500e-9).rotz(-10*pi/180) )
-m=uniform(1,1,0)
-saveas(m, "cuboid_rotZ")
+// set m in only a part of space, or a single cell:
+m = uniform(1, 1, 1)
+m.setInShape(cylinder(400e-9, 100e-9), vortex(1, -1))
+m.setCell(20, 10, 0, 0.1, 0.1, -0.9) // set in cell index  [20,10,0]
+saveas(m, "setInShape_setCell")
 
-setgeom( layers(0, 25) )
-m=uniform(1,1,0)
-saveas(m, "layers")
-
-setgeom( cell(50, 20, 0) )
-m=uniform(1,1,0)
-saveas(m, "cell")
-
-setgeom( xrange(0, inf) )
-m=uniform(1,1,0)
-saveas(m, "xrange")
-
-a := cylinder(600e-9, 600e-9).transl(-150e-9, 50e-9, 0 )
-b := rect(600e-9, 600e-9).transl(150e-9, -50e-9, 0)
-
-setgeom( a.add(b) )
-m=uniform(1,1,0)
-saveas(m, "logicAdd")
-
-setgeom( a.sub(b) )
-m=uniform(1,1,0)
-saveas(m, "logicSub")
-
-setgeom( a.intersect(b) )
-m=uniform(1,1,0)
-saveas(m, "logicAnd")
-
-setgeom( a.xor(b) )
-m=uniform(1,1,0)
-saveas(m, "logicXor")
+// Read m form .dump file, assuming it exists:
+// m.loadfile("myfile.dump")

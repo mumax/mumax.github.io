@@ -1,32 +1,25 @@
-setgridsize(200, 100, 1)
-setcellsize(5e-9, 5e-9, 5e-9)
+setgridsize(128, 128, 1)
+setcellsize(2e-9, 2e-9, 2e-9)
 
-m = uniform(1, 1, 0)  // no need to normalize length
-saveas(m, "uniform")
+d      := 200e-9
+square := rect(d, d)                 // square with side d
 
-m = vortex(1, -1)     // circulation, polarization
-saveas(m, "vortex")
+h     := 50e-9
+hole  := cylinder(h, h)              // circle with diameter h
+hole1 := hole.transl(100e-9, 0, 0)   // translated circle #1
+hole2 := hole.transl(0, -50e-9, 0)   // translated cricle #2
+cheese:= square.sub(hole1).sub(hole2)// subtract the circles form the square (makes holes).
+setgeom(cheese)
 
-m = twodomain(1,0,0,  0,1,0,  -1,0,0) // Néel wall
-saveas(m, "twodomain")
+msat = 600e3
+aex = 12e-13
+alpha = 3
 
-m = twodomain(1,0,0,  0,1,0,  -1,0,0).rotz(-pi/4)
-saveas(m, "twodomain_rot")
-
-m = vortexwall(1, -1, 1, 1) 
-saveas(m, "vortexwall")
-
-m = vortexwall(1, -1, 1, 1).scale(1/2, 1, 1)
-saveas(m, "vortexwall_scale")
-
-m = vortex(1,-1).transl(100e-9, 50e-9, 0)
-saveas(m, "vortex_transl")
-
-// set m in only a part of space, or a single cell:
-m = uniform(1, 1, 1)
-m.setInShape(cylinder(400e-9, 100e-9), vortex(1, -1))
-m.setCell(20, 10, 0, 0.1, 0.1, -0.9) // set in cell index  [20,10,0]
-saveas(m, "setInShape_setCell")
-
-// Read m form .dump file, assuming it exists:
-// m.loadfile("myfile.dump")
+// rotate the cheese.
+for i:=0; i<=90; i=i+30{
+	angle := i*pi/180
+	setgeom(cheese.rotz(angle))
+	m = uniform(cos(angle), sin(angle), 0)
+	run(1e-9)
+	save(m)
+}

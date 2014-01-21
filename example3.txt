@@ -1,26 +1,65 @@
-Msat  = 1000e3
-Aex   = 10e-12
-alpha = 3
+setgridsize(100, 100, 50)
+setcellsize(1e-6/100, 1e-6/100, 1e-6/50)
 
-// define exchange length
-lex := sqrt(Aex.GetRegion(1) / (0.5 * mu0 * pow(Msat.GetRegion(1),2)))
+setgeom( rect(800e-9, 500e-9) )
+m=uniform(1,1,0)
+saveas(m, "rect")
 
-d     := 30 * lex                        // we test for d/lex = 30
-Sizex := 5*d                             // magnet size x
-Sizey := 1*d
-Sizez := 0.1*d
+setgeom( cylinder(800e-9, inf) )
+m=uniform(1,1,0)
+saveas(m, "cylinder")
 
-nx := pow(2, ilogb(Sizex / (0.75*lex)))  // power-of-two number of cells
-ny := pow(2, ilogb(Sizey / (0.75*lex)))  // not larger than 0.75 exchange lengths
+setgeom( circle(200e-9).repeat(300e-9, 400e-9, 0) )
+m=uniform(1,1,0)
+saveas(m, "circle_repeat")
 
-SetGridSize(nx, ny, 1)
-SetCellSize(Sizex/nx, Sizey/ny, Sizez)
+setgeom( cylinder(800e-9, inf).inverse() )
+m=uniform(1,1,0)
+saveas(m, "cylinder_inverse")
 
-m = Uniform(1, 0.1, 0)                   // initial mag
-Run(5e-9)                                // relax
+setgeom( cylinder(800e-9, 600e-9).transl(200e-9, 100e-9, 0) )
+m=uniform(1,1,0)
+saveas(m, "cylinder_transl")
 
-save(m)                                  // remanent magnetization
-m_ := average(m)                         
-expect("mx", m_[0], 0.9627, 1e-3)        // test m against known value
-expect("my", m_[1], 0.0756, 1e-3)
-expect("mz", m_[2], 0, 1e-3)
+setgeom( ellipsoid(800e-9, 600e-9, 500e-9) )
+m=uniform(1,1,0)
+saveas(m, "ellipsoid")
+
+setgeom( cuboid(800e-9, 600e-9, 500e-9) )
+m=uniform(1,1,0)
+saveas(m, "cuboid")
+
+setgeom( cuboid(800e-9, 600e-9, 500e-9).rotz(-10*pi/180) )
+m=uniform(1,1,0)
+saveas(m, "cuboid_rotZ")
+
+setgeom( layers(0, 25) )
+m=uniform(1,1,0)
+saveas(m, "layers")
+
+setgeom( cell(50, 20, 0) )
+m=uniform(1,1,0)
+saveas(m, "cell")
+
+setgeom( xrange(0, inf) )
+m=uniform(1,1,0)
+saveas(m, "xrange")
+
+a := cylinder(600e-9, 600e-9).transl(-150e-9, 50e-9, 0 )
+b := rect(600e-9, 600e-9).transl(150e-9, -50e-9, 0)
+
+setgeom( a.add(b) )
+m=uniform(1,1,0)
+saveas(m, "logicAdd")
+
+setgeom( a.sub(b) )
+m=uniform(1,1,0)
+saveas(m, "logicSub")
+
+setgeom( a.intersect(b) )
+m=uniform(1,1,0)
+saveas(m, "logicAnd")
+
+setgeom( a.xor(b) )
+m=uniform(1,1,0)
+saveas(m, "logicXor")

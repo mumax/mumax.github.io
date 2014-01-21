@@ -30,7 +30,7 @@
 <hr/>
 
 
-<h1> mumax<sup>3</sup> API </h1>
+<h1> mumax 3.3 API </h1>
 
 This is a complete overview of all available functions for writing an input script.
 
@@ -71,13 +71,11 @@ Loops are possible as well:
 
 Some of the API features accept a function as argument (e.g.: <code>RunWhile(func()bool)</code>, or all input parameters). In that case, and <i>only</i> in this case, the argument is implicitly converted to a function, which is re-evaluated each time it's needed. E.g.:
 
-<pre><code>
-value := sin(pi*t)  // value is a float64, RHS evaluated only once
+<pre><code>value := sin(pi*t)  // value is a float64, RHS evaluated only once
 Msat = value        // time-independent Msat
 </code></pre>
 versus:
-<pre><code>
-Msat = sin(pi*t)    // RHS converted to function, re-evaluted every time
+<pre><code>Msat = sin(pi*t)    // RHS converted to function, re-evaluted every time
 </code></pre>
 
 
@@ -121,8 +119,6 @@ SetCellSize(sizeX/Nx, sizeY/Ny, sizeZ/Nz)
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
-		 
 		</p> 
 	
 
@@ -155,9 +151,27 @@ SetCellSize(sizeX/Nx, sizeY/Ny, sizeZ/Nz)
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
-		 
 		</p> 
+	
+
+	</p>
+ 
+
+
+<hr/><h1> Periodic boundary conditions</h1>
+Optionally, periodic boundary conditions can be enabled <i>before</i> setting the grid size.
+<pre><code>SetPBC(5, 0, 0)        // 5 extra images on left and right sides.
+SetGridSize(128, 64, 1)
+SetCellSize(5e-9, 5e-9, 5e-9)
+</code></pre>
+Setting a nonzero PBC value in a direction enables wrap-around in that direction. The precise value passed determines how many repetitions are seen by the demag field. E.g., in the above example the demag field behaves as if 5 repetitions are present to the left and to the right side. Choosing a large number may cause long initialization time.
+
+ 
+	<p><span style="color:#000088; font-size:1.3em"> <b>SetPBC</b>(int, int, int) </span> 
+	 <p style="margin-left:40px"> Sets number of repetitions in X,Y,Z </p> 
+
+	
+
 	
 
 	</p>
@@ -178,13 +192,13 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example4">[4]</a> 
+			<a href="examples.html#example3">[3]</a> 
 		 
-			<a href="examples.html#example6">[6]</a> 
+			<a href="examples.html#example5">[5]</a> 
+		 
+			<a href="examples.html#example9">[9]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
-		 
-			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -223,8 +237,6 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
-		 
 		</p> 
 	
 
@@ -241,11 +253,11 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example4">[4]</a> 
+			<a href="examples.html#example3">[3]</a> 
 		 
-			<a href="examples.html#example6">[6]</a> 
+			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -263,7 +275,7 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example4">[4]</a> 
+			<a href="examples.html#example3">[3]</a> 
 		 
 		</p> 
 	
@@ -281,13 +293,13 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
+			<a href="examples.html#example3">[3]</a> 
+		 
 			<a href="examples.html#example4">[4]</a> 
 		 
 			<a href="examples.html#example5">[5]</a> 
 		 
 			<a href="examples.html#example6">[6]</a> 
-		 
-			<a href="examples.html#example7">[7]</a> 
 		 
 		</p> 
 	
@@ -318,7 +330,7 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example4">[4]</a> 
+			<a href="examples.html#example3">[3]</a> 
 		 
 		</p> 
 	
@@ -336,9 +348,9 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example4">[4]</a> 
+			<a href="examples.html#example3">[3]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example7">[7]</a> 
 		 
 		</p> 
 	
@@ -356,13 +368,13 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example4">[4]</a> 
+			<a href="examples.html#example3">[3]</a> 
 		 
-			<a href="examples.html#example6">[6]</a> 
+			<a href="examples.html#example5">[5]</a> 
+		 
+			<a href="examples.html#example9">[9]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
-		 
-			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -380,9 +392,9 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example4">[4]</a> 
+			<a href="examples.html#example3">[3]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
+			<a href="examples.html#example6">[6]</a> 
 		 
 		</p> 
 	
@@ -431,11 +443,11 @@ DefRegion(0, circle(1e-6).Inverse()) // redundant
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
+			<a href="examples.html#example6">[6]</a> 
+		 
 			<a href="examples.html#example7">[7]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -493,14 +505,25 @@ m.LoadFile("config.dump")
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
-		 
 		</p> 
 	
 
 	</p>
  
  
+	<p><span style="color:#000088; font-size:1.3em"> <b>addnoise</b>(float64, Config) Config </span> 
+	 <p style="margin-left:40px"> Add noise with given amplitude to configuration </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Transl( float64 float64 float64 ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>twodomain</b>(float64, float64, float64, float64, float64, float64, float64, float64, float64) Config </span> 
 	 <p style="margin-left:40px"> Twodomain magnetization with with given magnetization in left domain, wall, and right domain </p> 
 
@@ -512,11 +535,11 @@ m.LoadFile("config.dump")
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example5">[5]</a> 
+			<a href="examples.html#example4">[4]</a> 
+		 
+			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
-		 
-			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -536,6 +559,8 @@ m.LoadFile("config.dump")
 		 
 			<a href="examples.html#example1">[1]</a> 
 		 
+			<a href="examples.html#example2">[2]</a> 
+		 
 			<a href="examples.html#example3">[3]</a> 
 		 
 			<a href="examples.html#example4">[4]</a> 
@@ -543,8 +568,6 @@ m.LoadFile("config.dump")
 			<a href="examples.html#example5">[5]</a> 
 		 
 			<a href="examples.html#example6">[6]</a> 
-		 
-			<a href="examples.html#example7">[7]</a> 
 		 
 		</p> 
 	
@@ -562,13 +585,11 @@ m.LoadFile("config.dump")
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example2">[2]</a> 
+			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example5">[5]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
-		 
-			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -586,7 +607,7 @@ m.LoadFile("config.dump")
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example5">[5]</a> 
+			<a href="examples.html#example4">[4]</a> 
 		 
 		</p> 
 	
@@ -618,7 +639,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int float64 ) &nbsp; 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.ScalarFunction ) &nbsp; 
 		</span> </p> 
 	
 
@@ -628,7 +649,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example2">[2]</a> 
 		 
-			<a href="examples.html#example3">[3]</a> 
+			<a href="examples.html#example5">[5]</a> 
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
@@ -639,8 +660,6 @@ Ku1 = 500 * sin(2*pi*f*t)
 			<a href="examples.html#example9">[9]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
-		 
-			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -652,7 +671,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int float64 ) &nbsp; 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.ScalarFunction ) &nbsp; 
 		</span> </p> 
 	
 
@@ -662,7 +681,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example2">[2]</a> 
 		 
-			<a href="examples.html#example3">[3]</a> 
+			<a href="examples.html#example5">[5]</a> 
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
@@ -674,8 +693,6 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
-		 
 		</p> 
 	
 
@@ -686,13 +703,13 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int [3]float64 ) &nbsp; 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.VectorFunction ) &nbsp; 
 		</span> </p> 
 	
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -704,13 +721,13 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int [3]float64 ) &nbsp; 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.VectorFunction ) &nbsp; 
 		</span> </p> 
 	
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -722,17 +739,15 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int [3]float64 ) &nbsp; 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.VectorFunction ) &nbsp; 
 		</span> </p> 
 	
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example2">[2]</a> 
+			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 		</p> 
 	
@@ -744,7 +759,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int [3]float64 ) &nbsp; 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.VectorFunction ) &nbsp; 
 		</span> </p> 
 	
 
@@ -757,27 +772,51 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int float64 ) &nbsp; 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.ScalarFunction ) &nbsp; 
 		</span> </p> 
 	
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-			<a href="examples.html#example5">[5]</a> 
+			<a href="examples.html#example4">[4]</a> 
 		 
 		</p> 
 	
 
 	</p>
   
-	<p><span style="color:#000088; font-size:1.3em"> <b>JPol_perRegion</b> </span> 
+	<p><span style="color:#000088; font-size:1.3em"> <b>EpsilonPrime</b> </span> 
+	 <p style="margin-left:40px"> Slonczewski secondairy STT term ε' </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.ScalarFunction ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>FixedLayer</b> </span> 
+	 <p style="margin-left:40px"> Slonczewski fixed layer polarization </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.VectorFunction ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>J_perRegion</b> </span> 
 	 <p style="margin-left:40px"> (internal) (A/m2) </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int [3]float64 ) &nbsp; 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.VectorFunction ) &nbsp; 
 		</span> </p> 
 	
 
@@ -790,13 +829,13 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int float64 ) &nbsp; 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.ScalarFunction ) &nbsp; 
 		</span> </p> 
 	
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -808,19 +847,30 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int float64 ) &nbsp; 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.ScalarFunction ) &nbsp; 
 		</span> </p> 
 	
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example2">[2]</a> 
+			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>Lambda</b> </span> 
+	 <p style="margin-left:40px"> Slonczewski Λ parameter </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.ScalarFunction ) &nbsp; 
+		</span> </p> 
+	
+
 	
 
 	</p>
@@ -830,7 +880,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int float64 ) &nbsp; 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.ScalarFunction ) &nbsp; 
 		</span> </p> 
 	
 
@@ -840,7 +890,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example2">[2]</a> 
 		 
-			<a href="examples.html#example3">[3]</a> 
+			<a href="examples.html#example5">[5]</a> 
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
@@ -852,7 +902,27 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>Pol</b> </span> 
+	 <p style="margin-left:40px"> Electrical current polarization </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.ScalarFunction ) &nbsp; 
+		</span> </p> 
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example4">[4]</a> 
+		 
+			<a href="examples.html#example8">[8]</a> 
+		 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -864,7 +934,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int float64 ) &nbsp; 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.ScalarFunction ) &nbsp; 
 		</span> </p> 
 	
 
@@ -877,19 +947,17 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int float64 ) &nbsp; 
+		 GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.ScalarFunction ) &nbsp; 
 		</span> </p> 
 	
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example2">[2]</a> 
+			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example5">[5]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
-		 
-			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -915,7 +983,7 @@ JPol.Add(LoadFile("current.dump"), 1)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Add( Slice func() float64 ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int [3]float64 ) &nbsp; 
+		 Add( Slice script.ScalarFunction ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.VectorFunction ) &nbsp; 
 		</span> </p> 
 	
 
@@ -923,29 +991,25 @@ JPol.Add(LoadFile("current.dump"), 1)
 		 
 			<a href="examples.html#example1">[1]</a> 
 		 
-			<a href="examples.html#example2">[2]</a> 
-		 
 		</p> 
 	
 
 	</p>
   
-	<p><span style="color:#000088; font-size:1.3em"> <b>JPol</b> </span> 
-	 <p style="margin-left:40px"> Polarized electrical current density (A/m2) </p> 
+	<p><span style="color:#000088; font-size:1.3em"> <b>J</b> </span> 
+	 <p style="margin-left:40px"> Electrical current density (A/m2) </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Add( Slice func() float64 ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int [3]float64 ) &nbsp; 
+		 Add( Slice script.ScalarFunction ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int script.VectorFunction ) &nbsp; 
 		</span> </p> 
 	
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example2">[2]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
-		 
-			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -958,13 +1022,13 @@ JPol.Add(LoadFile("current.dump"), 1)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 CPUAccess( ) &nbsp; Comp( int ) &nbsp; DevPtr( int ) &nbsp; Disable( ) &nbsp; Free( ) &nbsp; GPUAccess( ) &nbsp; Host( ) &nbsp; HostCopy( ) &nbsp; IsNil( ) &nbsp; Len( ) &nbsp; MemType( ) &nbsp; Scalars( ) &nbsp; Tensors( ) &nbsp; Vectors( ) &nbsp; 
+		 CPUAccess( ) &nbsp; Comp( int ) &nbsp; DevPtr( int ) &nbsp; Disable( ) &nbsp; Free( ) &nbsp; GPUAccess( ) &nbsp; Get( int int int int ) &nbsp; Host( ) &nbsp; HostCopy( ) &nbsp; Index( int int int ) &nbsp; IsNil( ) &nbsp; Len( ) &nbsp; MemType( ) &nbsp; Scalars( ) &nbsp; Set( int int int int float64 ) &nbsp; String( ) &nbsp; Tensors( ) &nbsp; Vectors( ) &nbsp; 
 		</span> </p> 
 	
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example5">[5]</a> 
+			<a href="examples.html#example4">[4]</a> 
 		 
 		</p> 
 	
@@ -984,11 +1048,6 @@ JPol.Add(LoadFile("current.dump"), 1)
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1002,11 +1061,6 @@ JPol.Add(LoadFile("current.dump"), 1)
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1020,11 +1074,6 @@ JPol.Add(LoadFile("current.dump"), 1)
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1038,11 +1087,6 @@ JPol.Add(LoadFile("current.dump"), 1)
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1082,11 +1126,6 @@ JPol.Add(LoadFile("current.dump"), 1)
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1100,11 +1139,6 @@ JPol.Add(LoadFile("current.dump"), 1)
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1131,11 +1165,6 @@ JPol.Add(LoadFile("current.dump"), 1)
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1149,11 +1178,6 @@ JPol.Add(LoadFile("current.dump"), 1)
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1167,11 +1191,6 @@ JPol.Add(LoadFile("current.dump"), 1)
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1200,7 +1219,7 @@ JPol.Add(LoadFile("current.dump"), 1)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -1212,11 +1231,6 @@ JPol.Add(LoadFile("current.dump"), 1)
 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1232,9 +1246,9 @@ JPol.Add(LoadFile("current.dump"), 1)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example7">[7]</a> 
+			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -1250,11 +1264,6 @@ JPol.Add(LoadFile("current.dump"), 1)
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1270,11 +1279,9 @@ JPol.Add(LoadFile("current.dump"), 1)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example2">[2]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
-		 
-			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -1306,11 +1313,9 @@ tableadd(m.Region(1))
 		 
 			<a href="examples.html#example1">[1]</a> 
 		 
-			<a href="examples.html#example2">[2]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
-		 
-			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -1336,13 +1341,11 @@ tableadd(m.Region(1))
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
-		 
-			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -1356,11 +1359,11 @@ tableadd(m.Region(1))
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
+			<a href="examples.html#example3">[3]</a> 
+		 
 			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example5">[5]</a> 
-		 
-			<a href="examples.html#example7">[7]</a> 
+			<a href="examples.html#example6">[6]</a> 
 		 
 		</p> 
 	
@@ -1374,9 +1377,7 @@ tableadd(m.Region(1))
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -1392,9 +1393,7 @@ tableadd(m.Region(1))
 		 
 			<a href="examples.html#example1">[1]</a> 
 		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -1445,17 +1444,17 @@ FixDt = 1e-15
 		 
 			<a href="examples.html#example1">[1]</a> 
 		 
-			<a href="examples.html#example3">[3]</a> 
+			<a href="examples.html#example2">[2]</a> 
+		 
+			<a href="examples.html#example5">[5]</a> 
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
-		 
-			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -1469,7 +1468,7 @@ FixDt = 1e-15
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -1567,8 +1566,6 @@ FixDt = 1e-15
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
-		 
 		</p> 
 	
 
@@ -1597,7 +1594,7 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -1611,7 +1608,7 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 		</p> 
 	
@@ -1642,7 +1639,7 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -1660,7 +1657,7 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -1696,7 +1693,7 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -1710,7 +1707,7 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -1725,9 +1722,9 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example3">[3]</a> 
+			<a href="examples.html#example2">[2]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example7">[7]</a> 
 		 
 		</p> 
 	
@@ -1748,11 +1745,6 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example3">[3]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1773,9 +1765,9 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -1789,7 +1781,7 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example7">[7]</a> 
 		 
 		</p> 
 	
@@ -1888,7 +1880,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -1902,9 +1894,9 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example6">[6]</a> 
+			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -1943,11 +1935,6 @@ Other available functions.
 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example3">[3]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -2022,9 +2009,22 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example3">[3]</a> 
+			<a href="examples.html#example2">[2]</a> 
 		 
 		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>Index2Coord</b>(int, int, int) data.Vector </span> 
+	 <p style="margin-left:40px"> Convert cell index to x,y,z coordinate in meter </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Add( data.Vector ) &nbsp; Cross( data.Vector ) &nbsp; Div( float64 ) &nbsp; Dot( data.Vector ) &nbsp; Len( ) &nbsp; Mul( float64 ) &nbsp; Sub( data.Vector ) &nbsp; X( ) &nbsp; Y( ) &nbsp; Z( ) &nbsp; 
+		</span> </p> 
+	
+
 	
 
 	</p>
@@ -2036,13 +2036,13 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example4">[4]</a> 
+			<a href="examples.html#example3">[3]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
+			<a href="examples.html#example6">[6]</a> 
+		 
+			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
-		 
-			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -2110,9 +2110,9 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example3">[3]</a> 
+			<a href="examples.html#example2">[2]</a> 
 		 
-			<a href="examples.html#example4">[4]</a> 
+			<a href="examples.html#example3">[3]</a> 
 		 
 		</p> 
 	
@@ -2153,7 +2153,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example3">[3]</a> 
+			<a href="examples.html#example2">[2]</a> 
 		 
 		</p> 
 	
@@ -2167,9 +2167,9 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -2183,7 +2183,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example5">[5]</a> 
+			<a href="examples.html#example4">[4]</a> 
 		 
 		</p> 
 	
@@ -2206,9 +2206,22 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example3">[3]</a> 
+			<a href="examples.html#example2">[2]</a> 
 		 
 		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>NewSlice</b>(int, int, int, int) Slice </span> 
+	 <p style="margin-left:40px"> Makes a 3D array of scalars with given x,y,z size </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 CPUAccess( ) &nbsp; Comp( int ) &nbsp; DevPtr( int ) &nbsp; Disable( ) &nbsp; Free( ) &nbsp; GPUAccess( ) &nbsp; Get( int int int int ) &nbsp; Host( ) &nbsp; HostCopy( ) &nbsp; Index( int int int ) &nbsp; IsNil( ) &nbsp; Len( ) &nbsp; MemType( ) &nbsp; Scalars( ) &nbsp; Set( int int int int float64 ) &nbsp; String( ) &nbsp; Tensors( ) &nbsp; Vectors( ) &nbsp; 
+		</span> </p> 
+	
+
 	
 
 	</p>
@@ -2220,19 +2233,17 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example2">[2]</a> 
+			<a href="examples.html#example3">[3]</a> 
 		 
 			<a href="examples.html#example4">[4]</a> 
 		 
 			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example6">[6]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
-		 
-			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -2246,7 +2257,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example3">[3]</a> 
+			<a href="examples.html#example2">[2]</a> 
 		 
 		</p> 
 	
@@ -2267,6 +2278,11 @@ Other available functions.
 
 	
 
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example2">[2]</a> 
+		 
+		</p> 
 	
 
 	</p>
@@ -2278,7 +2294,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -2310,7 +2326,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -2324,7 +2340,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -2356,13 +2372,22 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
+			<a href="examples.html#example4">[4]</a> 
+		 
 			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example6">[6]</a> 
-		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>sinc</b>(float64) float64 </span> 
+	
+
+	
+
 	
 
 	</p>
@@ -2383,9 +2408,9 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example3">[3]</a> 
+			<a href="examples.html#example2">[2]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example7">[7]</a> 
 		 
 		</p> 
 	
@@ -2397,11 +2422,6 @@ Other available functions.
 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -2442,24 +2462,26 @@ Other available functions.
 
 	</p>
   
-	<p><span style="color:#000088; font-size:1.3em"> <b>vector</b>(float64, float64, float64) [3]float64 </span> 
+	<p><span style="color:#000088; font-size:1.3em"> <b>vector</b>(float64, float64, float64) data.Vector </span> 
 	 <p style="margin-left:40px"> Constructs a vector with given components </p> 
 
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Add( data.Vector ) &nbsp; Cross( data.Vector ) &nbsp; Div( float64 ) &nbsp; Dot( data.Vector ) &nbsp; Len( ) &nbsp; Mul( float64 ) &nbsp; Sub( data.Vector ) &nbsp; X( ) &nbsp; Y( ) &nbsp; Z( ) &nbsp; 
+		</span> </p> 
 	
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
 			<a href="examples.html#example1">[1]</a> 
 		 
-			<a href="examples.html#example2">[2]</a> 
+			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
-		 
-			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -2482,7 +2504,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
