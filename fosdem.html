@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0037)http://localhost:3999/fosdem.slide#38 -->
+<!-- saved from url=(0036)http://localhost:3999/fosdem.slide#1 -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Scientific GPU computing with Go </title>
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
 
     <section class="slides layout-widescreen">
       
-      <article>
+      <article class="current">
         <h1>Scientific GPU computing with Go </h1>
         <h3>A novel approach to highly reliable CUDA HPC</h3>
         <h3>1 February 2014</h3>
@@ -45,30 +45,7 @@
       
   
   
-      <article>
-      
-        <h3>How suitable is Go for HPC?</h3>
-        
-  <ul>
-  
-    <li>Pure Go number crunching</li>
-  
-    <li>Go plus {C, C++, CUDA} number crunching</li>
-  
-    <li>Concurrency</li>
-  
-  </ul>
-
-<div class="image">
-  <img src="./fosdem_files/event.png">
-</div>
-
-      
-      </article>
-  
-  
-  
-      <article>
+      <article class="next">
       
         <h3>Real-world example (micromagnetism)</h3>
         
@@ -103,7 +80,7 @@
   
   
   
-      <article>
+      <article class="far-next">
       
         <h3>Real-world example (micromagnetism)</h3>
         
@@ -128,47 +105,24 @@
 
   <ul>
   
-    <li>OOMMF (script + GUI): ~100,000 lines C++, tcl/tk </li>
+    <li>OOMMF (script + GUI): ~100,000 lines C++, tcl </li>
   
     <li>Magnum (script only): ~ 30,000 lines CUDA, C++, Python </li>
+  
+    <li><b>MuMax3</b> (script + GUI): ~ 11,000 lines CUDA, Go</li>
   
   </ul>
 
 <div class="image">
-  <img src="./fosdem_files/vspace1.png">
+  <img src="./fosdem_files/vspace2.png">
 </div>
 
 <div class="image">
-  <img src="./fosdem_files/vspace1.png">
+  <img src="./fosdem_files/vspace2.png">
 </div>
 
 <div class="image">
   <img src="./fosdem_files/banner.png">
-</div>
-
-      
-      </article>
-  
-  
-  
-      <article>
-      
-        <h3>Real-world example (micromagnetism)</h3>
-        
-  
-  <p>
-    MuMax3 (script + GUI): ~ 11,000 lines CUDA, Go
-  </p>
-  
-
-  
-  <p>
-    And it's faster too.
-  </p>
-  
-
-<div class="image">
-  <img src="./fosdem_files/gui3.png">
 </div>
 
       
@@ -229,18 +183,6 @@
   
   </ul>
 
-  
-  <p>
-    <b>and mostly</b>
-  </p>
-  
-
-  <ul>
-  
-    <li>productive</li>
-  
-  </ul>
-
       
       </article>
   
@@ -248,53 +190,7 @@
   
       <article>
       
-        <h3>Hello world</h3>
-        
-  <div class="code playground" contenteditable="true" spellcheck="false">
-
-
-<pre contenteditable="true" spellcheck="false"><span num="1">package main</span>
-<span num="2"></span>
-<span num="3">import "fmt"</span>
-<span num="4"></span>
-<span num="5">func main() {</span>
-<span num="6">    fmt.Println("Hello, world!")</span>
-<span num="7">}</span>
-</pre>
-
-
-</div><div class="buttons"><button class="run">Run</button></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
-
-<div class="image">
-  <img src="./fosdem_files/vspace2.png">
-</div>
-
-  
-  <p>
-    Building:
-  </p>
-  
-
-  
-  <div class="code"><pre>go build</pre></div>
-  
-
-  <ul>
-  
-    <li>Build information in the source</li>
-  
-    <li>Static binary (easy to deploy)</li>
-  
-  </ul>
-
-      
-      </article>
-  
-  
-  
-      <article>
-      
-        <h3>Number crunching</h3>
+        <h3>Hello, math!</h3>
         
   <div class="code playground" contenteditable="true" spellcheck="false">
 <pre style="display: none"><span>package main
@@ -321,7 +217,7 @@ import (
 
   
   <p>
-    <b>standard lib</b>:
+    <b>Go math features:</b>
   </p>
   
 
@@ -339,7 +235,7 @@ import (
 
   
   <p>
-    <b>but missing:</b>
+    <b>But missing:</b>
   </p>
   
 
@@ -460,7 +356,7 @@ var DevNull = ioutil.Discard
 </div><div class="buttons"><button class="run">Run</button></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
 
   
-  <div class="code"><pre>go test -bench</pre></div>
+  <div class="code"><pre>go test -bench .</pre></div>
   
 
   
@@ -505,12 +401,6 @@ Python              200 180 ns/op</pre></div>
 <div class="image">
   <img src="./fosdem_files/vspace1.png">
 </div>
-
-  
-  <p>
-    But you get memory safety and garbage collection in return.
-  </p>
-  
 
       
       </article>
@@ -560,11 +450,9 @@ Python              200 180 ns/op</pre></div>
   
     <li>Good standard math library</li>
   
-    <li>OK performance</li>
-  
     <li>Built-in testing, benchmarking &amp; profiling</li>
   
-    <li>Memory safety</li>
+    <li>Managed memory</li>
   
   </ul>
 
@@ -608,7 +496,7 @@ Python              200 180 ns/op</pre></div>
   
       <article>
       
-        <h3>Hello C, CUDA</h3>
+        <h3>Hello, GPU!</h3>
         
   
   <p>
@@ -622,7 +510,6 @@ Python              200 180 ns/op</pre></div>
 import (
 	"github.com/barnex/cuda5/cu"
 	"runtime"
-	"fmt"
 )
 
 
@@ -631,9 +518,10 @@ import (
 //#cgo LDFLAGS: -L/usr/lib/nvidia-319 
 </span></pre>
 
-<pre contenteditable="true" spellcheck="false"><span num="14">//#include &lt;cuda.h&gt;</span>
-<span num="15">//#cgo LDFLAGS: -lcuda</span>
-<span num="16">import "C"</span>
+<pre contenteditable="true" spellcheck="false"><span num="13">//#include &lt;cuda.h&gt;</span>
+<span num="14">//#cgo LDFLAGS: -lcuda</span>
+<span num="15">import "C"</span>
+<span num="16">import "fmt"</span>
 <span num="17"></span>
 <span num="18">func main() {</span>
 <span num="19">    buf := C.CString(string(make([]byte, 256)))</span>
@@ -677,21 +565,22 @@ func init(){
   
       <article>
       
-        <h3>Calling C (wrappers)</h3>
+        <h3>Hello, GPU! (wrappers)</h3>
         
   <div class="code playground" contenteditable="true" spellcheck="false">
 <pre style="display: none"><span>package main
 
-import "fmt"
 import "runtime"
 
 </span></pre>
 
-<pre contenteditable="true" spellcheck="false"><span num="8">import "github.com/barnex/cuda5/cu"</span>
-<span num="9"></span>
-<span num="10">func main(){</span>
-<span num="11">    name := cu.Device(0).Name()</span>
-<span num="12">    fmt.Println("Hello, your GPU is:", name)</span>
+<pre contenteditable="true" spellcheck="false"><span num="6">import(</span>
+<span num="7">    "github.com/barnex/cuda5/cu"</span>
+<span num="8">    "fmt"</span>
+<span num="9">)</span>
+<span num="10"></span>
+<span num="11">func main(){</span>
+<span num="12">    fmt.Println("Hello, your GPU is:", cu.Device(0).Name())</span>
 <span num="13">}</span>
 </pre>
 
@@ -722,6 +611,460 @@ func init(){
     (dependencies are compiled-in)
   </p>
   
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>A note on memory (CPU)</h3>
+        
+  
+  <p>
+    Go is memory-safe, garbage collected.
+<br>
+
+    Your typical C library is not.
+  </p>
+  
+
+  
+  <p>
+    Fortunately:
+  </p>
+  
+
+  <ul>
+  
+    <li>Go is aware of C memory (no accidental garbage collection).</li>
+  
+    <li>Go properly aligns memory (needed by some HPC libraries)</li>
+  
+  </ul>
+
+  
+  <p>
+    Allocate in Go, pass to C, let Go garbage collect
+  </p>
+  
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Go plus {C, C++, CUDA} number crunching</h3>
+        
+  
+  <p>
+    <b>On the downside</b>
+  </p>
+  
+
+  <ul>
+  
+    <li>Have to write C wrappers</li>
+  
+  </ul>
+
+  
+  <p>
+    <b>On the upside</b>
+  </p>
+  
+
+  <ul>
+  
+    <li>You <i>can</i> call C</li>
+  
+    <li>Have Go manage your C memory</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>How suitable is Go for HPC?</h3>
+        
+  <ul>
+  
+    <li>Pure Go number crunching</li>
+  
+    <li>Go plus {C, C++, CUDA} number crunching</li>
+  
+    <li><b>Concurrency</b></li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Real-world concurrency (MuMax3)</h3>
+        
+  
+  <p>
+    There's more to HPC then number crunching and memory management
+  </p>
+  
+
+  <ul>
+  
+    <li>I/O</li>
+  
+    <li>Interactive supercomputing</li>
+  
+    <li>...</li>
+  
+  </ul>
+
+<div class="image">
+  <img src="./fosdem_files/gui.png">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Real-world concurrency (MuMax3)</h3>
+        
+  
+  <p>
+    Output: GPU does not wait for hard disk
+  </p>
+  
+
+<div class="image">
+  <img src="./fosdem_files/design1.svg">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Real-world concurrency (MuMax3)</h3>
+        
+  
+  <p>
+    Go <b>channels</b> are like type-safe UNIX pipes between threads.
+  </p>
+  
+
+  <div class="code playground" contenteditable="true" spellcheck="false">
+<pre style="display: none"><span>package main
+
+
+func save([]float64){ }
+
+var data = []float64{1, 2, 3}
+
+</span></pre>
+
+<pre contenteditable="true" spellcheck="false"><span num="9">var pipe = make(chan []float64, BUFSIZE)</span>
+<span num="10"></span>
+<span num="11">func runIO(){</span>
+<span num="12">    for{</span>
+<span num="13">        data := &lt;- pipe</span>
+<span num="14">        save(data)</span>
+<span num="15">    }</span>
+<span num="16">}</span>
+<span num="17"></span>
+<span num="18">func main() {</span>
+<span num="19">    go runIO() // returns immediately</span>
+<span num="20">    pipe &lt;- data // returns immediately</span>
+<span num="21">}</span>
+</pre>
+
+
+</div><div class="buttons"><button class="run">Run</button></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+
+  
+  <p>
+    Real example: 60 lines Go, ~2x I/O speed-up
+  </p>
+  
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Real-world concurrency (MuMax3)</h3>
+        
+  
+  <p>
+    GUI: change parameters while running,
+<br>
+
+    without race conditions
+  </p>
+  
+
+<div class="image">
+  <img src="./fosdem_files/design.svg">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Real-world concurrency (MuMax3)</h3>
+        
+  
+  <p>
+    You can send function <b>closures</b> over channels.
+  </p>
+  
+
+  <div class="code playground" contenteditable="true" spellcheck="false">
+<pre style="display: none"><span>package main
+
+
+func timestep(){ }
+
+
+</span></pre>
+
+<pre contenteditable="true" spellcheck="false"><span num="8">var pipe = make(chan func()) // channel of functions</span>
+<span num="9"></span>
+<span num="10">func main() {</span>
+<span num="11">    for {</span>
+<span num="12">        select{</span>
+<span num="13">            case f := &lt;- pipe:</span>
+<span num="14">                f()</span>
+<span num="15">            default: doCalculation()</span>
+<span num="16">        }</span>
+<span num="17">    }</span>
+<span num="18">}</span>
+</pre>
+
+
+</div><div class="buttons"><button class="run">Run</button></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
+
+  
+  <p>
+    Concurrent modification without mutex locking/unlocking.
+  </p>
+  
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>And we can prove it's thread-safe</h3>
+        
+  
+  <p>
+    Go has built-in testing for race conditions
+  </p>
+  
+
+  
+  <div class="code"><pre>go build -race</pre></div>
+  
+
+  
+  <p>
+    enables race testing. Output if things go wrong:
+  </p>
+  
+
+  
+  <div class="code"><pre>==================
+WARNING: DATA RACE
+Write by goroutine 3:
+  main.func·001()
+      /home/billgates/buggycode/race.go:10 +0x38
+
+Previous read by main goroutine:
+  main.main()
+      /home/billgates/buggycode/race.go:21 +0x9c
+
+Goroutine 3 (running) created at:
+  main.main()
+      /home/billgates/buggycode/race.go:12 +0x33
+==================</pre></div>
+  
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Go concurrency</h3>
+        
+  
+  <p>
+    <b>On the up side</b>
+  </p>
+  
+
+  <ul>
+  
+    <li>Easy, safe, built-in concurrency</li>
+  
+  </ul>
+
+  
+  <p>
+    <b>On the down side</b>
+  </p>
+  
+
+  <ul>
+  
+    <li>There is no downside</li>
+  
+  </ul>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Demonstration</h2>
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Demonstration</h3>
+        
+<div class="image">
+  <img src="./fosdem_files/gui4.png">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Demonstration</h3>
+        
+<div class="image">
+  <img src="./fosdem_files/gui3.png">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Demonstration</h3>
+        
+<div class="image">
+  <img src="./fosdem_files/gui.png">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Demonstration</h3>
+        
+<div class="image">
+  <img src="./fosdem_files/hd.gif">
+</div>
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>A note on memory (GPU)</h3>
+        
+  
+  <p>
+    GPU memory still needs to be managed manually.
+<br>
+
+    But a <b>GPU memory pool</b> is trivial to implement in Go.
+  </p>
+  
+
+  <div class="code playground" contenteditable="true" spellcheck="false">
+<pre style="display: none"><span>package main
+
+import(
+	"runtime"
+)
+
+import "github.com/barnex/cuda5/cu"
+
+const BUFSIZE = 100
+
+</span></pre>
+
+<pre><span num="12">var pool = make(chan cu.DevicePtr, 16)</span>
+<span num="13"></span>
+<span num="14">func initPool(){</span>
+<span num="15">    for i:=0; i&lt;16; i++{</span>
+<span num="16">        pool &lt;- cu.MemAlloc(BUFSIZE)</span>
+<span num="17">    }</span>
+<span num="18">}</span>
+<span num="19"></span>
+<span num="20">func recycle(buf cu.DevicePtr){</span>
+<span num="21">    pool &lt;- buf</span>
+<span num="22">}</span>
+<span num="23"></span>
+<span num="24">func main(){</span>
+<span num="25">    initPool()</span>
+<span num="26"></span>
+<span num="27">    GPU_data := &lt;- pool</span>
+<span num="28">    defer recycle(GPU_data)</span>
+<span num="29">    // ...</span>
+<span num="30">}</span>
+</pre>
+
+<pre style="display: none"><span>
+func init(){
+	runtime.LockOSThread()
+	cu.Init(0)
+	dev := cu.Device(0)
+	cu.CtxCreate(cu.CTX_SCHED_YIELD, dev).SetCurrent()
+}
+</span></pre>
+</div><div class="buttons"><button class="run">Run</button></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
 
       
       </article>
@@ -929,480 +1272,8 @@ func main(){
       </article>
   
   
-  
+
       <article>
-      
-        <h3>A note on memory (CPU)</h3>
-        
-  
-  <p>
-    Go is memory-safe, garbage collected.
-<br>
-
-    Your typical C library is not.
-  </p>
-  
-
-  
-  <p>
-    Fortunately:
-  </p>
-  
-
-  <ul>
-  
-    <li>Go is aware of C memory (no accidental garbage collection).</li>
-  
-    <li>Go properly aligns memory (needed by some HPC libraries)</li>
-  
-  </ul>
-
-  
-  <p>
-    Allocate in Go, pass to C, let Go garbage collect
-  </p>
-  
-
-      
-      </article>
-  
-  
-  
-      <article>
-      
-        <h3>A note on memory (GPU)</h3>
-        
-  
-  <p>
-    GPU memory still needs to be managed manually.
-<br>
-
-    But a <b>GPU memory pool</b> is trivial to implement in Go.
-  </p>
-  
-
-  <div class="code playground" contenteditable="true" spellcheck="false">
-<pre style="display: none"><span>package main
-
-import(
-	"runtime"
-)
-
-import "github.com/barnex/cuda5/cu"
-
-const BUFSIZE = 100
-
-</span></pre>
-
-<pre><span num="12">var pool = make(chan cu.DevicePtr, 16)</span>
-<span num="13"></span>
-<span num="14">func initPool(){</span>
-<span num="15">    for i:=0; i&lt;16; i++{</span>
-<span num="16">        pool &lt;- cu.MemAlloc(BUFSIZE)</span>
-<span num="17">    }</span>
-<span num="18">}</span>
-<span num="19"></span>
-<span num="20">func recycle(buf cu.DevicePtr){</span>
-<span num="21">    pool &lt;- buf</span>
-<span num="22">}</span>
-<span num="23"></span>
-<span num="24">func main(){</span>
-<span num="25">    initPool()</span>
-<span num="26"></span>
-<span num="27">    GPU_data := &lt;- pool</span>
-<span num="28">    defer recycle(GPU_data)</span>
-<span num="29">    // ...</span>
-<span num="30">}</span>
-</pre>
-
-<pre style="display: none"><span>
-func init(){
-	runtime.LockOSThread()
-	cu.Init(0)
-	dev := cu.Device(0)
-	cu.CtxCreate(cu.CTX_SCHED_YIELD, dev).SetCurrent()
-}
-</span></pre>
-</div><div class="buttons"><button class="run">Run</button></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
-
-      
-      </article>
-  
-  
-  
-      <article>
-      
-        <h3>Go plus {C, C++, CUDA} number crunching</h3>
-        
-  
-  <p>
-    <b>On the downside</b>
-  </p>
-  
-
-  <ul>
-  
-    <li>Have to write C wrappers</li>
-  
-  </ul>
-
-  
-  <p>
-    <b>On the upside</b>
-  </p>
-  
-
-  <ul>
-  
-    <li>Garbage collection for most of your C memory</li>
-  
-    <li>Much simplified CUDA memory management</li>
-  
-    <li>Less code than with C/C++</li>
-  
-    <li>Few dependencies.</li>
-  
-  </ul>
-
-      
-      </article>
-  
-  
-  
-      <article>
-      
-        <h3>Real-world example (micromagnetism)</h3>
-        
-  
-  <p>
-    Some implementations:
-  </p>
-  
-
-  <ul>
-  
-    <li>OOMMF (script + GUI): ~100,000 lines C++, tcl/tk </li>
-  
-    <li>Magnum (script only): ~ 30,000 lines CUDA, C++, Python </li>
-  
-    <li><b>MuMax3</b> (script + GUI): ~ 11,000 lines CUDA, Go</li>
-  
-  </ul>
-
-  
-  <p>
-    Spent less time writing code and debugging.
-<br>
-
-    Had more time to optimize, add features.
-  </p>
-  
-
-<div class="image">
-  <img src="./fosdem_files/vspace2.png">
-</div>
-
-<div class="image">
-  <img src="./fosdem_files/banner.png">
-</div>
-
-      
-      </article>
-  
-  
-  
-      <article>
-      
-        <h3>How suitable is Go for HPC?</h3>
-        
-  <ul>
-  
-    <li>Pure Go number crunching</li>
-  
-    <li>Go plus {C, C++, CUDA} number crunching</li>
-  
-    <li><b>Concurrency</b></li>
-  
-  </ul>
-
-      
-      </article>
-  
-  
-  
-      <article>
-      
-        <h3>Real-world example (MuMax3)</h3>
-        
-  
-  <p>
-    There's more to HPC then number crunching and memory management
-  </p>
-  
-
-  <ul>
-  
-    <li>I/O</li>
-  
-    <li>User interaction</li>
-  
-    <li>...</li>
-  
-  </ul>
-
-<div class="image">
-  <img src="./fosdem_files/gui.png">
-</div>
-
-      
-      </article>
-  
-  
-  
-      <article>
-      
-        <h3>Real-world example (MuMax3)</h3>
-        
-  
-  <p>
-    Output: GPU does not wait for hard disk
-  </p>
-  
-
-<div class="image">
-  <img src="./fosdem_files/design1.svg">
-</div>
-
-      
-      </article>
-  
-  
-  
-      <article>
-      
-        <h3>Real-world example (MuMax3)</h3>
-        
-  
-  <p>
-    Go <b>channels</b> are like type-safe UNIX pipes between threads.
-  </p>
-  
-
-  <ul>
-  
-    <li>Easy concurrency</li>
-  
-    <li>No mutex locking/unlocking</li>
-  
-  </ul>
-
-  <div class="code playground" contenteditable="true" spellcheck="false">
-<pre style="display: none"><span>package main
-
-
-func save([]float64){ }
-
-var data = []float64{1, 2, 3}
-
-</span></pre>
-
-<pre contenteditable="true" spellcheck="false"><span num="9">var pipe = make(chan []float64, BUFSIZE)</span>
-<span num="10"></span>
-<span num="11">func runIO(){</span>
-<span num="12">    for{</span>
-<span num="13">        data := &lt;- pipe</span>
-<span num="14">        save(data)</span>
-<span num="15">    }</span>
-<span num="16">}</span>
-<span num="17"></span>
-<span num="18">func main() {</span>
-<span num="19">    go runIO() // returns immediately</span>
-<span num="20">    pipe &lt;- data // returns immediately</span>
-<span num="21">}</span>
-</pre>
-
-
-</div><div class="buttons"><button class="run">Run</button></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
-
-  
-  <p>
-    Real example: 60 lines Go, ~2x I/O speed-up
-  </p>
-  
-
-      
-      </article>
-  
-  
-  
-      <article>
-      
-        <h3>Real-world example (MuMax3)</h3>
-        
-  
-  <p>
-    GUI: change parameters while running,
-<br>
-
-    without race conditions
-  </p>
-  
-
-<div class="image">
-  <img src="./fosdem_files/design.svg">
-</div>
-
-      
-      </article>
-  
-  
-  
-      <article class="">
-      
-        <h3>Real-world example (MuMax3)</h3>
-        
-  
-  <p>
-    Sending functions over channels.
-<br>
-
-    Concurrency w/o state locking.
-  </p>
-  
-
-  <div class="code playground" contenteditable="true" spellcheck="false">
-<pre style="display: none"><span>package main
-
-
-func timestep(){ }
-
-
-</span></pre>
-
-<pre contenteditable="true" spellcheck="false"><span num="8">var command = make(chan func()) // channel of functions</span>
-<span num="9"></span>
-<span num="10">func main() {</span>
-<span num="11">    for {</span>
-<span num="12">        select{</span>
-<span num="13">            case f := &lt;- command:</span>
-<span num="14">                f()</span>
-<span num="15">            default: timestep()</span>
-<span num="16">        }</span>
-<span num="17">    }</span>
-<span num="18">}</span>
-</pre>
-
-
-</div><div class="buttons"><button class="run">Run</button></div><div class="ui-resizable output" style="display: none;"><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90; display: block;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90; display: block;"></div><div class="buttons"><button class="run">Run</button><button class="kill">Kill</button><button class="close">Close</button></div><pre></pre></div>
-
-      
-      </article>
-  
-  
-  
-      <article class="">
-      
-        <h3>And we can prove it's thread-safe</h3>
-        
-  
-  <p>
-    Go has built-in testing for race conditions
-  </p>
-  
-
-  
-  <div class="code"><pre>go build -race</pre></div>
-  
-
-  
-  <p>
-    enables race testing. Output if things go wrong:
-  </p>
-  
-
-  
-  <div class="code"><pre>==================
-WARNING: DATA RACE
-Write by goroutine 3:
-  main.func·001()
-      /home/billgates/buggycode/race.go:10 +0x38
-
-Previous read by main goroutine:
-  main.main()
-      /home/billgates/buggycode/race.go:21 +0x9c
-
-Goroutine 3 (running) created at:
-  main.main()
-      /home/billgates/buggycode/race.go:12 +0x33
-==================</pre></div>
-  
-
-      
-      </article>
-  
-  
-  
-      <article class="">
-      
-        <h2>Demonstration</h2>
-      
-      </article>
-  
-  
-  
-      <article class="">
-      
-        <h3>Demonstration</h3>
-        
-<div class="image">
-  <img src="./fosdem_files/gui4.png">
-</div>
-
-      
-      </article>
-  
-  
-  
-      <article class="far-past">
-      
-        <h3>Demonstration</h3>
-        
-<div class="image">
-  <img src="./fosdem_files/gui3.png">
-</div>
-
-      
-      </article>
-  
-  
-  
-      <article class="past">
-      
-        <h3>Demonstration</h3>
-        
-<div class="image">
-  <img src="./fosdem_files/gui.png">
-</div>
-
-      
-      </article>
-  
-  
-  
-      <article class="current">
-      
-        <h3>Demonstration</h3>
-        
-<div class="image">
-  <img src="./fosdem_files/hd.gif">
-</div>
-
-      
-      </article>
-  
-  
-
-      <article class="next">
         <h3>Thank you</h3>
         
           <div class="presenter">
