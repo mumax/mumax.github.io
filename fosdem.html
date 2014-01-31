@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0036)http://localhost:3999/fosdem.slide#1 -->
+<!-- saved from url=(0037)http://localhost:3999/fosdem.slide#31 -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Scientific GPU computing with Go </title>
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
 
     <section class="slides layout-widescreen">
       
-      <article class="current">
+      <article>
         <h1>Scientific GPU computing with Go </h1>
         <h3>A novel approach to highly reliable CUDA HPC</h3>
         <h3>1 February 2014</h3>
@@ -45,7 +45,7 @@
       
   
   
-      <article class="next">
+      <article>
       
         <h3>Real-world example (micromagnetism)</h3>
         
@@ -80,7 +80,7 @@
   
   
   
-      <article class="far-next">
+      <article>
       
         <h3>Real-world example (micromagnetism)</h3>
         
@@ -781,14 +781,14 @@ var data = []float64{1, 2, 3}
 <span num="10"></span>
 <span num="11">func runIO(){</span>
 <span num="12">    for{</span>
-<span num="13">        data := &lt;- pipe</span>
+<span num="13">        data := &lt;- pipe  // receive data from main</span>
 <span num="14">        save(data)</span>
 <span num="15">    }</span>
 <span num="16">}</span>
 <span num="17"></span>
 <span num="18">func main() {</span>
-<span num="19">    go runIO() // returns immediately</span>
-<span num="20">    pipe &lt;- data // returns immediately</span>
+<span num="19">    go runIO()          // start I/O worker</span>
+<span num="20">    pipe &lt;- data        // send data to worker</span>
 <span num="21">}</span>
 </pre>
 
@@ -800,28 +800,6 @@ var data = []float64{1, 2, 3}
     Real example: 60 lines Go, ~2x I/O speed-up
   </p>
   
-
-      
-      </article>
-  
-  
-  
-      <article>
-      
-        <h3>Real-world concurrency (MuMax3)</h3>
-        
-  
-  <p>
-    GUI: change parameters while running,
-<br>
-
-    without race conditions
-  </p>
-  
-
-<div class="image">
-  <img src="./fosdem_files/design.svg">
-</div>
 
       
       </article>
@@ -847,17 +825,22 @@ func timestep(){ }
 
 </span></pre>
 
-<pre contenteditable="true" spellcheck="false"><span num="8">var pipe = make(chan func()) // channel of functions</span>
+<pre contenteditable="true" spellcheck="false"><span num="8">var pipe = make(chan func())         // channel of functions</span>
 <span num="9"></span>
 <span num="10">func main() {</span>
 <span num="11">    for {</span>
 <span num="12">        select{</span>
-<span num="13">            case f := &lt;- pipe:</span>
+<span num="13">            case f := &lt;- pipe:       // execute function if in pipe</span>
 <span num="14">                f()</span>
-<span num="15">            default: doCalculation()</span>
+<span num="15">            default: doCalculation() // nothing in pipe, crunch on</span>
 <span num="16">        }</span>
 <span num="17">    }</span>
 <span num="18">}</span>
+<span num="19"></span>
+<span num="20">func serveHttp(){</span>
+<span num="21">    pipe &lt;- func(){ value = 2 }      // send function to main loop</span>
+<span num="22">    ...</span>
+<span num="23">}</span>
 </pre>
 
 
@@ -865,9 +848,31 @@ func timestep(){ }
 
   
   <p>
-    Concurrent modification without mutex locking/unlocking.
+    Concurrency without mutex locking/unlocking.
   </p>
   
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Real-world concurrency (MuMax3)</h3>
+        
+  
+  <p>
+    GUI: change parameters while running,
+<br>
+
+    without race conditions
+  </p>
+  
+
+<div class="image">
+  <img src="./fosdem_files/design.svg">
+</div>
 
       
       </article>
@@ -961,6 +966,51 @@ Goroutine 3 (running) created at:
       
         <h3>Demonstration</h3>
         
+  
+  <p>
+    Input script
+  </p>
+  
+
+  
+  <div class="code"><pre>setgridsize(512, 256, 1)
+setcellsize(5e-9, 5e-9, 5e-9)
+ext_makegrains(40e-9, 256, 0)
+
+Aex    = 10e-12    // J/m
+Msat   = 600e3     // A/m
+alpha  = 0.1
+m      = uniform(0, 0, 1)
+
+// set random parameters per grain
+for i:=0; i&lt;256; i++{
+    AnisU.SetRegion(i, vector(0.1*(rand()-0.5), 0.1*(rand()-0.5), 1))
+
+    for j:=i+1; j&lt;256; j++{
+        ext_scaleExchange(i, j, rand())
+    }
+}
+
+// Write field
+f     := 0.5e9     // Hz
+B_ext  = sin(2*pi*f*t)
+
+// spin HD and write
+for i:=0; i&lt;500; i++{
+    run(30e-12)
+    Shift(-1)
+}</pre></div>
+  
+
+      
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Demonstration</h3>
+        
 <div class="image">
   <img src="./fosdem_files/gui4.png">
 </div>
@@ -970,7 +1020,7 @@ Goroutine 3 (running) created at:
   
   
   
-      <article>
+      <article class="far-past">
       
         <h3>Demonstration</h3>
         
@@ -983,7 +1033,7 @@ Goroutine 3 (running) created at:
   
   
   
-      <article>
+      <article class="past">
       
         <h3>Demonstration</h3>
         
@@ -996,10 +1046,16 @@ Goroutine 3 (running) created at:
   
   
   
-      <article>
+      <article class="current">
       
         <h3>Demonstration</h3>
         
+  
+  <p>
+    Hard disk magnetization (white = up =  1, black = down = 0)
+  </p>
+  
+
 <div class="image">
   <img src="./fosdem_files/hd.gif">
 </div>
@@ -1009,7 +1065,7 @@ Goroutine 3 (running) created at:
   
   
   
-      <article>
+      <article class="next">
       
         <h3>A note on memory (GPU)</h3>
         
@@ -1071,7 +1127,7 @@ func init(){
   
   
   
-      <article>
+      <article class="far-next">
       
         <h3>Calling CUDA kernels (the C way)</h3>
         
