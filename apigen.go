@@ -1,9 +1,10 @@
 package main
 
+// Automatic generation of api.html based on template.
+
 import (
 	"github.com/mumax/3/cuda"
 	"github.com/mumax/3/engine"
-	_ "github.com/mumax/3/ext"
 	"io/ioutil"
 	"os"
 	"reflect"
@@ -26,8 +27,7 @@ type entry struct {
 }
 
 func buildAPI() {
-	cuda.Init(0, "yield") // gpu 0
-	cuda.LockThread()
+	cuda.Init(0) // gpu 0
 
 	ident := engine.World.Identifiers
 	doc := engine.World.Doc
@@ -61,6 +61,7 @@ func (e *entry) Ins() string {
 func cleanType(typ string) string {
 	typ = strings.Replace(typ, "engine.", "", -1)
 	typ = strings.Replace(typ, "*data.", "", -1)
+	typ = strings.Replace(typ, "script.", "", -1)
 	return typ
 }
 
@@ -101,11 +102,12 @@ func hidden(name string) bool {
 	switch name {
 	default:
 		return false
-	case "Eval", "InputType", "Type", "Slice", "Name", "Unit", "NComp", "TableData", "Mesh", "SetValue":
+	case "Eval", "InputType", "Type", "Slice", "Name", "Unit", "NComp", "Mesh", "SetValue", "String":
 		return true
 	}
 }
 
+// list of examples where entry is used.
 func (e *entry) Examples() []int {
 	return api_examples[strings.ToLower(e.name)]
 }
@@ -132,6 +134,7 @@ func (a *api) remaining() []*entry {
 	return E
 }
 
+// return all entries, unused so far, which have given type.
 func (a *api) FilterType(typ ...string) []*entry {
 	var E []*entry
 	for _, e := range a.remaining() {
@@ -146,6 +149,7 @@ func (a *api) FilterType(typ ...string) []*entry {
 	return E
 }
 
+// return all entries, unused so far, which have given return type.
 func (a *api) FilterReturn(typ ...string) []*entry {
 	var E []*entry
 	for _, e := range a.remaining() {
@@ -160,6 +164,7 @@ func (a *api) FilterReturn(typ ...string) []*entry {
 	return E
 }
 
+// return all entries, unused so far, which have given name.
 func (a *api) FilterName(typ ...string) []*entry {
 	var E []*entry
 	for _, e := range a.remaining() {
@@ -174,6 +179,7 @@ func (a *api) FilterName(typ ...string) []*entry {
 	return E
 }
 
+// return all entries, unused so far, whose name starts with prefix.
 func (a *api) FilterPrefix(pre string) []*entry {
 	var E []*entry
 	for _, e := range a.remaining() {
@@ -185,13 +191,13 @@ func (a *api) FilterPrefix(pre string) []*entry {
 	return E
 }
 
+// return all entries not yet used.
 func (a *api) FilterLeftovers() []*entry {
 	return a.remaining()
 }
 
+// case insensitive match.
 func match(a, b string) bool {
-	//match, err := regexp.MatchString(a, b)
-	//check(err)
 	a = strings.ToLower(a)
 	b = strings.ToLower(b)
 	match := a == b

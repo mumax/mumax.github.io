@@ -54,7 +54,7 @@ func (s *State) Example(in string) string {
 
 	// exec input file
 	check(ioutil.WriteFile(s.infile(), []byte(in), 0666))
-	arg := "-s"
+	arg := "-v"
 	if *flag_vet {
 		arg = "-vet"
 	}
@@ -77,7 +77,7 @@ func recordExamples(input string, num int) {
 }
 
 func (s *State) Img(fname string) string {
-	cmd("mumax3-convert", "-png", s.outfile()+"/"+fname+".dump")
+	cmd("mumax3-convert", "-png", s.outfile()+"/"+fname+".ovf")
 	pngfile := s.outfile() + "/" + fname + ".png"
 	return fmt.Sprintf(`
 <figure style="float:left">
@@ -101,8 +101,8 @@ func (s *State) Output() string {
 	check(err2)
 	sort.Strings(files)
 	for _, f := range files {
-		if path.Ext(f) == ".dump" {
-			out += s.Img(f[:len(f)-len(".dump")])
+		if path.Ext(f) == ".ovf" {
+			out += s.Img(f[:len(f)-len(".ovf")])
 		}
 	}
 	out += `<br style="clear:both"/> `
@@ -132,7 +132,7 @@ func (s *State) Output() string {
 }
 
 func (s *State) infile() string {
-	return fmt.Sprintf("example%v.txt", s.count)
+	return fmt.Sprintf("example%v.in", s.count)
 }
 
 func (s *State) outfile() string {
