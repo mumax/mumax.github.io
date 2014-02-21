@@ -30,7 +30,7 @@
 <hr/>
 
 
-<h1> mumax 3.4 API </h1>
+<h1> mumax 3.4.1 API </h1>
 
 This is a complete overview of all available functions for writing an input script.
 
@@ -125,6 +125,8 @@ The mesh can be changed at any later time in the simulation. This will cause the
 		 
 			<a href="examples.html#example12">[12]</a> 
 		 
+			<a href="examples.html#example13">[13]</a> 
+		 
 		</p> 
 	
 
@@ -161,6 +163,8 @@ The mesh can be changed at any later time in the simulation. This will cause the
 		 
 			<a href="examples.html#example12">[12]</a> 
 		 
+			<a href="examples.html#example13">[13]</a> 
+		 
 		</p> 
 	
 
@@ -196,7 +200,7 @@ Setting a nonzero PBC value in a direction enables wrap-around in that direction
 
 <hr/><h1> Setting a geometry </h1>
 
-Optionally a magnet Shape other than the full simulation box can be specified. One can specify primitive shapes, constructed at the origin (box center), and translate/rotate them if needed. E.g.:
+Optionally a magnet Shape other than the full simulation box can be specified. One can specify primitive shapes, constructed at the origin (box center), and translate/rotate them if needed. All positions are specified in meters and the origin lies in the center of the simulation box. E.g.:
 <pre><code> SetGeom(cylinder(400e-9, 20e-9).RotX(45*pi/180).Transl(1e-6,0,0))
 </code></pre>
 
@@ -214,11 +218,13 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example7">[7]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
+		 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -261,6 +267,8 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 		 
 			<a href="examples.html#example12">[12]</a> 
 		 
+			<a href="examples.html#example13">[13]</a> 
+		 
 		</p> 
 	
 
@@ -283,7 +291,9 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example7">[7]</a> 
+		 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -341,7 +351,7 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -397,9 +407,9 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 		 
 			<a href="examples.html#example3">[3]</a> 
 		 
-			<a href="examples.html#example10">[10]</a> 
-		 
 			<a href="examples.html#example11">[11]</a> 
+		 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -439,11 +449,11 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 		 
 			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
 			<a href="examples.html#example9">[9]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example10">[10]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -511,8 +521,8 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
  
 
 
-<hr/><h1> Defining regions </h1>
-Optionally, up to 256 regions can be defined. Each cell is associated with exactly one region, so <em>regions can not overlap</em>. Each cell is assigned region 0 by default. It's a good idea to output <code>regions</code> to verify whether each cell is assigned to the intended region. Each region can have its own material parameters, and we can output averages over each region. E.g.:
+<hr/><h1> Defining material regions </h1>
+Optionally, up to 256 material regions can be defined. Since each cell is made from one material, it is associated with exactly one region. So <em>regions can not overlap</em>. Each cell is assigned material region 0 by default. It's a good idea to output <code>regions</code> to verify whether each cell is assigned to the intended region. Each region can have its own material parameters, and we can output averages over each region. E.g.:
 <pre><code>DefRegion(1, circle(1e-6))
 DefRegion(0, circle(1e-6).Inverse()) // redundant
 save(regions)
@@ -530,9 +540,9 @@ tableAdd(m.Region(1))    // add average m over region 1 to table
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example9">[9]</a> 
-		 
 			<a href="examples.html#example10">[10]</a> 
+		 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -553,7 +563,7 @@ tableAdd(m.Region(1))    // add average m over region 1 to table
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Gpu( ) &nbsp; HostArray( ) &nbsp; HostList( ) &nbsp; SetCell( int int int int ) &nbsp; 
+		 Average( ) &nbsp; Gpu( ) &nbsp; HostArray( ) &nbsp; HostList( ) &nbsp; LoadFile( string ) &nbsp; SetCell( int int int int ) &nbsp; 
 		</span> </p> 
 	
 
@@ -561,7 +571,7 @@ tableAdd(m.Region(1))    // add average m over region 1 to table
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -575,7 +585,7 @@ tableAdd(m.Region(1))    // add average m over region 1 to table
 The initial magnetization is set by assigning a <code>Config</code> to m, setting it in separate regions, or by loading a file directly.
 <pre><code>m = uniform(1, 0, 0)
 m.SetRegion(1, vortex(1, 1))
-m.LoadFile("config.dump")
+m.LoadFile("config.ovf")
 </code></pre>
 
  
@@ -614,14 +624,16 @@ m.LoadFile("config.dump")
 		 
 			<a href="examples.html#example12">[12]</a> 
 		 
+			<a href="examples.html#example13">[13]</a> 
+		 
 		</p> 
 	
 
 	</p>
  
  
-	<p><span style="color:#000088; font-size:1.3em"> <b>Anitvortex</b>(int, int) Config </span> 
-	 <p style="margin-left:40px"> Antivortex magnetization with given circulation and core polarization </p> 
+	<p><span style="color:#000088; font-size:1.3em"> <b>Antiskyrmion</b>(int, int) Config </span> 
+	 <p style="margin-left:40px"> Antiskyrmion magnetization with given charge and core polarization </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -633,8 +645,8 @@ m.LoadFile("config.dump")
 
 	</p>
   
-	<p><span style="color:#000088; font-size:1.3em"> <b>Antiskyrmion</b>(int, int) Config </span> 
-	 <p style="margin-left:40px"> Antiskyrmion magnetization with given charge and core polarization </p> 
+	<p><span style="color:#000088; font-size:1.3em"> <b>Antivortex</b>(int, int) Config </span> 
+	 <p style="margin-left:40px"> Antivortex magnetization with given circulation and core polarization </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -690,9 +702,9 @@ m.LoadFile("config.dump")
 		 
 			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
 			<a href="examples.html#example8">[8]</a> 
+		 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -722,11 +734,11 @@ m.LoadFile("config.dump")
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example10">[10]</a> 
-		 
 			<a href="examples.html#example11">[11]</a> 
 		 
 			<a href="examples.html#example12">[12]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -746,9 +758,11 @@ m.LoadFile("config.dump")
 		 
 			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example7">[7]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
+		 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -824,6 +838,8 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example12">[12]</a> 
 		 
+			<a href="examples.html#example13">[13]</a> 
+		 
 		</p> 
 	
 
@@ -854,9 +870,11 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example9">[9]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 			<a href="examples.html#example12">[12]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -874,7 +892,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -892,7 +910,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -912,9 +930,9 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -934,7 +952,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -952,7 +970,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -970,7 +988,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -988,7 +1006,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -1008,9 +1026,9 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -1028,7 +1046,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -1066,6 +1084,8 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example12">[12]</a> 
 		 
+			<a href="examples.html#example13">[13]</a> 
+		 
 		</p> 
 	
 
@@ -1084,11 +1104,11 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
 			<a href="examples.html#example8">[8]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example9">[9]</a> 
+		 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -1119,9 +1139,9 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
 			<a href="examples.html#example8">[8]</a> 
+		 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -1137,8 +1157,8 @@ Field or current excitations can be set in the same way as material parameters:
 B_ext.SetRegion(1, vector(0, 0, 0.1))
 </code></pre>
 Additionally, an arbitrary number of time- and space-dependent vector fields of the form <code> g(x,y,z) * f(t) </code> may be added. (E.g., to simulate the field of an antenna or an arbitrary current running through the magnet)
-<pre><code>B_ext.Add(LoadFile("antenna.dump"), sin(2*pi*f*t))
-JPol.Add(LoadFile("current.dump"), 1)
+<pre><code>B_ext.Add(LoadFile("antenna.ovf"), sin(2*pi*f*t))
+JPol.Add(LoadFile("current.ovf"), 1)
 </code></pre>
 
  
@@ -1155,7 +1175,7 @@ JPol.Add(LoadFile("current.dump"), 1)
 		 
 			<a href="examples.html#example1">[1]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -1173,8 +1193,6 @@ JPol.Add(LoadFile("current.dump"), 1)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
 			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
@@ -1184,6 +1202,8 @@ JPol.Add(LoadFile("current.dump"), 1)
 			<a href="examples.html#example11">[11]</a> 
 		 
 			<a href="examples.html#example12">[12]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -1202,7 +1222,7 @@ JPol.Add(LoadFile("current.dump"), 1)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -1238,7 +1258,7 @@ JPol.Add(LoadFile("current.dump"), 1)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -1250,8 +1270,7 @@ JPol.Add(LoadFile("current.dump"), 1)
 
 The quantities listed below can be output. Also, derived quantities can be produced: the quantity restricted to a certain region or a single component. E.g.:
 
-<code><pre>
-m           // magnetization quantity
+<code><pre>m           // magnetization quantity
 m.Comp(0)   // x-component
 m.Region(1) // magnetization in region 1 (0 elsewhere)
 </pre></code>
@@ -1298,19 +1317,6 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>B_exch</b> </span> 
 	 <p style="margin-left:40px"> Exchange field (T) </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 AddTo( Slice ) &nbsp; Average( ) &nbsp; Comp( int ) &nbsp; Region( int ) &nbsp; Set( Slice ) &nbsp; 
-		</span> </p> 
-	
-
-	
-
-	</p>
-  
-	<p><span style="color:#000088; font-size:1.3em"> <b>B_therm</b> </span> 
-	 <p style="margin-left:40px"> Thermal field (T) </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -1385,7 +1391,7 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -1494,7 +1500,7 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -1538,7 +1544,7 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -1582,9 +1588,9 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
 			<a href="examples.html#example8">[8]</a> 
+		 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -1593,9 +1599,107 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
  
 
 
+<hr/><h1>Slicing and dicing output</h1>
+
+To save storage space, it's possible to save only the part of the output we're interested in. This works on all output quantities (not only m)
+
+<code><pre>
+save(m)                         // save full magnetization
+save(m.Comp(0))                 // save only x-component
+save(CropLayer(m, 13))          // save only layer 13
+save(CropLayer(m.Comp(0), 13))  // save only x-component of layer 13
+</pre></code>
+
+Or even:
+<code><pre>
+mx   := m.Comp(0)
+mx13 := CropLayer(mx, 13) 
+save(mx13)
+tableAdd(mx13)
+</pre></code>
+
+
+ 
+	<p><span style="color:#000088; font-size:1.3em"> <b>Crop</b>(Quantity, int, int, int, int, int, int) *cropped </span> 
+	 <p style="margin-left:40px"> Crops a quantity to cell ranges [x1,x2[, [y1,y2[, [z1,z2[ </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; 
+		</span> </p> 
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example7">[7]</a> 
+		 
+		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>CropLayer</b>(Quantity, int) *cropped </span> 
+	 <p style="margin-left:40px"> Crops a quantity to a single layer </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>CropX</b>(Quantity, int, int) *cropped </span> 
+	 <p style="margin-left:40px"> Crops a quantity to cell ranges [x1,x2[ </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>CropY</b>(Quantity, int, int) *cropped </span> 
+	 <p style="margin-left:40px"> Crops a quantity to cell ranges [y1,y2[ </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; 
+		</span> </p> 
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example7">[7]</a> 
+		 
+		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>CropZ</b>(Quantity, int, int) *cropped </span> 
+	 <p style="margin-left:40px"> Crops a quantity to cell ranges [z1,z2[ </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+ 
+
+
 <hr/><h1> Scheduling output </h1>
 
-All input and output quantities (as described above) can be saved in a space-dependent way (".ovf" file), or as spatial averages (table output). The data table ("table.txt") contains by default the time and average magnetization. More coulumns can be added with <code>TableAdd()</code>.
+All input and output quantities (as described above) can be saved in a space-dependent way (".ovf" file), or as spatial averages (table output). The data table ("table.txt") contains by default the time and average magnetization. More coulumns can be added with <code>TableAdd()</code>. 
 <pre><code>save(B_ext)
 
 tableadd(B_ext)
@@ -1603,7 +1707,13 @@ tablesave()
 </code></pre>
 Optionally, the output/averaging can be done over a single region:
 <pre><code>save(m.Region(1))
-tableadd(m.Region(1)) 
+TableAdd(m.Region(1)) 
+</code></pre>
+
+User-defined variables can be added to the table with <code>TableAddVar()</code>.
+<pre><code>myField := 0.42
+TableAddVar(myField, "B_extra", "T")
+myField = ...
 </code></pre>
 
  
@@ -1616,13 +1726,13 @@ tableadd(m.Region(1))
 		 
 			<a href="examples.html#example1">[1]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
 			<a href="examples.html#example8">[8]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 			<a href="examples.html#example12">[12]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -1723,6 +1833,8 @@ tableadd(m.Region(1))
 		 
 			<a href="examples.html#example12">[12]</a> 
 		 
+			<a href="examples.html#example13">[13]</a> 
+		 
 		</p> 
 	
 
@@ -1771,11 +1883,20 @@ tableadd(m.Region(1))
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>TableAddVar</b>(ScalarFunction, string, string) </span> 
+	 <p style="margin-left:40px"> Add user-defined variable + name + unit to data table. </p> 
+
+	
+
 	
 
 	</p>
@@ -1789,9 +1910,9 @@ tableadd(m.Region(1))
 		 
 			<a href="examples.html#example1">[1]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -1805,7 +1926,7 @@ tableadd(m.Region(1))
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -1853,15 +1974,15 @@ FixDt = 1e-15
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
 			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 			<a href="examples.html#example12">[12]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -1875,7 +1996,7 @@ FixDt = 1e-15
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -1977,6 +2098,8 @@ FixDt = 1e-15
 		 
 			<a href="examples.html#example12">[12]</a> 
 		 
+			<a href="examples.html#example13">[13]</a> 
+		 
 		</p> 
 	
 
@@ -2013,7 +2136,7 @@ will try to keep <code>mx</code> (component 0, counting from 0) close to zero. I
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -2036,7 +2159,7 @@ will try to keep <code>mx</code> (component 0, counting from 0) close to zero. I
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -2067,7 +2190,7 @@ will try to keep <code>mx</code> (component 0, counting from 0) close to zero. I
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -2144,9 +2267,9 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
 			<a href="examples.html#example8">[8]</a> 
+		 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -2177,7 +2300,7 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -2217,9 +2340,9 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -2233,7 +2356,7 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -2247,11 +2370,11 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
-		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example11">[11]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -2371,6 +2494,19 @@ Other available functions.
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>B_therm</b> </span> 
+	 <p style="margin-left:40px"> Thermal field (T) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 AddTo( Slice ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>cbrt</b>(float64) float64 </span> 
 	
 
@@ -2398,11 +2534,11 @@ Other available functions.
 		 
 			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example9">[9]</a> 
-		 
 			<a href="examples.html#example10">[10]</a> 
 		 
 			<a href="examples.html#example11">[11]</a> 
+		 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -2452,7 +2588,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -2530,11 +2666,13 @@ Other available functions.
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example7">[7]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
+		 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -2584,9 +2722,9 @@ Other available functions.
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
 			<a href="examples.html#example8">[8]</a> 
+		 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -2711,9 +2849,9 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
 			<a href="examples.html#example9">[9]</a> 
+		 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -2779,11 +2917,11 @@ Other available functions.
 		 
 			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
 			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
+		 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -2803,8 +2941,6 @@ Other available functions.
 		 
 			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
 			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
@@ -2814,6 +2950,8 @@ Other available functions.
 			<a href="examples.html#example11">[11]</a> 
 		 
 			<a href="examples.html#example12">[12]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -2829,7 +2967,7 @@ Other available functions.
 		 
 			<a href="examples.html#example2">[2]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -2868,9 +3006,9 @@ Other available functions.
 		 
 			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -2902,7 +3040,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -2952,13 +3090,13 @@ Other available functions.
 		 
 			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example9">[9]</a> 
-		 
 			<a href="examples.html#example10">[10]</a> 
 		 
 			<a href="examples.html#example11">[11]</a> 
 		 
 			<a href="examples.html#example12">[12]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -2993,6 +3131,15 @@ Other available functions.
 			<a href="examples.html#example2">[2]</a> 
 		 
 		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>TablePrint</b>(...interface {}) </span> 
+	 <p style="margin-left:40px"> Print anyting in the data table </p> 
+
+	
+
 	
 
 	</p>
@@ -3057,15 +3204,15 @@ Other available functions.
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example7">[7]</a> 
-		 
 			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 			<a href="examples.html#example12">[12]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -3088,7 +3235,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
