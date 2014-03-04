@@ -30,7 +30,7 @@
 <hr/>
 
 
-<h1> mumax 3.4.1 API </h1>
+<h1> mumax 3.4.2 API </h1>
 
 This is a complete overview of all available functions for writing an input script.
 
@@ -225,6 +225,21 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 			<a href="examples.html#example10">[10]</a> 
 		 
 			<a href="examples.html#example12">[12]</a> 
+		 
+		</p> 
+	
+
+	</p>
+ 
+ 
+	<p><span style="color:#000088; font-size:1.3em"> <b>EdgeSmooth</b> </span> 
+	 <p style="margin-left:40px"> Geometry edge smoothing with edgeSmooth^3 samples per cell, 0=staircase, ~8=very smooth </p> 
+
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example3">[3]</a> 
 		 
 		</p> 
 	
@@ -594,7 +609,7 @@ m.LoadFile("config.ovf")
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Average( ) &nbsp; Buffer( ) &nbsp; Comp( int ) &nbsp; GetCell( int int int int ) &nbsp; LoadFile( string ) &nbsp; Region( int ) &nbsp; Set( Config ) &nbsp; SetArray( Slice ) &nbsp; SetCell( int int int []float64 ) &nbsp; SetInShape( Shape Config ) &nbsp; SetRegion( int Config ) &nbsp; TableData( ) &nbsp; 
+		 Average( ) &nbsp; Buffer( ) &nbsp; Comp( int ) &nbsp; GetCell( int int int ) &nbsp; LoadFile( string ) &nbsp; Region( int ) &nbsp; Set( Config ) &nbsp; SetArray( Slice ) &nbsp; SetCell( int int int data.Vector ) &nbsp; SetInShape( Shape Config ) &nbsp; SetRegion( int Config ) &nbsp; TableData( ) &nbsp; 
 		</span> </p> 
 	
 
@@ -725,8 +740,6 @@ m.LoadFile("config.ovf")
 			<a href="examples.html#example1">[1]</a> 
 		 
 			<a href="examples.html#example2">[2]</a> 
-		 
-			<a href="examples.html#example3">[3]</a> 
 		 
 			<a href="examples.html#example4">[4]</a> 
 		 
@@ -1328,6 +1341,19 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>B_therm</b> </span> 
+	 <p style="margin-left:40px"> Thermal field (T) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 AddTo( Slice ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>E_anis</b> </span> 
 	 <p style="margin-left:40px"> Anisotropy energy (uni+cubic) (J) </p> 
 
@@ -1501,6 +1527,36 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
 			<a href="examples.html#example10">[10]</a> 
+		 
+		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>geom</b> </span> 
+	 <p style="margin-left:40px"> Cell fill fraction (0..1) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; Gpu( ) &nbsp; 
+		</span> </p> 
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example3">[3]</a> 
+		 
+			<a href="examples.html#example5">[5]</a> 
+		 
+			<a href="examples.html#example6">[6]</a> 
+		 
+			<a href="examples.html#example7">[7]</a> 
+		 
+			<a href="examples.html#example9">[9]</a> 
+		 
+			<a href="examples.html#example10">[10]</a> 
+		 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -1699,7 +1755,7 @@ tableAdd(mx13)
 
 <hr/><h1> Scheduling output </h1>
 
-All input and output quantities (as described above) can be saved in a space-dependent way (".ovf" file), or as spatial averages (table output). The data table ("table.txt") contains by default the time and average magnetization. More coulumns can be added with <code>TableAdd()</code>. 
+All input and output quantities (as described above) can be saved in a space-dependent way (".ovf" file), or as spatial averages (table output). The data table ("table.txt") contains by default the time and average magnetization. More columns can be added with <code>TableAdd()</code>. 
 <pre><code>save(B_ext)
 
 tableadd(B_ext)
@@ -2023,7 +2079,7 @@ FixDt = 1e-15
 	</p>
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>FixDt</b> </span> 
-	 <p style="margin-left:40px"> Set a fixed time step. 0 disables fixed step. </p> 
+	 <p style="margin-left:40px"> Set a fixed time step, 0 disables fixed step </p> 
 
 	
 
@@ -2063,6 +2119,20 @@ FixDt = 1e-15
 
 	
 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>step</b> </span> 
+	 <p style="margin-left:40px"> Total number of time steps taken </p> 
+
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example8">[8]</a> 
+		 
+		</p> 
 	
 
 	</p>
@@ -2494,19 +2564,6 @@ Other available functions.
 
 	</p>
   
-	<p><span style="color:#000088; font-size:1.3em"> <b>B_therm</b> </span> 
-	 <p style="margin-left:40px"> Thermal field (T) </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 AddTo( Slice ) &nbsp; 
-		</span> </p> 
-	
-
-	
-
-	</p>
-  
 	<p><span style="color:#000088; font-size:1.3em"> <b>cbrt</b>(float64) float64 </span> 
 	
 
@@ -2645,36 +2702,6 @@ Other available functions.
 
 	
 
-	
-
-	</p>
-  
-	<p><span style="color:#000088; font-size:1.3em"> <b>geom</b> </span> 
-	 <p style="margin-left:40px"> Cell fill fraction (0..1) </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Gpu( ) &nbsp; 
-		</span> </p> 
-	
-
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example3">[3]</a> 
-		 
-			<a href="examples.html#example5">[5]</a> 
-		 
-			<a href="examples.html#example6">[6]</a> 
-		 
-			<a href="examples.html#example7">[7]</a> 
-		 
-			<a href="examples.html#example9">[9]</a> 
-		 
-			<a href="examples.html#example10">[10]</a> 
-		 
-			<a href="examples.html#example12">[12]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -3121,6 +3148,24 @@ Other available functions.
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>sprint</b>(...interface {}) string </span> 
+	 <p style="margin-left:40px"> Print all arguments to string with automatic formatting </p> 
+
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>sprintf</b>(string, ...interface {}) string </span> 
+	 <p style="margin-left:40px"> Print to string with C-style formatting. </p> 
+
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>sqrt</b>(float64) float64 </span> 
 	
 
@@ -3201,6 +3246,8 @@ Other available functions.
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
 			<a href="examples.html#example1">[1]</a> 
+		 
+			<a href="examples.html#example4">[4]</a> 
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
