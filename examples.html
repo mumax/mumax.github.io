@@ -521,9 +521,51 @@ save(mx_center)</pre>
 	<figcaption> m_xrange0-128__yrange0-128_000000 </figcaption>
 </figure><br style="clear:both"/> 
 
+<hr/><a id=MFM><h2>Magnetic Force Microscopy</h2></a>
+Mumax3 has built-in generation of MFM images from the magnetization. The MFM tip lift can be freely chosen. By default the tip magnetization is modeled as a point monopole at the apex. This is sufficient for most situations. Nevertheless, it is also possible to model partially magnetized tips by setting MFMDipole to the magnetized portion of the tip, in meters. E.g., if only the first 20nm of the tip is (vertically) magnetized, set MFMDipole=20e-9.
+
+<a id=example8></a><pre>setgridsize(256, 256, 1)
+setcellsize(2e-9, 2e-9, 1e-9)
+setgeom(rect(400e-9, 400e-9))
+
+msat    = 600e3
+aex     = 10e-12
+alpha   = 3     
+m       = vortex(1, 1)
+run(0.5e-9)           // relax
+
+save(m)
+
+MFMLift = 10e-9
+saveas(MFM, &#34;lift_10nm&#34;)
+
+MFMLift = 40e-9
+saveas(MFM, &#34;lift_40nm&#34;)
+
+MFMLift = 100e-9
+saveas(MFM, &#34;lift_100nm&#34;)</pre>
+
+<h3>output</h3> 
+<figure style="float:left">
+	<img src="example8.out/lift_100nm.png"/>
+	<figcaption> lift_100nm </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example8.out/lift_10nm.png"/>
+	<figcaption> lift_10nm </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example8.out/lift_40nm.png"/>
+	<figcaption> lift_40nm </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example8.out/m000000.png"/>
+	<figcaption> m000000 </figcaption>
+</figure><br style="clear:both"/> 
+
 
 <hr/><h2>PMA Racetrack</h2>
-<a id=example8></a><pre>// In this example we drive a domain wall in PMA material by spin-transfer torque.
+<a id=example9></a><pre>// In this example we drive a domain wall in PMA material by spin-transfer torque.
 // We set up a post-step function that makes the simulation box &#34;follow&#34; the domain
 // wall. Like this, only a small number of cells is needed to simulate an infinitely
 // long magnetic wire.
@@ -555,23 +597,23 @@ run(.5e-9)</pre>
 
 <h3>output</h3> 
 <figure style="float:left">
-	<img src="example8.out/m000000.png"/>
+	<img src="example9.out/m000000.png"/>
 	<figcaption> m000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example8.out/m000001.png"/>
+	<img src="example9.out/m000001.png"/>
 	<figcaption> m000001 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example8.out/m000002.png"/>
+	<img src="example9.out/m000002.png"/>
 	<figcaption> m000002 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example8.out/m000003.png"/>
+	<img src="example9.out/m000003.png"/>
 	<figcaption> m000003 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example8.out/m000004.png"/>
+	<img src="example9.out/m000004.png"/>
 	<figcaption> m000004 </figcaption>
 </figure><br style="clear:both"/> 
 
@@ -580,7 +622,7 @@ Since we center on the domain wall we can not see that it is actually moving, bu
 
 <hr/><h2>Py Racetrack</h2>
 
-<a id=example9></a><pre>// In this example we drive a vortex wall in Permalloy by spin-transfer torque.
+<a id=example10></a><pre>// In this example we drive a vortex wall in Permalloy by spin-transfer torque.
 // The simulation box &#34;follows&#34; the domain wall.
 // By removing surface charges at the left and right ends, we mimic an infintely long wire.
 
@@ -620,51 +662,51 @@ Run(0.5e-9)</pre>
 
 <h3>output</h3> 
 <figure style="float:left">
-	<img src="example9.out/m000000.png"/>
+	<img src="example10.out/m000000.png"/>
 	<figcaption> m000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example9.out/m000001.png"/>
+	<img src="example10.out/m000001.png"/>
 	<figcaption> m000001 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example9.out/m000002.png"/>
+	<img src="example10.out/m000002.png"/>
 	<figcaption> m000002 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example9.out/m000003.png"/>
+	<img src="example10.out/m000003.png"/>
 	<figcaption> m000003 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example9.out/m000004.png"/>
+	<img src="example10.out/m000004.png"/>
 	<figcaption> m000004 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example9.out/m000005.png"/>
+	<img src="example10.out/m000005.png"/>
 	<figcaption> m000005 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example9.out/m000006.png"/>
+	<img src="example10.out/m000006.png"/>
 	<figcaption> m000006 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example9.out/m000007.png"/>
+	<img src="example10.out/m000007.png"/>
 	<figcaption> m000007 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example9.out/m000008.png"/>
+	<img src="example10.out/m000008.png"/>
 	<figcaption> m000008 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example9.out/m000009.png"/>
+	<img src="example10.out/m000009.png"/>
 	<figcaption> m000009 </figcaption>
 </figure><br style="clear:both"/> 
 <figure>
-	<img src="example9.out/ext_dwpos.svg"/>
+	<img src="example10.out/ext_dwpos.svg"/>
 	<figcaption> ext_dwpos.svg </figcaption>
 </figure>
 <figure>
-	<img src="example9.out/m.svg"/>
+	<img src="example10.out/m.svg"/>
 	<figcaption> m.svg </figcaption>
 </figure>
 
@@ -676,7 +718,7 @@ Since we center on the domain wall we can not really see the motion, despite the
 
 In this example we use regions to specify grains in a material. The built-in extension <code>ext_makegrains</code> is used to define grain-like regions using Voronoi tessellation. We vary the material parameters in each grain.
 
-<a id=example10></a><pre>N := 256
+<a id=example11></a><pre>N := 256
 c := 4e-9
 d := 40e-9
 setgridsize(N, N, 1)
@@ -737,27 +779,27 @@ save(exchCoupling)</pre>
 
 <h3>output</h3> 
 <figure style="float:left">
-	<img src="example10.out/ExchCoupling000000.png"/>
+	<img src="example11.out/ExchCoupling000000.png"/>
 	<figcaption> ExchCoupling000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example10.out/Kc1000000.png"/>
+	<img src="example11.out/Kc1000000.png"/>
 	<figcaption> Kc1000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example10.out/anisC1000000.png"/>
+	<img src="example11.out/anisC1000000.png"/>
 	<figcaption> anisC1000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example10.out/anisC2000000.png"/>
+	<img src="example11.out/anisC2000000.png"/>
 	<figcaption> anisC2000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example10.out/m000000.png"/>
+	<img src="example11.out/m000000.png"/>
 	<figcaption> m000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example10.out/regions000000.png"/>
+	<img src="example11.out/regions000000.png"/>
 	<figcaption> regions000000 </figcaption>
 </figure><br style="clear:both"/> 
 
@@ -766,7 +808,7 @@ save(exchCoupling)</pre>
 
 Scaling the exchange coupling between regions can be used to obtain antiferromagnetic coupling like the RKKY interaction. In that case we only model the magnetic layers and do not explicitly add a spacer layer (which is negligibly thin). We scale the exchange coupling to get the desired RKKY strength: <code>scale = (RKKY * cellsize_z) / (2 * Aex)</code>.
 
-<a id=example11></a><pre>N := 10
+<a id=example12></a><pre>N := 10
 setgridsize(N, N, 2)
 
 c := 1e-9
@@ -794,11 +836,11 @@ for ang:=0; ang&lt;360; ang++{
 
 <h3>output</h3> <br style="clear:both"/> 
 <figure>
-	<img src="example11.out/E_total.svg"/>
+	<img src="example12.out/E_total.svg"/>
 	<figcaption> E_total.svg </figcaption>
 </figure>
 <figure>
-	<img src="example11.out/m.svg"/>
+	<img src="example12.out/m.svg"/>
 	<figcaption> m.svg </figcaption>
 </figure>
 
@@ -809,7 +851,7 @@ Example of a spin-torque MRAM stack consisting of a fixed layer, spacer and free
 
 Below we switch an MRAM bit.
 
-<a id=example12></a><pre>// geometry
+<a id=example13></a><pre>// geometry
 sizeX := 160e-9
 sizeY := 80e-9
 sizeZ := 5e-9
@@ -851,47 +893,47 @@ run(1e-9)</pre>
 
 <h3>output</h3> 
 <figure style="float:left">
-	<img src="example12.out/m000000.png"/>
+	<img src="example13.out/m000000.png"/>
 	<figcaption> m000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example12.out/m000001.png"/>
+	<img src="example13.out/m000001.png"/>
 	<figcaption> m000001 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example12.out/m000002.png"/>
+	<img src="example13.out/m000002.png"/>
 	<figcaption> m000002 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example12.out/m000003.png"/>
+	<img src="example13.out/m000003.png"/>
 	<figcaption> m000003 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example12.out/m000004.png"/>
+	<img src="example13.out/m000004.png"/>
 	<figcaption> m000004 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example12.out/m000005.png"/>
+	<img src="example13.out/m000005.png"/>
 	<figcaption> m000005 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example12.out/m000006.png"/>
+	<img src="example13.out/m000006.png"/>
 	<figcaption> m000006 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example12.out/m000007.png"/>
+	<img src="example13.out/m000007.png"/>
 	<figcaption> m000007 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example12.out/m000008.png"/>
+	<img src="example13.out/m000008.png"/>
 	<figcaption> m000008 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example12.out/m000009.png"/>
+	<img src="example13.out/m000009.png"/>
 	<figcaption> m000009 </figcaption>
 </figure><br style="clear:both"/> 
 <figure>
-	<img src="example12.out/m.svg"/>
+	<img src="example13.out/m.svg"/>
 	<figcaption> m.svg </figcaption>
 </figure>
 
@@ -900,7 +942,7 @@ run(1e-9)</pre>
 
 Using the <code>Shift</code> function, we can shift the system (magnetization, regions and geometry) by a given number of cells. Here we use this feature to simulate a moving hard disk platter. A time-dependent gaussian field profile mimics the write field.
 
-<a id=example13></a><pre>Nx := 512
+<a id=example14></a><pre>Nx := 512
 Ny := 128
 c := 5e-9
 setgridsize(Nx, Ny, 1)
@@ -956,27 +998,27 @@ for i:=0; i&lt;120; i++{
 
 <h3>output</h3> 
 <figure style="float:left">
-	<img src="example13.out/m000000.png"/>
+	<img src="example14.out/m000000.png"/>
 	<figcaption> m000000 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example13.out/m000001.png"/>
+	<img src="example14.out/m000001.png"/>
 	<figcaption> m000001 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example13.out/m000002.png"/>
+	<img src="example14.out/m000002.png"/>
 	<figcaption> m000002 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example13.out/m000003.png"/>
+	<img src="example14.out/m000003.png"/>
 	<figcaption> m000003 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example13.out/m000004.png"/>
+	<img src="example14.out/m000004.png"/>
 	<figcaption> m000004 </figcaption>
 </figure>
 <figure style="float:left">
-	<img src="example13.out/m000005.png"/>
+	<img src="example14.out/m000005.png"/>
 	<figcaption> m000005 </figcaption>
 </figure><br style="clear:both"/> 
 
