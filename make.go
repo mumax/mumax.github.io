@@ -58,7 +58,7 @@ func (s *State) Example(in string) string {
 	if *flag_vet {
 		arg = "-vet"
 	}
-	cmd("mumax3", "-f", arg, s.infile())
+	cmd("mumax3", "-cache", "/tmp", arg, s.infile())
 
 	recordExamples(in, s.count)
 
@@ -77,7 +77,7 @@ func recordExamples(input string, num int) {
 }
 
 func (s *State) Img(fname string) string {
-	cmd("mumax3-convert", "-png", s.outfile()+"/"+fname+".ovf")
+	cmd("mumax3-convert", "-png", "-arrows", "16", s.outfile()+"/"+fname+".ovf")
 	pngfile := s.outfile() + "/" + fname + ".png"
 	return fmt.Sprintf(`
 <figure style="float:left">

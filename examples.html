@@ -26,7 +26,7 @@
 <hr/>
 
 
-<h1>mumax 3.4.2 examples</h1>
+<h1>mumax 3.5 examples</h1>
 
 <p>These are example input scripts, the full API can be found <a href="http://mumax.github.io/api.html">here</a>.</p>
 
@@ -44,24 +44,23 @@ Let's start with the classic mumag standard problem 4, as defined <a href="http:
 <a id=example1></a><pre>SetGridsize(128, 32, 1)
 SetCellsize(500e-9/128, 125e-9/32, 3e-9)
 
-alpha = 1.0
 Msat  = 800e3
 Aex   = 13e-12
-m     = uniform(1, .1, 0)
+alpha = 0.02
 
-run(3e-9)  // relax
+m = uniform(1, .1, 0)
+relax()
 save(m)    // relaxed state
 
 autosave(m, 200e-12)
 tableautosave(10e-12)
-alpha = 0.02
+
 B_ext = vector(-24.6E-3, 4.3E-3, 0)
 run(1e-9)</pre>
 
-<p>This example should be pretty straight-forward to follow. Space-dependent output is stored in the efficient ".dump" format, which can be converted with <code>mumax3-convert</code>. Below is the output converted to PNG.</p>
+<p>This example should be pretty straight-forward to follow. Space-dependent output is stored in OVF format, which is compatible with OOMMF and can be converted with <a href="http://godoc.org/github.com/mumax/3/cmd/mumax3-convert"><code>mumax3-convert</code></a>. Below is the output converted to PNG.</p>
 
-<p>The data table is stored in a simple text format compatible with <a href=http://www.gnuplot.info>gnuplot</a>. The plot below was created with <code>mumax3-plot</code>.
-</p>
+<p>The data table is stored in a simple text format compatible with <a href=http://www.gnuplot.info>gnuplot</a>, like used for the plot below.</p>
 
 <h3>output</h3> 
 <figure style="float:left">
@@ -118,7 +117,7 @@ SetGridSize(nx, ny, 1)
 SetCellSize(Sizex/nx, Sizey/ny, Sizez)
 
 m = Uniform(1, 0.1, 0)                   // initial mag
-Run(5e-9)                                // relax
+relax() 
 
 save(m)                                  // remanent magnetization
 print(&#34;&lt;m&gt; for d/lex=30: &#34;, m.average())</pre>
@@ -260,12 +259,12 @@ saveas(geom, &#34;imageShape&#34;)</pre>
 	<figcaption> xrange </figcaption>
 </figure><br style="clear:both"/> 
 
-Note: these are 3D geometries seen from above. The displayed cell filling is averaged along the thickness (notable in ellipse and layers example). 
+Note: these are 3D geometries seen from above. The displayed cell filling is averaged along the thickness (notable in ellipse and layers example). Black means empty space, white is filled.
 
 <hr/><h2>Initial Magnetization</h2>
 Some initial magnetization functions are provided, as well as transformations similar to those on Shapes. See the Config <a href="http://mumax.github.io/api.html">API</a>.
 
-<a id=example4></a><pre>setgridsize(200, 100, 1)
+<a id=example4></a><pre>setgridsize(256, 128, 1)
 setcellsize(5e-9, 5e-9, 5e-9)
 
 m = Uniform(1, 1, 0)  // no need to normalize length
@@ -277,7 +276,6 @@ saveas(m, &#34;vortex&#34;)
 m = TwoDomain(1,0,0,  0,1,0,  -1,0,0) // Néel wall
 saveas(m, &#34;twodomain&#34;)
 
-randSeed(123)
 m = RandomMag()
 saveas(m, &#34;randommag&#34;)
 
@@ -296,6 +294,12 @@ saveas(m, &#34;vortex_transl&#34;)
 m = Vortex(1,-1).Add(0.1, randomMag())
 saveas(m, &#34;vortex_add_random&#34;)
 
+m = Skyrmion(1, -1).scale(3,3,1)
+saveas(m, &#34;skyrmion&#34;)
+
+m = NeelSkyrmion(1,-1).scale(3,3,1)
+saveas(m, &#34;Néel_skyrmion&#34;)
+
 // set m in only a part of space, or a single cell:
 m = uniform(1, 1, 1)
 m.setInShape(cylinder(400e-9, 100e-9), vortex(1, -1))
@@ -307,6 +311,10 @@ m.loadfile(&#34;myfile.ovf&#34;)
 saveas(m, &#34;loadfile&#34;)</pre>
 <h3>output</h3> 
 <figure style="float:left">
+	<img src="example4.out/Néel_skyrmion.png"/>
+	<figcaption> Néel_skyrmion </figcaption>
+</figure>
+<figure style="float:left">
 	<img src="example4.out/loadfile.png"/>
 	<figcaption> loadfile </figcaption>
 </figure>
@@ -317,6 +325,10 @@ saveas(m, &#34;loadfile&#34;)</pre>
 <figure style="float:left">
 	<img src="example4.out/setInShape_setCell.png"/>
 	<figcaption> setInShape_setCell </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example4.out/skyrmion.png"/>
+	<figcaption> skyrmion </figcaption>
 </figure>
 <figure style="float:left">
 	<img src="example4.out/twodomain.png"/>
@@ -382,7 +394,7 @@ for i:=0; i&lt;=90; i=i+30{
 	angle := i*pi/180
 	setgeom(cheese.rotz(angle))
 	m = uniform(cos(angle), sin(angle), 0)
-	run(1e-9)
+	relax()
 	save(m)
 }</pre>
 
@@ -407,7 +419,7 @@ for i:=0; i&lt;=90; i=i+30{
 
 <hr/><h2>Regions: Space-dependent Parameters</h2>
 
-<p>Space-dependent parameters are defined using material <i>regions</i>. Regions are numbered 0-255 and represent different materials. Region 0 conventionally everything outside your magnet (the vacuum), so setting material parameters starts at 1.</p>
+<p>Space-dependent parameters are defined using material <i>regions</i>. Regions are numbered 0-255 and represent different materials. Each cell can belong to only one region. At the start of a simulation all cells have region number 0.</p>
 
 <p>Regions are defined with <code>defregion(number, shape)</code>, where <code>shape</code> is explained in the geometry example.</p>
 
@@ -521,8 +533,12 @@ save(mx_center)</pre>
 	<figcaption> m_xrange0-128__yrange0-128_000000 </figcaption>
 </figure><br style="clear:both"/> 
 
-<hr/><a id=MFM><h2>Magnetic Force Microscopy</h2></a>
-Mumax3 has built-in generation of MFM images from the magnetization. The MFM tip lift can be freely chosen. By default the tip magnetization is modeled as a point monopole at the apex. This is sufficient for most situations. Nevertheless, it is also possible to model partially magnetized tips by setting MFMDipole to the magnetized portion of the tip, in meters. E.g., if only the first 20nm of the tip is (vertically) magnetized, set MFMDipole=20e-9.
+
+
+<a id=MFM><hr/><h2>Magnetic Force Microscopy</h2></a>
+
+<p>Mumax3 has built-in generation of MFM images from the magnetization. The MFM tip lift can be freely chosen. By default the tip magnetization is modeled as a point monopole at the apex. This is sufficient for most situations. Nevertheless, it is also possible to model partially magnetized tips by setting MFMDipole to the magnetized portion of the tip, in meters. E.g., if only the first 20nm of the tip is (vertically) magnetized, set MFMDipole=20e-9.</p>
+
 
 <a id=example8></a><pre>setgridsize(256, 256, 1)
 setcellsize(2e-9, 2e-9, 1e-9)
@@ -530,10 +546,9 @@ setgeom(rect(400e-9, 400e-9))
 
 msat    = 600e3
 aex     = 10e-12
-alpha   = 3     
 m       = vortex(1, 1)
-run(0.5e-9)           // relax
 
+relax()
 save(m)
 
 MFMLift = 10e-9
@@ -544,7 +559,6 @@ saveas(MFM, &#34;lift_40nm&#34;)
 
 MFMLift = 100e-9
 saveas(MFM, &#34;lift_100nm&#34;)</pre>
-
 <h3>output</h3> 
 <figure style="float:left">
 	<img src="example8.out/lift_100nm.png"/>
@@ -565,24 +579,20 @@ saveas(MFM, &#34;lift_100nm&#34;)</pre>
 
 
 <hr/><h2>PMA Racetrack</h2>
-<a id=example9></a><pre>// In this example we drive a domain wall in PMA material by spin-transfer torque.
-// We set up a post-step function that makes the simulation box &#34;follow&#34; the domain
-// wall. Like this, only a small number of cells is needed to simulate an infinitely
-// long magnetic wire.
+In this example we drive a domain wall in PMA material by spin-transfer torque.  We set up a post-step function that makes the simulation box "follow" the domain wall. Like this, only a small number of cells is needed to simulate an infinitely long magnetic wire.
 
-setgridsize(128, 128, 1)
-setcellsize(2e-9, 2e-9, 1e-9)
+<a id=example9></a><pre>setGridSize(128, 128, 1)
+setCellSize(2e-9, 2e-9, 1e-9)
 
-msat    = 600e3
-aex     = 10e-12
+Msat    = 600e3
+Aex     = 10e-12
 anisU   = vector(0, 0, 1)
 Ku1     = 0.59e6
-xi      = 0.2
-alpha   = 3                                   // high damping for fast relax
+alpha   = 0.02 
+Xi      = 0.2
 
 m     = twoDomain(0, 0, 1, 1, 1, 0, 0, 0, -1) // up-down domains with wall between Bloch and Néél type
-run(0.1e-9)                                   // relax
-alpha = 0.02                                  // normal damping
+relax()
 
 // Set post-step function that centers simulation window on domain wall.
 ext_centerWall(2) // keep m[2] (= m_z) close to zero
@@ -622,16 +632,15 @@ Since we center on the domain wall we can not see that it is actually moving, bu
 
 <hr/><h2>Py Racetrack</h2>
 
-<a id=example10></a><pre>// In this example we drive a vortex wall in Permalloy by spin-transfer torque.
-// The simulation box &#34;follows&#34; the domain wall.
-// By removing surface charges at the left and right ends, we mimic an infintely long wire.
+In this example we drive a vortex wall in Permalloy by spin-transfer torque. The simulation box "follows" the domain wall. By removing surface charges at the left and right ends, we mimic an infintely long wire.
 
-setgridsize(256, 64, 1)
-setcellsize(3e-9, 3e-9, 10e-9)
+<a id=example10></a><pre>setGridSize(256, 64, 1)
+setCellSize(3e-9, 3e-9, 10e-9)
 
 Msat    = 860e3
 Aex     = 13e-12
 Xi      = 0.1
+alpha   = 0.02 
 m       = twodomain(1,0,0,  0,1,0,  -1,0,0)
 
 notch := rect(15e-9, 15e-9).RotZ(45*pi/180).transl(0, 32*3e-9, 0).inverse()
@@ -639,16 +648,13 @@ setGeom(notch.Repeat(200e-9, 64*3e-9, 0))
 
 // Remove surface charges from left (mx=1) and right (mx=-1) sides to mimic infinitely long wire. We have to specify the region (0) at the boundaries.
 BoundaryRegion := 0
-MagLeft  := 1
-MagRight := -1
+MagLeft        := 1
+MagRight       := -1
 ext_rmSurfaceCharge(BoundaryRegion, MagLeft, MagRight)
 
-// Relax
-Alpha = 3    // high damping for fast relax
-RunWhile(MaxTorque &gt; 1e-3)    // relax
-Alpha = 0.02 // restore normal damping
+relax()
 
-ext_centerWall(0) // keep m[0] (= m_x) close to zero
+ext_centerWall(0) // keep m[0] (m_x) close to zero
 
 // Schedule output
 autosave(m, 50e-12)
@@ -711,7 +717,6 @@ Run(0.5e-9)</pre>
 </figure>
 
 Since we center on the domain wall we can not really see the motion, despite the vortex wall moving pretty fast. Note the absence of closure domains at the edges due to the surface charges being removed there.
-
 
 
 <hr/><h2>Voronoi tessellation</h2>

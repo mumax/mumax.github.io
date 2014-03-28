@@ -30,7 +30,7 @@
 <hr/>
 
 
-<h1> mumax 3.4.2 API </h1>
+<h1> mumax 3.5 API </h1>
 
 This is a complete overview of all available functions for writing an input script.
 
@@ -91,6 +91,16 @@ SetGridSize(Nx, Ny, Nz)
 SetCellSize(sizeX/Nx, sizeY/Ny, sizeZ/Nz)
 </code></pre>
 
+<h2> Periodic boundary conditions </h2>
+Optionally, periodic boundary conditions can be enabled:
+<pre><code>SetPBC(5, 0, 0)        // 5 extra images on left and right sides.
+SetGridSize(128, 64, 1)
+SetCellSize(5e-9, 5e-9, 5e-9)
+</code></pre>
+Setting a nonzero PBC value in a direction enables wrap-around in that direction. The precise value passed determines how many repetitions are seen by the demag field. E.g., in the above example the demag field behaves as if 5 repetitions are present to the left and to the right side. Choosing a large number may cause long initialization time.
+
+<h2> Resizing the mesh </h2>
+
 The mesh can be changed at any later time in the simulation. This will cause the magnetization to be stretched onto the new mesh if needed, and the geometry and regions to be re-calculated. After resize some cells which had zero magnetization may now fall inside the magnet geometry, they will be initialized to random magnetization.
 
  
@@ -126,6 +136,8 @@ The mesh can be changed at any later time in the simulation. This will cause the
 			<a href="examples.html#example12">[12]</a> 
 		 
 			<a href="examples.html#example13">[13]</a> 
+		 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -165,6 +177,8 @@ The mesh can be changed at any later time in the simulation. This will cause the
 		 
 			<a href="examples.html#example13">[13]</a> 
 		 
+			<a href="examples.html#example14">[14]</a> 
+		 
 		</p> 
 	
 
@@ -188,13 +202,6 @@ The mesh can be changed at any later time in the simulation. This will cause the
 
 	</p>
  
-
-Optionally, periodic boundary conditions can be enabled, preferentially before setting the grid size.
-<pre><code>SetPBC(5, 0, 0)        // 5 extra images on left and right sides.
-SetGridSize(128, 64, 1)
-SetCellSize(5e-9, 5e-9, 5e-9)
-</code></pre>
-Setting a nonzero PBC value in a direction enables wrap-around in that direction. The precise value passed determines how many repetitions are seen by the demag field. E.g., in the above example the demag field behaves as if 5 repetitions are present to the left and to the right side. Choosing a large number may cause long initialization time.
 
 
 
@@ -220,11 +227,13 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 		 
 			<a href="examples.html#example7">[7]</a> 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example11">[11]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -284,6 +293,8 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 		 
 			<a href="examples.html#example13">[13]</a> 
 		 
+			<a href="examples.html#example14">[14]</a> 
+		 
 		</p> 
 	
 
@@ -308,7 +319,7 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 		 
 			<a href="examples.html#example7">[7]</a> 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -366,7 +377,7 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -422,9 +433,9 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 		 
 			<a href="examples.html#example3">[3]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
-		 
 			<a href="examples.html#example12">[12]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -464,11 +475,13 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 		 
 			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example11">[11]</a> 
+		 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -555,9 +568,9 @@ tableAdd(m.Region(1))    // add average m over region 1 to table
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example10">[10]</a> 
-		 
 			<a href="examples.html#example11">[11]</a> 
+		 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -586,7 +599,7 @@ tableAdd(m.Region(1))    // add average m over region 1 to table
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -641,14 +654,16 @@ m.LoadFile("config.ovf")
 		 
 			<a href="examples.html#example13">[13]</a> 
 		 
+			<a href="examples.html#example14">[14]</a> 
+		 
 		</p> 
 	
 
 	</p>
  
  
-	<p><span style="color:#000088; font-size:1.3em"> <b>Antiskyrmion</b>(int, int) Config </span> 
-	 <p style="margin-left:40px"> Antiskyrmion magnetization with given charge and core polarization </p> 
+	<p><span style="color:#000088; font-size:1.3em"> <b>Antivortex</b>(int, int) Config </span> 
+	 <p style="margin-left:40px"> Antivortex magnetization with given circulation and core polarization </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -660,8 +675,8 @@ m.LoadFile("config.ovf")
 
 	</p>
   
-	<p><span style="color:#000088; font-size:1.3em"> <b>Antivortex</b>(int, int) Config </span> 
-	 <p style="margin-left:40px"> Antivortex magnetization with given circulation and core polarization </p> 
+	<p><span style="color:#000088; font-size:1.3em"> <b>NeelSkyrmion</b>(int, int) Config </span> 
+	 <p style="margin-left:40px"> Néel skyrmion magnetization with given chirality and core polarization </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -669,6 +684,11 @@ m.LoadFile("config.ovf")
 		</span> </p> 
 	
 
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example4">[4]</a> 
+		 
+		</p> 
 	
 
 	</p>
@@ -691,8 +711,8 @@ m.LoadFile("config.ovf")
 
 	</p>
   
-	<p><span style="color:#000088; font-size:1.3em"> <b>Skyrmion</b>(int, int) Config </span> 
-	 <p style="margin-left:40px"> Skyrmion magnetization with given charge and core polarization </p> 
+	<p><span style="color:#000088; font-size:1.3em"> <b>RandomMagSeed</b>(int) Config </span> 
+	 <p style="margin-left:40px"> Random magnetization with given seed </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -700,6 +720,24 @@ m.LoadFile("config.ovf")
 		</span> </p> 
 	
 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>Skyrmion</b>(int, int) Config </span> 
+	 <p style="margin-left:40px"> Bloch skyrmion magnetization with given charge and core polarization </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Add( float64 Config ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Transl( float64 float64 float64 ) &nbsp; 
+		</span> </p> 
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example4">[4]</a> 
+		 
+		</p> 
 	
 
 	</p>
@@ -717,9 +755,9 @@ m.LoadFile("config.ovf")
 		 
 			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
 			<a href="examples.html#example9">[9]</a> 
+		 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -747,11 +785,11 @@ m.LoadFile("config.ovf")
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
-		 
 			<a href="examples.html#example12">[12]</a> 
 		 
 			<a href="examples.html#example13">[13]</a> 
+		 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -773,9 +811,9 @@ m.LoadFile("config.ovf")
 		 
 			<a href="examples.html#example7">[7]</a> 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -853,6 +891,8 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example13">[13]</a> 
 		 
+			<a href="examples.html#example14">[14]</a> 
+		 
 		</p> 
 	
 
@@ -879,15 +919,15 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example7">[7]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
 			<a href="examples.html#example9">[9]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 			<a href="examples.html#example13">[13]</a> 
+		 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -905,7 +945,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -923,7 +963,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -943,9 +983,9 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -965,7 +1005,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -983,7 +1023,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -1001,7 +1041,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -1019,7 +1059,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -1039,9 +1079,9 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -1059,7 +1099,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -1099,6 +1139,8 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example13">[13]</a> 
 		 
+			<a href="examples.html#example14">[14]</a> 
+		 
 		</p> 
 	
 
@@ -1117,11 +1159,11 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
 			<a href="examples.html#example9">[9]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example10">[10]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -1152,9 +1194,9 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
 			<a href="examples.html#example9">[9]</a> 
+		 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -1188,7 +1230,7 @@ JPol.Add(LoadFile("current.ovf"), 1)
 		 
 			<a href="examples.html#example1">[1]</a> 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -1206,8 +1248,6 @@ JPol.Add(LoadFile("current.ovf"), 1)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
 			<a href="examples.html#example9">[9]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
@@ -1217,6 +1257,8 @@ JPol.Add(LoadFile("current.ovf"), 1)
 			<a href="examples.html#example12">[12]</a> 
 		 
 			<a href="examples.html#example13">[13]</a> 
+		 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -1235,7 +1277,7 @@ JPol.Add(LoadFile("current.ovf"), 1)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -1271,13 +1313,64 @@ JPol.Add(LoadFile("current.ovf"), 1)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
 
 	</p>
  
+
+
+<hr/><h1> Magnetic Force Microscopy </h1>
+
+<p>Mumax3 has built-in generation of MFM images from the magnetization. The MFM tip lift can be freely chosen. By default the tip magnetization is modeled as a point monopole at the apex. This is sufficient for most situations. Nevertheless, it is also possible to model partially magnetized tips by setting MFMDipole to the magnetized portion of the tip, in meters. E.g., if only the first 20nm of the tip is (vertically) magnetized, set MFMDipole=20e-9.</p>
+
+<p><img width=400px src="mfm.svg" /></p>
+
+ 
+	<p><span style="color:#000088; font-size:1.3em"> <b>MFM</b> </span> 
+	 <p style="margin-left:40px"> MFM image </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; Region( int ) &nbsp; Set( Slice ) &nbsp; 
+		</span> </p> 
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example8">[8]</a> 
+		 
+		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>MFMDipole</b> </span> 
+	 <p style="margin-left:40px"> Height of vertically magnetized part of MFM tip </p> 
+
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>MFMLift</b> </span> 
+	 <p style="margin-left:40px"> MFM lift height </p> 
+
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example8">[8]</a> 
+		 
+		</p> 
+	
+
+	</p>
+ 
+
 
 <hr/><h1> Output quantities </h1>
 
@@ -1417,7 +1510,7 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -1526,7 +1619,7 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -1552,11 +1645,13 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 		 
 			<a href="examples.html#example7">[7]</a> 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example11">[11]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -1598,24 +1693,6 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example9">[9]</a> 
-		 
-		</p> 
-	
-
-	</p>
-  
-	<p><span style="color:#000088; font-size:1.3em"> <b>MFM</b> </span> 
-	 <p style="margin-left:40px"> MFM image </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Average( ) &nbsp; Region( int ) &nbsp; Set( Slice ) &nbsp; 
-		</span> </p> 
-	
-
 	
 
 	</p>
@@ -1642,13 +1719,6 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example8">[8]</a> 
-		 
-			<a href="examples.html#example9">[9]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1782,13 +1852,13 @@ myField = ...
 		 
 			<a href="examples.html#example1">[1]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
 			<a href="examples.html#example9">[9]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 			<a href="examples.html#example13">[13]</a> 
+		 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -1806,6 +1876,15 @@ myField = ...
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>FilenameFormat</b> </span> 
 	 <p style="margin-left:40px"> printf formatting string for output filenames. </p> 
+
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>Fprintln</b>(string, ...interface {}) </span> 
+	 <p style="margin-left:40px"> Print to file </p> 
 
 	
 
@@ -1858,6 +1937,20 @@ myField = ...
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>Print</b>(...interface {}) </span> 
+	 <p style="margin-left:40px"> Print to standard output </p> 
+
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example2">[2]</a> 
+		 
+		</p> 
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>Save</b>(Quantity) </span> 
 	 <p style="margin-left:40px"> Save space-dependent quantity once, with auto filename </p> 
 
@@ -1891,6 +1984,8 @@ myField = ...
 		 
 			<a href="examples.html#example13">[13]</a> 
 		 
+			<a href="examples.html#example14">[14]</a> 
+		 
 		</p> 
 	
 
@@ -1908,6 +2003,8 @@ myField = ...
 			<a href="examples.html#example4">[4]</a> 
 		 
 			<a href="examples.html#example6">[6]</a> 
+		 
+			<a href="examples.html#example8">[8]</a> 
 		 
 		</p> 
 	
@@ -1932,6 +2029,24 @@ myField = ...
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>sprint</b>(...interface {}) string </span> 
+	 <p style="margin-left:40px"> Print all arguments to string with automatic formatting </p> 
+
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>sprintf</b>(string, ...interface {}) string </span> 
+	 <p style="margin-left:40px"> Print to string with C-style formatting. </p> 
+
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>TableAdd</b>(TableData) </span> 
 	 <p style="margin-left:40px"> Add quantity as a column to the data table. </p> 
 
@@ -1939,9 +2054,9 @@ myField = ...
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -1966,11 +2081,20 @@ myField = ...
 		 
 			<a href="examples.html#example1">[1]</a> 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>TablePrint</b>(...interface {}) </span> 
+	 <p style="margin-left:40px"> Print anyting in the data table </p> 
+
+	
+
 	
 
 	</p>
@@ -1982,7 +2106,7 @@ myField = ...
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example11">[11]</a> 
+			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
 	
@@ -1996,18 +2120,27 @@ myField = ...
 <pre><code>Run(1e-9)
 </code></pre>
 More fine-grained control is provided by <code>RunWhile(<i>condition</i>)</code>, which runs as long as an arbitrary condition is met. E.g.: 
-<pre><code>RunWhile(MaxTorque &gt; 1e-4)  // handy for relax
-RunWhile(average(m)[0] &lt; 0.1)   // handy during reversal etc.
+<pre><code>RunWhile(average(m)[0] &lt; 0)   // search for switching field during reversal
 </code></pre>
 Optionally, the solver accuracy may be fine-tuned. E.g.:
 <pre><code>MaxDt = 1e-12
 MinDt = 1e-15
 MaxErr = 1e-6
 </code></pre>
-Also optionally, a different solver may be chosen (at any point) with <code>SetSolver(int)</code>. Currently available solver types:
+
+<h2>Relax</h2>
+
+<p><code>Relax()</code> tries to evolve the magnetization as closely as possible to the minimum energy state. This function assumes all excitations have been turned off (temperature, electrical current, time-dependent magnetic fields). During relax precession is disabled and the time <code>t</code> does not increase. There is no need to set high damping.</p> 
+
+<p>In general it is difficult to be sure the minimum energy state has been truly reached. Hence, relax may occasionally return after the energy has reached a local minimum, a saddle point, or a rather flat valley in the energy landscape.</p>
+
+<h2>Solver types</h2>
+
+Optionally, a different solver may be chosen (at any point) with <code>SetSolver(int)</code>. Currently available solver types:
 <ul>
-	<li> <code>1</code>: Euler solver (requires <code>FixDt = ...</code>, ignores other settings) </li>
-	<li> <code>2</code>: Adaptive Heun solver (default) </li> 
+	<li> <code>3</code>: RK23 (Bogacki-Shampine) solver, the default. An accurate and fast solver with excellent adaptive time step control and modest memory requirements. Cannot be used with finite temperature.</li> 
+	<li> <code>2</code>: Adaptive Heun solver.Uses less memory but takes smaller time steps than RK23. Suited for finite temperature. </li> 
+	<li> <code>1</code>: Euler solver (requires <code>FixDt = ...</code>, ignores other settings). Only useful in exceptional situations or for debugging. </li>
 </ul>
 E.g.:
 <pre><code>SetSolver(1) // Euler
@@ -2015,8 +2148,8 @@ FixDt = 1e-15
 </code></pre>
 
  
-	<p><span style="color:#000088; font-size:1.3em"> <b>Run</b>(float64) </span> 
-	 <p style="margin-left:40px"> Run the simulation for a time in seconds </p> 
+	<p><span style="color:#000088; font-size:1.3em"> <b>Relax</b>() </span> 
+	 <p style="margin-left:40px"> Try to minimize the total energy </p> 
 
 	
 
@@ -2028,17 +2161,37 @@ FixDt = 1e-15
 		 
 			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example6">[6]</a> 
-		 
 			<a href="examples.html#example8">[8]</a> 
 		 
 			<a href="examples.html#example9">[9]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>Run</b>(float64) </span> 
+	 <p style="margin-left:40px"> Run the simulation for a time in seconds </p> 
+
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example1">[1]</a> 
+		 
+			<a href="examples.html#example6">[6]</a> 
+		 
+			<a href="examples.html#example9">[9]</a> 
+		 
+			<a href="examples.html#example10">[10]</a> 
+		 
+			<a href="examples.html#example11">[11]</a> 
 		 
 			<a href="examples.html#example13">[13]</a> 
+		 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -2050,11 +2203,6 @@ FixDt = 1e-15
 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example9">[9]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -2096,6 +2244,15 @@ FixDt = 1e-15
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>lastErr</b> </span> 
+	 <p style="margin-left:40px"> Maximum error of last time step </p> 
+
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>MaxDt</b> </span> 
 	 <p style="margin-left:40px"> Maximum time step the solver can take (s) </p> 
 
@@ -2123,6 +2280,24 @@ FixDt = 1e-15
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>NEval</b>() int </span> 
+	 <p style="margin-left:40px"> Total number of torque evaluations </p> 
+
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>peakErr</b> </span> 
+	 <p style="margin-left:40px"> Maximum error over all time steps </p> 
+
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>step</b> </span> 
 	 <p style="margin-left:40px"> Total number of time steps taken </p> 
 
@@ -2130,7 +2305,7 @@ FixDt = 1e-15
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example8">[8]</a> 
+			<a href="examples.html#example9">[9]</a> 
 		 
 		</p> 
 	
@@ -2170,6 +2345,8 @@ FixDt = 1e-15
 		 
 			<a href="examples.html#example13">[13]</a> 
 		 
+			<a href="examples.html#example14">[14]</a> 
+		 
 		</p> 
 	
 
@@ -2206,7 +2383,7 @@ will try to keep <code>mx</code> (component 0, counting from 0) close to zero. I
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -2229,7 +2406,7 @@ will try to keep <code>mx</code> (component 0, counting from 0) close to zero. I
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -2260,7 +2437,7 @@ will try to keep <code>mx</code> (component 0, counting from 0) close to zero. I
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -2285,6 +2462,8 @@ will try to keep <code>mx</code> (component 0, counting from 0) close to zero. I
 
 	</p>
  
+
+
 
 <hr/><h1> Extensions </h1>
 
@@ -2337,9 +2516,9 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
 			<a href="examples.html#example9">[9]</a> 
+		 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -2370,7 +2549,7 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -2410,9 +2589,9 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -2426,7 +2605,7 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -2440,11 +2619,11 @@ Extensions are extra functionalities that are not officially supported. They are
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
-		 
 			<a href="examples.html#example11">[11]</a> 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example12">[12]</a> 
+		 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -2472,15 +2651,6 @@ Extensions are extra functionalities that are not officially supported. They are
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>ExpectV</b>(string, data.Vector, data.Vector, float64) </span> 
 	 <p style="margin-left:40px"> Used for automated tests: checks if a vector is close enough to the expected value </p> 
-
-	
-
-	
-
-	</p>
-  
-	<p><span style="color:#000088; font-size:1.3em"> <b>Fprintln</b>(string, ...interface {}) </span> 
-	 <p style="margin-left:40px"> Print to file </p> 
 
 	
 
@@ -2591,11 +2761,11 @@ Other available functions.
 		 
 			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example10">[10]</a> 
-		 
 			<a href="examples.html#example11">[11]</a> 
 		 
 			<a href="examples.html#example12">[12]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
 		 
 		</p> 
 	
@@ -2645,7 +2815,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -2749,9 +2919,7 @@ Other available functions.
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
-			<a href="examples.html#example9">[9]</a> 
+			<a href="examples.html#example10">[10]</a> 
 		 
 		</p> 
 	
@@ -2876,29 +3044,9 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example9">[9]</a> 
-		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
-	
-
-	</p>
-  
-	<p><span style="color:#000088; font-size:1.3em"> <b>MFMLift</b> </span> 
-	 <p style="margin-left:40px"> MFM lift height </p> 
-
-	
-
-	
-
-	</p>
-  
-	<p><span style="color:#000088; font-size:1.3em"> <b>MFMTipSize</b> </span> 
-	 <p style="margin-left:40px"> MFM tip size </p> 
-
-	
-
 	
 
 	</p>
@@ -2944,13 +3092,22 @@ Other available functions.
 		 
 			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
-			<a href="examples.html#example9">[9]</a> 
-		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>now</b>() time.Time </span> 
+	 <p style="margin-left:40px"> Returns the current time </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Add( time.Duration ) &nbsp; AddDate( int int int ) &nbsp; After( time.Time ) &nbsp; Before( time.Time ) &nbsp; Clock( ) &nbsp; Date( ) &nbsp; Day( ) &nbsp; Equal( time.Time ) &nbsp; Format( string ) &nbsp; GobEncode( ) &nbsp; Hour( ) &nbsp; ISOWeek( ) &nbsp; In( *time.Location ) &nbsp; IsZero( ) &nbsp; Local( ) &nbsp; Location( ) &nbsp; MarshalBinary( ) &nbsp; MarshalJSON( ) &nbsp; MarshalText( ) &nbsp; Minute( ) &nbsp; Month( ) &nbsp; Nanosecond( ) &nbsp; Round( time.Duration ) &nbsp; Second( ) &nbsp; Sub( time.Time ) &nbsp; Truncate( time.Duration ) &nbsp; UTC( ) &nbsp; Unix( ) &nbsp; UnixNano( ) &nbsp; Weekday( ) &nbsp; Year( ) &nbsp; YearDay( ) &nbsp; Zone( ) &nbsp; 
+		</span> </p> 
+	
+
 	
 
 	</p>
@@ -2968,10 +3125,6 @@ Other available functions.
 		 
 			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
-			<a href="examples.html#example9">[9]</a> 
-		 
 			<a href="examples.html#example10">[10]</a> 
 		 
 			<a href="examples.html#example11">[11]</a> 
@@ -2979,6 +3132,8 @@ Other available functions.
 			<a href="examples.html#example12">[12]</a> 
 		 
 			<a href="examples.html#example13">[13]</a> 
+		 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -2994,7 +3149,7 @@ Other available functions.
 		 
 			<a href="examples.html#example2">[2]</a> 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -3010,20 +3165,6 @@ Other available functions.
 
 	</p>
   
-	<p><span style="color:#000088; font-size:1.3em"> <b>Print</b>(...interface {}) </span> 
-	 <p style="margin-left:40px"> Print to standard output </p> 
-
-	
-
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-		</p> 
-	
-
-	</p>
-  
 	<p><span style="color:#000088; font-size:1.3em"> <b>rand</b>() float64 </span> 
 	 <p style="margin-left:40px"> Random number between 0 and 1 </p> 
 
@@ -3033,9 +3174,9 @@ Other available functions.
 		 
 			<a href="examples.html#example4">[4]</a> 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
-			<a href="examples.html#example13">[13]</a> 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -3067,7 +3208,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -3079,11 +3220,6 @@ Other available functions.
 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example4">[4]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -3117,13 +3253,13 @@ Other available functions.
 		 
 			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example10">[10]</a> 
-		 
 			<a href="examples.html#example11">[11]</a> 
 		 
 			<a href="examples.html#example12">[12]</a> 
 		 
 			<a href="examples.html#example13">[13]</a> 
+		 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -3139,26 +3275,21 @@ Other available functions.
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>since</b>(time.Time) time.Duration </span> 
+	 <p style="margin-left:40px"> Returns the time elapsed since argument </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Hours( ) &nbsp; Minutes( ) &nbsp; Nanoseconds( ) &nbsp; Seconds( ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>sinh</b>(float64) float64 </span> 
 	
-
-	
-
-	
-
-	</p>
-  
-	<p><span style="color:#000088; font-size:1.3em"> <b>sprint</b>(...interface {}) string </span> 
-	 <p style="margin-left:40px"> Print all arguments to string with automatic formatting </p> 
-
-	
-
-	
-
-	</p>
-  
-	<p><span style="color:#000088; font-size:1.3em"> <b>sprintf</b>(string, ...interface {}) string </span> 
-	 <p style="margin-left:40px"> Print to string with C-style formatting. </p> 
 
 	
 
@@ -3176,15 +3307,6 @@ Other available functions.
 			<a href="examples.html#example2">[2]</a> 
 		 
 		</p> 
-	
-
-	</p>
-  
-	<p><span style="color:#000088; font-size:1.3em"> <b>TablePrint</b>(...interface {}) </span> 
-	 <p style="margin-left:40px"> Print anyting in the data table </p> 
-
-	
-
 	
 
 	</p>
@@ -3251,15 +3373,15 @@ Other available functions.
 		 
 			<a href="examples.html#example6">[6]</a> 
 		 
-			<a href="examples.html#example8">[8]</a> 
-		 
 			<a href="examples.html#example9">[9]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
-			<a href="examples.html#example12">[12]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 			<a href="examples.html#example13">[13]</a> 
+		 
+			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
 	
@@ -3282,7 +3404,7 @@ Other available functions.
 
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
-			<a href="examples.html#example10">[10]</a> 
+			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
