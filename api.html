@@ -488,6 +488,24 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>Square</b>(float64) Shape </span> 
+	 <p style="margin-left:40px"> 2D square with size in meter </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Add( Shape ) &nbsp; Intersect( Shape ) &nbsp; Inverse( ) &nbsp; Repeat( float64 float64 float64 ) &nbsp; RotX( float64 ) &nbsp; RotY( float64 ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Sub( Shape ) &nbsp; Transl( float64 float64 float64 ) &nbsp; Xor( Shape ) &nbsp; 
+		</span> </p> 
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example5">[5]</a> 
+		 
+		</p> 
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>Universe</b>() Shape </span> 
 	 <p style="margin-left:40px"> Entire space </p> 
 
@@ -675,8 +693,26 @@ m.LoadFile("config.ovf")
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>BlochSkyrmion</b>(int, int) Config </span> 
+	 <p style="margin-left:40px"> Bloch skyrmion magnetization with given chirality and core polarization </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Add( float64 Config ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Transl( float64 float64 float64 ) &nbsp; 
+		</span> </p> 
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example4">[4]</a> 
+		 
+		</p> 
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>NeelSkyrmion</b>(int, int) Config </span> 
-	 <p style="margin-left:40px"> Néel skyrmion magnetization with given chirality and core polarization </p> 
+	 <p style="margin-left:40px"> Néél skyrmion magnetization with given charge and core polarization </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -720,24 +756,6 @@ m.LoadFile("config.ovf")
 		</span> </p> 
 	
 
-	
-
-	</p>
-  
-	<p><span style="color:#000088; font-size:1.3em"> <b>Skyrmion</b>(int, int) Config </span> 
-	 <p style="margin-left:40px"> Bloch skyrmion magnetization with given charge and core polarization </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Add( float64 Config ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Transl( float64 float64 float64 ) &nbsp; 
-		</span> </p> 
-	
-
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example4">[4]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -911,8 +929,6 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example1">[1]</a> 
 		 
-			<a href="examples.html#example2">[2]</a> 
-		 
 			<a href="examples.html#example5">[5]</a> 
 		 
 			<a href="examples.html#example6">[6]</a> 
@@ -939,7 +955,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Average( ) &nbsp; Comp( int ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int VectorFunction ) &nbsp; 
+		 Average( ) &nbsp; Comp( int ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int VectorFunction ) &nbsp; SetRegionFn( int func() [3]float64 ) &nbsp; 
 		</span> </p> 
 	
 
@@ -957,7 +973,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Average( ) &nbsp; Comp( int ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int VectorFunction ) &nbsp; 
+		 Average( ) &nbsp; Comp( int ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int VectorFunction ) &nbsp; SetRegionFn( int func() [3]float64 ) &nbsp; 
 		</span> </p> 
 	
 
@@ -975,7 +991,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Average( ) &nbsp; Comp( int ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int VectorFunction ) &nbsp; 
+		 Average( ) &nbsp; Comp( int ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int VectorFunction ) &nbsp; SetRegionFn( int func() [3]float64 ) &nbsp; 
 		</span> </p> 
 	
 
@@ -1035,7 +1051,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Average( ) &nbsp; Comp( int ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int VectorFunction ) &nbsp; 
+		 Average( ) &nbsp; Comp( int ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; SetRegion( int VectorFunction ) &nbsp; SetRegionFn( int func() [3]float64 ) &nbsp; 
 		</span> </p> 
 	
 
@@ -1049,7 +1065,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 	</p>
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>Kc1</b> </span> 
-	 <p style="margin-left:40px"> Cubic anisotropy constant (J/m3) </p> 
+	 <p style="margin-left:40px"> 1st order cubic anisotropy constant (J/m3) </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -1062,6 +1078,19 @@ Ku1 = 500 * sin(2*pi*f*t)
 			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>Kc2</b> </span> 
+	 <p style="margin-left:40px"> 2nd order cubic anisotropy constant [UNTESTED] (J/m3) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; Set( float64 ) &nbsp; SetRegion( int ScalarFunction ) &nbsp; 
+		</span> </p> 
+	
+
 	
 
 	</p>
@@ -1222,7 +1251,7 @@ JPol.Add(LoadFile("current.ovf"), 1)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Add( Slice ScalarFunction ) &nbsp; AddTo( Slice ) &nbsp; Average( ) &nbsp; Comp( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; RemoveExtraTerms( ) &nbsp; Set( data.Vector ) &nbsp; SetRegion( int VectorFunction ) &nbsp; 
+		 Add( Slice ScalarFunction ) &nbsp; AddTo( Slice ) &nbsp; Average( ) &nbsp; Comp( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; RemoveExtraTerms( ) &nbsp; Set( data.Vector ) &nbsp; SetRegion( int VectorFunction ) &nbsp; SetRegionFn( int func() [3]float64 ) &nbsp; 
 		</span> </p> 
 	
 
@@ -1242,7 +1271,7 @@ JPol.Add(LoadFile("current.ovf"), 1)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Add( Slice ScalarFunction ) &nbsp; AddTo( Slice ) &nbsp; Average( ) &nbsp; Comp( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; RemoveExtraTerms( ) &nbsp; Set( data.Vector ) &nbsp; SetRegion( int VectorFunction ) &nbsp; 
+		 Add( Slice ScalarFunction ) &nbsp; AddTo( Slice ) &nbsp; Average( ) &nbsp; Comp( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; RemoveExtraTerms( ) &nbsp; Set( data.Vector ) &nbsp; SetRegion( int VectorFunction ) &nbsp; SetRegionFn( int func() [3]float64 ) &nbsp; 
 		</span> </p> 
 	
 
@@ -2138,8 +2167,9 @@ MaxErr = 1e-6
 
 Optionally, a different solver may be chosen (at any point) with <code>SetSolver(int)</code>. Currently available solver types:
 <ul>
-	<li> <code>3</code>: RK23 (Bogacki-Shampine) solver, the default. An accurate and fast solver with excellent adaptive time step control and modest memory requirements. Cannot be used with finite temperature.</li> 
-	<li> <code>2</code>: Adaptive Heun solver.Uses less memory but takes smaller time steps than RK23. Suited for finite temperature. </li> 
+	<li> <code>5</code>: RK45 (Dormand-Prince) solver (the default). An accurate solver, very fast for magnetization dynamics at the cost of some memory usage. Cannot be used with finite temperature.</li> 
+	<li> <code>3</code>: RK23 (Bogacki-Shampine) solver. A robust and reasonably fast solver with low memory requirements. Typically outperforms RK45 when relaxing the magnetization with little dynamics, so it used internally by <code>Relax()</code>. Cannot be used with finite temperature.</li> 
+	<li> <code>2</code>: Adaptive Heun solver. Robust and uses very little memory but takes smaller time steps than the higher-order solvers. Suited for finite temperature. </li> 
 	<li> <code>1</code>: Euler solver (requires <code>FixDt = ...</code>, ignores other settings). Only useful in exceptional situations or for debugging. </li>
 </ul>
 E.g.:

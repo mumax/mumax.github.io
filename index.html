@@ -25,12 +25,15 @@
 
 <hr/>
 
-<div style="width:50%; margin-left:25%">
+<div style="max-width:50em; margin-left:5%">
 
-	<p><b>mumax<sup>3</sup></b> is a GPU-accelerated micromagnetic simulation program developed at <a href="http://www.ugent.be">Ghent University</a>, <a href="http://dynamat.ugent.be">DyNaMat</a> group. The software is free and open-source under a GPLv3 license. Its predecessor mumax2 is still available <a href="http://code.google.com/p/mumax2">here</a>.</p>
+	<p><b>mumax<sup>3</sup></b> is a GPU-accelerated micromagnetic simulation program developed at the <a href="http://dynamat.ugent.be">DyNaMat</a> group of Prof. Van Waeyenberge at <a href="http://www.ugent.be">Ghent University</a>. The code is written and maintained by <a href="http://plus.google.com/+ArneVansteenkiste">Arne Vansteenkiste</a>.</p>
+
 	
-	<p>mumax<sup>3</sup> offers a speed-up of up to 100x compared to CPU-based simulations. Additionally, it is optimized for low memory use and easily allows over 10 million FD cells. </p>
+	<p>A speed-up of the order of 100x compared to CPU-based simulations can easily be reached, even with relatively inexpensive gaming GPUs. Additionally, the software is optimized for low memory use and can handle about 16 million FD cells with 2GB of GPU RAM. </p>
 	
+<h2> License </h2>
+	<p>mumax<sup>3</sup> is open-source software. You are free to modify and distribute the source code under the <a href="under a GPLv3 license.">GPLv3 licence</a>. In addition to the terms of the GPL, we kindly ask that you acknowledge mumax in any work or publication that uses it.</p>
 </div>
 
 <div style="float:left">
@@ -40,8 +43,8 @@
 	</figure>
 </div>
 
-<div style="float:left; width:40%">
-	<h2>included physics</h2>
+<div style="float:left; max-width:40em;">
+	<h2>Features</h2>
 	<ul>
 		<li>Landau-Lifshitz micromagnetic formalism</li>
 		<li>Magnetostatic field </li>
@@ -52,15 +55,11 @@
 		<li>Uniaxial and cubic magnetocrystalline anisotropy</li>
 		<li>Thermal fluctuations (Brown)</li>
 		<li>Voronoi tessellation</li>
-	</ul>
-
-	<h2>extra features:</h2>
-	<ul>
-		<li>All material parameters can be fully time- and space-dependent</li>
+		<li>Time- and space dependent material parameters</li>
 		<li>Arbitrary complex excitation (field, current)</li>
 		<li>Simulation window can automatically follow a moving domain wall</li>
 		<li>Edge charges can be removed to simulate an infinitely long geometry</li>
-		<li>Optional periodic boundary conditions</li>
+		<li>Optional 1D, 2D or 3D periodic boundary conditions</li>
 	</ul>
 
 </div>
