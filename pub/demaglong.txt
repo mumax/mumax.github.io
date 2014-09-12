@@ -1,0 +1,8 @@
+setGridSize(512, 1, 1)
+setCellSize(1e-9, 1e-9, 1e-9)
+
+SetGeom(cell(0, 0, 0))
+Msat = 1/mu0
+
+m = uniform(1, 0, 0)
+save(B_demag)

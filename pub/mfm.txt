@@ -1,0 +1,16 @@
+setgridsize(512, 512, 1)
+setcellsize(2e-9, 2e-9, 10e-9)
+setgeom(rect(750e-9, 750e-9))
+
+msat    = 800e3
+aex     = 13e-12
+m       = vortex(1, 1)
+
+relax()
+save(m)
+
+// MFM images for various lift heights
+for i:=10; i<=200; i+=10{
+    MFMLift = i*1e-9
+    Snapshot(MFM)
+}

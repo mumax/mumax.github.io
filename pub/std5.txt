@@ -1,0 +1,20 @@
+Nx := 50
+Ny := 50
+Nz := 5
+setgridsize(Nx, Ny, Nz)
+setcellsize(100e-9/Nx, 100e-9/Nx, 10e-9/Nz)
+
+Msat  = 800e3
+Aex   = 13e-12
+alpha = 0.1
+xi    = 0.05
+
+m = vortex(1, 1)
+relax()
+saveas(m, "relaxed.ovf")
+
+J     = vector(1e12, 0, 0)
+Pol   = 1
+
+tableAutoSave(5e-12)
+run(10e-9)

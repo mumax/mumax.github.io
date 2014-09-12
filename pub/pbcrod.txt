@@ -1,0 +1,26 @@
+c := 1e-9
+SetCellSize(c, c, c)
+
+Msat = 1/mu0
+m    = uniform(0, 0, 1)
+N   := 2
+
+// small grid with PBC
+for j := 0; j<10; j++{
+    i := pow(2, j)
+    SetGridSize(N, N, 1)
+    SetPBC(0, 0, i)
+    fprintln("pbc.txt", i, B_demag.Average())
+}
+
+// equivalent large grid without PBC
+for j := 0; j<10; j++{
+    i := pow(2, j)
+    SetGridSize(N, N, 1*i*2)
+    SetPBC(0, 0, 0)
+    
+    // evaluate over central part
+    defRegion(0, universe())
+    defRegion(1, cuboid(c*N, c*N, c*N))
+    fprintln("nopbc.txt", i, B_demag.Region(1).Average())
+}

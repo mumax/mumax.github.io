@@ -1,0 +1,12 @@
+msat  = 800e3
+aex   = 13e-12
+alpha = 0.01
+setcellsize(4e-9, 4e-9, 4e-9)
+
+// increase grid size until we run out of memory
+for e:=5; e<100; e++{
+    n := 128*e
+    setgridsize(n, n, 1)
+    steps(1)                 // will crash here if out of memory
+    fprintln("mem.txt", n*n) // save number of cells
+}

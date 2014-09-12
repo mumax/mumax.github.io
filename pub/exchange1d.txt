@@ -1,0 +1,27 @@
+N := 1024
+c := 1e-9
+SetGridSize(N, 1, 1)
+SetCellSize(c, c, c)
+SetPBC(1, 0, 0)
+vol := N * c * c * c
+
+A  := 10e-12
+Aex = A
+Msat = 1e6
+EnableDemag = false
+
+mag := newSlice(3, N, 1, 1)
+for k:=0; k<N/2; k++{
+    for i:=0; i<N; i++{
+        phase := (i * k * 2*pi) / N
+        my := sin(phase)
+        mz := cos(phase)
+        mag.set(1, i, 0, 0, my)
+        mag.set(2, i, 0, 0, mz)
+    }
+    m.SetArray(mag)
+    save(m)
+    
+    Energy := vol * A * pow( 2*pi*k / (N*c), 2 ) 
+    fprintln("output.txt", k, Energy, E_exch)
+}

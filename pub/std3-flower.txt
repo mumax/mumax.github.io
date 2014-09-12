@@ -1,0 +1,25 @@
+N := 16
+setGridSize(N, N, N)
+setCellSize(1e-9, 1e-9, 1e-9) // will be varied
+
+Msat  = 500e3   // Msat and Aex should not matter
+Aex   = 20e-12
+
+Ms   := Msat.GetRegion(0)
+A    := Aex.GetRegion(0)
+Km   := 0.5 * mu0 * Ms * Ms
+lex  := sqrt(A / Km)
+AnisU = Vector(0, 0, 1)
+Ku1   = 0.1 * Km
+
+// scan edge length L
+for L := 8.0; L<=9.0; L+=0.02{
+    c := L*lex/N
+    setCellSize(c, c, c)
+    m.loadFile("std3-flower.ovf") // load initial state
+    V := pow(c*N, 3)
+    relax()
+    m_:= m.Average()
+    fprintln("result.txt", L, m_.X(), m_.Y(), m_.Z(), E_total.Get(), E_exch.Get(), E_demag.Get(), E_anis.Get(), Km, V)
+}
+

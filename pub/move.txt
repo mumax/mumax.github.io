@@ -1,0 +1,44 @@
+Nx := 512
+Ny := 64
+c := 2e-9
+setGridSize(Nx, Ny, 1)
+setCellSize(c, c, 20e-9)
+
+w := Nx * c
+h := Ny * c
+
+Msat    = 800e3
+Aex     = 13e-12
+Xi      = 0.1
+alpha   = 0.02 
+m       = twodomain(1,.1,0, 0,1,0, -1,-.1,0)
+
+notch := rect(15*c, 15*c).rotZ(45*pi/180).transl(0, Ny*c/2, 0).repeat(Nx*c/2 + 2*Ny*c, 0, 0).inverse()
+setgeom(notch.transl(-2*Ny*c, 0, 0))
+
+snapshotformat = "PNG"
+
+relax()
+snapshot(m)
+
+// Remove surface charges from left (mx=1) and right (mx=-1) sides to mimic infinitely long wire. We have to specify the region (0) at the boundaries.
+BoundaryRegion := 0
+MagLeft        := 1
+MagRight       := -1
+ext_rmSurfaceCharge(BoundaryRegion, MagLeft, MagRight)
+
+relax()
+snapshot(m)
+
+ext_centerWall(0) // keep m[0] (m_x) close to zero
+
+// Schedule output
+autosnapshot(m, 50e-12)
+tableadd(ext_dwpos)   // domain wall position
+tableautosave(10e-12)
+
+// Run the simulation with current through the sample
+pol = 0.56
+J   = vector(-3e12, 0, 0)
+Run(5e-9)
+

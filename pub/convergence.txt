@@ -1,0 +1,26 @@
+SetGridSize(1, 1, 1)
+SetCellSize(1e-9, 1e-9, 1e-9)
+
+B          := 0.1 // Tesla
+B_ext       = vector(0, 0, B)
+Msat        = 1/mu0
+Aex         = 10e-12
+EnableDemag = false
+
+SetSolver(5)  //varied
+
+for i:=1e-8; i<1e-2; i=i*sqrt(2){
+    maxErr = i
+
+    N0 := Step
+    t = 0
+    m = Uniform(1, 0, 1)
+    runtime := 2*pi/(B*1.7595e11) // 1 period
+    run(runtime)
+
+    m1 := m.average()
+    m0 := vector(1/sqrt(2), 0, 1/sqrt(2)) // analytical solution
+    error := m0.sub(m1).len()
+    fprintln("result.txt", i, runtime/(Step-N0), error)
+}
+

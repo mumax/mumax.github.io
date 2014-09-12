@@ -1,0 +1,15 @@
+Nx := 256; Ny := 128; Nz := 32
+c  := 4e-9
+setgridsize(Nx, Ny, Nz)
+setcellsize(c, c, c)
+
+s := ellipsoid(c*Nx/2, c*Ny/2, c*Nz).transl(-Nx/7*c, 0, 0)
+s  = s.add(rect(c*Nx/3, c*Ny/2).rotz(20*pi/180).transl(c*Nx/6, 0, 0))
+setgeom(s)
+
+msat = 800e3
+aex  = 13e-12
+m    = uniform(1, 0, 0)
+
+relax()
+save(m)

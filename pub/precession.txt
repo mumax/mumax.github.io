@@ -1,0 +1,7 @@
+SetGridSize(1, 1, 1)
+SetCellSize(1e-9, 1e-9, 1e-9)
+m = Uniform(1, 0, 0)
+B_ext = Vector(0, 0, 0.1)
+EnableDemag = false
+TableAutosave(10e-12)
+Run(3e-9)

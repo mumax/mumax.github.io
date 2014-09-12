@@ -1,0 +1,41 @@
+Msat = 1 / mu0          // 1 Tesla
+
+// prolate cells
+for p:=0; p < 7; p++{
+    aspect := pow(2, p)
+
+    setGridSize(aspect, aspect, 1)
+    setCellSize(1/aspect, 1/aspect, 1)
+
+    m = uniform(1, 0, 0)
+    Kx := B_demag.Average()
+
+    m = uniform(0, 1, 0)
+    Ky := B_demag.Average()
+
+    m = uniform(0, 0, 1)
+    Kz := B_demag.Average()
+
+    fprintln("result.txt", "1/", aspect, Kx.x(), Ky.y(), Kz.z())
+}
+
+// elongated ceels
+for p:=0; p < 4; p++{
+    aspect := pow(2, p)
+
+    setGridSize(1, 1, aspect)
+    setCellSize(1, 1, 1/aspect)
+
+    m = uniform(1, 0, 0)
+    Kx := B_demag.Average()
+
+    m = uniform(0, 1, 0)
+    Ky := B_demag.Average()
+
+    m = uniform(0, 0, 1)
+    Kz := B_demag.Average()
+
+    fprintln("result.txt", aspect, "/1", Kx.x(), Ky.y(), Kz.z())
+}
+
+

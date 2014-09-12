@@ -1,0 +1,33 @@
+setGridSize(512, 256, 1)
+setCellSize(2e-6/512, 1e-6/256, 20e-9)
+
+Aex   = 1.3e-11 
+Msat  = 8.0e5 
+Ku1   = 5.0e2 
+AnisU = vector(1, 0.001, 0) // easy axis nominally parallel to the long edge 
+
+// hysteresis sweep
+Bmax := 75e-3
+tableadd(B_ext)
+
+// virgin curve
+m = vortex(1, 1).add(0.9, randommag())
+for B := 0.0; B <= Bmax; B+=1e-3{
+    B_ext = vector(B, 0, 0)
+    relax()
+    tableSave()
+}
+
+// sweep down
+for B := Bmax; B >= -Bmax; B-=1e-3{
+    B_ext = vector(B, 0, 0)
+    relax()
+    tableSave()
+}
+
+// sweep up
+for B := -Bmax; B <= Bmax; B+=1e-3{
+    B_ext = vector(B, 0, 0)
+    relax()
+    tableSave()
+}
