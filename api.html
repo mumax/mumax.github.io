@@ -43,7 +43,7 @@
 <hr/>
 
 
-<h1> mumax 3.5 API </h1>
+<h1> mumax 3.6 API </h1>
 
 This is a complete overview of all available functions for writing an input script.
 
@@ -415,6 +415,19 @@ Optionally a magnet Shape other than the full simulation box can be specified. O
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>GrainRoughness</b>(float64, float64, float64, int) Shape </span> 
+	 <p style="margin-left:40px"> Grainy surface with different heights per grain </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Add( Shape ) &nbsp; Intersect( Shape ) &nbsp; Inverse( ) &nbsp; Repeat( float64 float64 float64 ) &nbsp; RotX( float64 ) &nbsp; RotY( float64 ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Sub( Shape ) &nbsp; Transl( float64 float64 float64 ) &nbsp; Xor( Shape ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>ImageShape</b>(string) Shape </span> 
 	 <p style="margin-left:40px"> Use black/white image as shape </p> 
 
@@ -622,7 +635,7 @@ tableAdd(m.Region(1))    // add average m over region 1 to table
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 Average( ) &nbsp; Gpu( ) &nbsp; HostArray( ) &nbsp; HostList( ) &nbsp; LoadFile( string ) &nbsp; SetCell( int int int int ) &nbsp; 
+		 Average( ) &nbsp; GetCell( int int int ) &nbsp; Gpu( ) &nbsp; HostArray( ) &nbsp; HostList( ) &nbsp; LoadFile( string ) &nbsp; SetCell( int int int int ) &nbsp; 
 		</span> </p> 
 	
 
@@ -1021,8 +1034,8 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	</p>
   
-	<p><span style="color:#000088; font-size:1.3em"> <b>Dex</b> </span> 
-	 <p style="margin-left:40px"> Dzyaloshinskii-Moriya strength (J/m2) </p> 
+	<p><span style="color:#000088; font-size:1.3em"> <b>Dbulk</b> </span> 
+	 <p style="margin-left:40px"> Bulk Dzyaloshinskii-Moriya strength (J/m2) </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -1030,13 +1043,19 @@ Ku1 = 500 * sin(2*pi*f*t)
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example4">[4]</a> 
-		 
-			<a href="examples.html#example14">[14]</a> 
-		 
-		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>Dind</b> </span> 
+	 <p style="margin-left:40px"> Interfacial Dzyaloshinskii-Moriya strength (J/m2) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; Set( float64 ) &nbsp; SetRegion( int ScalarFunction ) &nbsp; 
+		</span> </p> 
+	
+
 	
 
 	</p>
@@ -1096,7 +1115,20 @@ Ku1 = 500 * sin(2*pi*f*t)
 	</p>
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>Kc2</b> </span> 
-	 <p style="margin-left:40px"> 2nd order cubic anisotropy constant [UNTESTED] (J/m3) </p> 
+	 <p style="margin-left:40px"> 2nd order cubic anisotropy constant (J/m3) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; Set( float64 ) &nbsp; SetRegion( int ScalarFunction ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>Kc3</b> </span> 
+	 <p style="margin-left:40px"> 3rd order cubic anisotropy constant (J/m3) </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -1109,7 +1141,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 	</p>
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>Ku1</b> </span> 
-	 <p style="margin-left:40px"> Uniaxial anisotropy constant (J/m3) </p> 
+	 <p style="margin-left:40px"> 1st order uniaxial anisotropy constant (J/m3) </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -1126,6 +1158,19 @@ Ku1 = 500 * sin(2*pi*f*t)
 			<a href="examples.html#example14">[14]</a> 
 		 
 		</p> 
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>Ku2</b> </span> 
+	 <p style="margin-left:40px"> 2nd order uniaxial anisotropy constant (J/m3) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; Set( float64 ) &nbsp; SetRegion( int ScalarFunction ) &nbsp; 
+		</span> </p> 
+	
+
 	
 
 	</p>
@@ -1240,6 +1285,8 @@ Ku1 = 500 * sin(2*pi*f*t)
 		 
 			<a href="examples.html#example10">[10]</a> 
 		 
+			<a href="examples.html#example11">[11]</a> 
+		 
 		</p> 
 	
 
@@ -1331,7 +1378,7 @@ JPol.Add(LoadFile("current.ovf"), 1)
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 CPUAccess( ) &nbsp; Comp( int ) &nbsp; DevPtr( int ) &nbsp; Disable( ) &nbsp; Free( ) &nbsp; GPUAccess( ) &nbsp; Get( int int int int ) &nbsp; Host( ) &nbsp; HostCopy( ) &nbsp; Index( int int int ) &nbsp; IsNil( ) &nbsp; Len( ) &nbsp; MemType( ) &nbsp; Scalars( ) &nbsp; Set( int int int int float64 ) &nbsp; Size( ) &nbsp; Tensors( ) &nbsp; Vectors( ) &nbsp; 
+		 CPUAccess( ) &nbsp; Comp( int ) &nbsp; DevPtr( int ) &nbsp; Disable( ) &nbsp; Free( ) &nbsp; GPUAccess( ) &nbsp; Get( int int int int ) &nbsp; Host( ) &nbsp; HostCopy( ) &nbsp; Index( int int int ) &nbsp; IsNil( ) &nbsp; Len( ) &nbsp; MemType( ) &nbsp; Scalars( ) &nbsp; Set( int int int int float64 ) &nbsp; SetScalar( int int int float64 ) &nbsp; SetVector( int int int data.Vector ) &nbsp; Size( ) &nbsp; Tensors( ) &nbsp; Vectors( ) &nbsp; 
 		</span> </p> 
 	
 
@@ -1345,19 +1392,14 @@ JPol.Add(LoadFile("current.ovf"), 1)
 	</p>
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>NewSlice</b>(int, int, int, int) Slice </span> 
-	 <p style="margin-left:40px"> Makes a 3D array of scalars with given x,y,z size </p> 
+	 <p style="margin-left:40px"> Makes a 4D array of scalars with given ncomp,x,y,z size </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-		 CPUAccess( ) &nbsp; Comp( int ) &nbsp; DevPtr( int ) &nbsp; Disable( ) &nbsp; Free( ) &nbsp; GPUAccess( ) &nbsp; Get( int int int int ) &nbsp; Host( ) &nbsp; HostCopy( ) &nbsp; Index( int int int ) &nbsp; IsNil( ) &nbsp; Len( ) &nbsp; MemType( ) &nbsp; Scalars( ) &nbsp; Set( int int int int float64 ) &nbsp; Size( ) &nbsp; Tensors( ) &nbsp; Vectors( ) &nbsp; 
+		 CPUAccess( ) &nbsp; Comp( int ) &nbsp; DevPtr( int ) &nbsp; Disable( ) &nbsp; Free( ) &nbsp; GPUAccess( ) &nbsp; Get( int int int int ) &nbsp; Host( ) &nbsp; HostCopy( ) &nbsp; Index( int int int ) &nbsp; IsNil( ) &nbsp; Len( ) &nbsp; MemType( ) &nbsp; Scalars( ) &nbsp; Set( int int int int float64 ) &nbsp; SetScalar( int int int float64 ) &nbsp; SetVector( int int int data.Vector ) &nbsp; Size( ) &nbsp; Tensors( ) &nbsp; Vectors( ) &nbsp; 
 		</span> </p> 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example14">[14]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1586,7 +1628,7 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 	</p>
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>Edens_demag</b> </span> 
-	 <p style="margin-left:40px"> Exchange energy density (normal+DM) (J/m3) </p> 
+	 <p style="margin-left:40px"> Magnetostatic energy density (J/m3) </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -1727,7 +1769,7 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 	</p>
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>maxTorque</b> </span> 
-	 <p style="margin-left:40px"> Maximum torque over all cells (T) </p> 
+	 <p style="margin-left:40px"> Maximum torque/γ0, over all cells (T) </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -2115,7 +2157,7 @@ myField = ...
 	</p>
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>TableAutoSave</b>(float64) </span> 
-	 <p style="margin-left:40px"> Auto-save the data table ever period (s). </p> 
+	 <p style="margin-left:40px"> Auto-save the data table every period (s). Zero disables save. </p> 
 
 	
 
@@ -2804,8 +2846,6 @@ Other available functions.
 		 
 			<a href="examples.html#example5">[5]</a> 
 		 
-			<a href="examples.html#example11">[11]</a> 
-		 
 			<a href="examples.html#example12">[12]</a> 
 		 
 			<a href="examples.html#example13">[13]</a> 
@@ -2833,6 +2873,24 @@ Other available functions.
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>DisableSlonczewskiTorque</b> </span> 
+	 <p style="margin-left:40px"> Disables Slonczewski torque (default=false) </p> 
+
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>DisableZhangLiTorque</b> </span> 
+	 <p style="margin-left:40px"> Disables Zhang-Li torque (default=false) </p> 
+
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>erf</b>(float64) float64 </span> 
 	
 
@@ -2844,6 +2902,15 @@ Other available functions.
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>erfc</b>(float64) float64 </span> 
 	
+
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>Exit</b>() </span> 
+	 <p style="margin-left:40px"> Exit from the program </p> 
 
 	
 
@@ -3126,6 +3193,37 @@ Other available functions.
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>NewScalarMask</b>(int, int, int) Slice </span> 
+	 <p style="margin-left:40px"> Makes a 3D array of scalars </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 CPUAccess( ) &nbsp; Comp( int ) &nbsp; DevPtr( int ) &nbsp; Disable( ) &nbsp; Free( ) &nbsp; GPUAccess( ) &nbsp; Get( int int int int ) &nbsp; Host( ) &nbsp; HostCopy( ) &nbsp; Index( int int int ) &nbsp; IsNil( ) &nbsp; Len( ) &nbsp; MemType( ) &nbsp; Scalars( ) &nbsp; Set( int int int int float64 ) &nbsp; SetScalar( int int int float64 ) &nbsp; SetVector( int int int data.Vector ) &nbsp; Size( ) &nbsp; Tensors( ) &nbsp; Vectors( ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>NewVectorMask</b>(int, int, int) Slice </span> 
+	 <p style="margin-left:40px"> Makes a 3D array of vectors </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 CPUAccess( ) &nbsp; Comp( int ) &nbsp; DevPtr( int ) &nbsp; Disable( ) &nbsp; Free( ) &nbsp; GPUAccess( ) &nbsp; Get( int int int int ) &nbsp; Host( ) &nbsp; HostCopy( ) &nbsp; Index( int int int ) &nbsp; IsNil( ) &nbsp; Len( ) &nbsp; MemType( ) &nbsp; Scalars( ) &nbsp; Set( int int int int float64 ) &nbsp; SetScalar( int int int float64 ) &nbsp; SetVector( int int int data.Vector ) &nbsp; Size( ) &nbsp; Tensors( ) &nbsp; Vectors( ) &nbsp; 
+		</span> </p> 
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example14">[14]</a> 
+		 
+		</p> 
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>norm</b>(float64) float64 </span> 
 	 <p style="margin-left:40px"> Standard normal distribution </p> 
 
@@ -3169,8 +3267,6 @@ Other available functions.
 			<a href="examples.html#example5">[5]</a> 
 		 
 			<a href="examples.html#example10">[10]</a> 
-		 
-			<a href="examples.html#example11">[11]</a> 
 		 
 			<a href="examples.html#example12">[12]</a> 
 		 
@@ -3295,8 +3391,6 @@ Other available functions.
 			<a href="examples.html#example4">[4]</a> 
 		 
 			<a href="examples.html#example5">[5]</a> 
-		 
-			<a href="examples.html#example11">[11]</a> 
 		 
 			<a href="examples.html#example12">[12]</a> 
 		 
@@ -3445,11 +3539,6 @@ Other available functions.
 
 	
 
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example11">[11]</a> 
-		 
-		</p> 
 	
 
 	</p>

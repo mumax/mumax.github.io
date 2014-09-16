@@ -39,7 +39,7 @@
 <hr/>
 
 
-<h1>mumax 3.5 examples</h1>
+<h1>mumax 3.6 examples</h1>
 
 <p>These are example input scripts, the full API can be found <a href="http://mumax.github.io/api.html">here</a>.</p>
 
@@ -47,7 +47,7 @@ mumax<sup>3</sup> input files are run with the command
 
 <pre>mumax3 myfile.mx3</pre>
 
-Output is automatically stored in the "myfile.out" directory. Additionally, a web interface provides live output. Default is <code><a href="http://localhost:35367">http://localhost:35367</a></code>.<br/>
+Output is automatically stored in the "myfile.out" directory. Additionally, a web interface provides live output. Default is <code><a href="http://127.0.0.1:35367">http://localhost:35367</a></code>.<br/>
 For more details, run <code>mumax3 -help</code> which will show the available command-line flags (e.g. to select a certain GPU).
 
 <hr/><h2>Getting started with Standard Problem #4</h2>
@@ -99,6 +99,10 @@ run(1e-9)</pre>
 <figure style="float:left">
 	<img src="example1.out/m000005.png"/>
 	<figcaption> m000005 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example1.out/m000006.png"/>
+	<figcaption> m000006 </figcaption>
 </figure><br style="clear:both"/> 
 <figure>
 	<img src="example1.out/m.svg"/>
@@ -394,7 +398,7 @@ h     := 50e-9
 hole  := cylinder(h, h)              // circle with diameter h
 hole1 := hole.transl(100e-9, 0, 0)   // translated circle #1
 hole2 := hole.transl(0, -50e-9, 0)   // translated cricle #2
-cheese:= sq.sub(hole1).sub(hole2)// subtract the circles form the square (makes holes).
+cheese:= sq.sub(hole1).sub(hole2)// subtract the circles from the square (makes holes).
 setgeom(cheese)
 
 msat = 600e3
@@ -637,6 +641,10 @@ run(.5e-9)</pre>
 <figure style="float:left">
 	<img src="example9.out/m000004.png"/>
 	<figcaption> m000004 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example9.out/m000005.png"/>
+	<figcaption> m000005 </figcaption>
 </figure><br style="clear:both"/> 
 
 Since we center on the domain wall we can not see that it is actually moving, but the domain wall breakdown is visible.
@@ -718,6 +726,10 @@ Run(0.5e-9)</pre>
 <figure style="float:left">
 	<img src="example10.out/m000009.png"/>
 	<figcaption> m000009 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example10.out/m000010.png"/>
+	<figcaption> m000010 </figcaption>
 </figure><br style="clear:both"/> 
 <figure>
 	<img src="example10.out/ext_dwpos.svg"/>
@@ -759,18 +771,11 @@ Msat  = 860e3
 // set random parameters per region
 for i:=0; i&lt;maxRegion; i++{
 	// random cubic anisotropy direction
-	phi := rand() * 2 * pi
-	theta := rand() * pi
-
-	x1 := sin(theta) * cos(phi)
-	y1 := sin(theta) * sin(phi)
-	z1 := cos(theta)
-	AnisC1.SetRegion(i, vector(x1, y1, z1))
-
-	x2 := sin(theta + pi/2) * cos(phi)
-	y2 := sin(theta + pi/2) * sin(phi)
-	z2 := cos(theta + pi/2)
-	AnisC2.SetRegion(i, vector(x2, y2, z2))
+	axis1  := vector(randNorm(), randNorm(), randNorm())
+	helper := vector(randNorm(), randNorm(), randNorm())
+	axis2  := axis1.cross(helper)  // perpendicular to axis1
+	AnisC1.SetRegion(i, axis1)     // axes need not be normalized
+	AnisC2.SetRegion(i, axis2)
 
 	// random 10% anisotropy variation
 	K := 1e5
@@ -948,6 +953,10 @@ run(1e-9)</pre>
 <figure style="float:left">
 	<img src="example13.out/m000009.png"/>
 	<figcaption> m000009 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example13.out/m000010.png"/>
+	<figcaption> m000010 </figcaption>
 </figure><br style="clear:both"/> 
 <figure>
 	<img src="example13.out/m.svg"/>
@@ -988,14 +997,14 @@ for i:=0; i&lt;256; i++{
 m = uniform(0, 0, 1)
 
 // Gaussian external field profile
-mask := newslice(3, Nx, Ny, 1)
+mask := newVectorMask(Nx, Ny, 1)
 for i:=0; i&lt;Nx; i++{
 	for j:=0; j&lt;Ny; j++{
 		r := index2coord(i, j, 0)
 		x := r.X()
 		y := r.Y()
-		B := exp(-pow((x-500e-9)/100e-9, 2)) * exp(-pow(y/250e-9, 2))
-		mask.set(2, i, j, 0, B)
+		Bz := exp(-pow((x-500e-9)/100e-9, 2)) * exp(-pow(y/250e-9, 2))
+		mask.setVector(i, j, 0, vector(0, 0, Bz))
 	}
 }
 
@@ -1037,6 +1046,10 @@ for i:=0; i&lt;120; i++{
 <figure style="float:left">
 	<img src="example14.out/m000005.png"/>
 	<figcaption> m000005 </figcaption>
+</figure>
+<figure style="float:left">
+	<img src="example14.out/m000006.png"/>
+	<figcaption> m000006 </figcaption>
 </figure><br style="clear:both"/> 
 
 </body>
