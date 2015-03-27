@@ -1,0 +1,47 @@
+sizeX := 2e-6
+sizeY := 1e-6
+sizeZ := 20e-9
+c := sizeX / 512
+setGridSize(512, 256, 1)
+setCellSize(c, c, sizeZ)
+
+Aex = 1.3e-11 
+Msat = 8.0e5 
+Ku1 = 5.0e2 
+AnisU = vector(1, 0.001, 0) // Uniaxial, with easy axis nominally parallel to the long edges of the rectangle.
+
+m = vortex(1, 1)
+relax()
+
+tableadd(B_ext)
+fixDt = 1e-13
+alpha = 0.05
+
+Bmax := 50e-3
+
+for B := 0.0; B <= Bmax; B+=1e-3{
+	B_ext = vector(B, 0, 0)
+	Temp=300
+	run(.1e-9)
+	Temp=0
+	relax()
+	tableSave()
+}
+
+for B := Bmax; B >= -Bmax; B-=1e-3{
+	B_ext = vector(B, 0, 0)
+	Temp=300
+	run(.1e-9)
+	Temp=0
+	relax()
+	tableSave()
+}
+
+for B := -Bmax; B <= Bmax; B+=1e-3{
+	B_ext = vector(B, 0, 0)
+	Temp=300
+	run(.1e-9)
+	Temp=0
+	relax()
+	tableSave()
+}
