@@ -43,7 +43,7 @@
 <hr/>
 
 
-<h1> mumax 3.6.2 API </h1>
+<h1> mumax 3.7 API </h1>
 
 This is a complete overview of all available functions for writing an input script.
 
@@ -1246,6 +1246,19 @@ Ku1 = 500 * sin(2*pi*f*t)
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>NoDemagSpins</b> </span> 
+	 <p style="margin-left:40px"> Disable magnetostatic interaction per-spin (set to 1 to disable) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; Region( int ) &nbsp; Set( float64 ) &nbsp; SetRegion( int ScalarFunction ) &nbsp; SetRegionFuncGo( int func() float64 ) &nbsp; SetRegionValueGo( int float64 ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>Pol</b> </span> 
 	 <p style="margin-left:40px"> Electrical current polarization </p> 
 
@@ -1544,6 +1557,19 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>dt</b> </span> 
+	 <p style="margin-left:40px"> Time Step (s) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; Get( ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>E_anis</b> </span> 
 	 <p style="margin-left:40px"> Anisotropy energy (uni+cubic) (J) </p> 
 
@@ -1755,6 +1781,19 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>LastErr</b> </span> 
+	 <p style="margin-left:40px"> Error of last step </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; Get( ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>LLtorque</b> </span> 
 	 <p style="margin-left:40px"> Landau-Lifshitz torque/γ0 (T) </p> 
 
@@ -1781,12 +1820,64 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 
 	</p>
   
+	<p><span style="color:#000088; font-size:1.3em"> <b>MaxAngle</b> </span> 
+	 <p style="margin-left:40px"> Maximum angle between neighboring spins (rad) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; Get( ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
 	<p><span style="color:#000088; font-size:1.3em"> <b>maxTorque</b> </span> 
 	 <p style="margin-left:40px"> Maximum torque/γ0, over all cells (T) </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
 		 Average( ) &nbsp; Get( ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>NEval</b> </span> 
+	 <p style="margin-left:40px"> Total number of torque evaluations </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; Get( ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>PeakErr</b> </span> 
+	 <p style="margin-left:40px"> Overall maxium error per step </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; Get( ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>spinAngle</b> </span> 
+	 <p style="margin-left:40px"> Angle between neighboring spins (rad) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; Region( int ) &nbsp; Set( Slice ) &nbsp; 
 		</span> </p> 
 	
 
@@ -2236,10 +2327,10 @@ MaxErr = 1e-6
 
 Optionally, a different solver may be chosen (at any point) with <code>SetSolver(int)</code>. Currently available solver types:
 <ul>
-	<li> <code>5</code>: RK45 (Dormand-Prince) solver (the default). An accurate solver, very fast for magnetization dynamics at the cost of some memory usage. Cannot be used with finite temperature.</li> 
-	<li> <code>4</code>: Classic 4th-order Runge-Kutta method. Intended for finite temperature simulations with a large, fixed time step.</li> 
-	<li> <code>3</code>: RK23 (Bogacki-Shampine) solver. A robust and reasonably fast solver with low memory requirements. Typically outperforms RK45 when relaxing the magnetization with little dynamics, so it used internally by <code>Relax()</code>. Cannot be used with finite temperature.</li> 
-	<li> <code>2</code>: Adaptive Heun solver. Robust and uses very little memory but takes smaller time steps than the higher-order solvers. Suited for finite temperature simulations with a small, fixed time step. </li> 
+	<li> <code>5</code>: RK45 (Dormand-Prince) solver (the default). An accurate solver, very fast for magnetization dynamics at the cost of some memory usage. </li> 
+	<li> <code>4</code>: Classical 4th-order Runge-Kutta method. Intended for simulations where a fixed, relatively large time step is desired.</li> 
+	<li> <code>3</code>: RK23 (Bogacki-Shampine) solver. A robust and reasonably fast solver with low memory requirements. Typically outperforms RK45 when relaxing the magnetization with little dynamics, so it used internally by <code>Relax()</code>. </li> 
+	<li> <code>2</code>: Adaptive Heun solver. Robust and uses very little memory but takes smaller time steps than the higher-order solvers. Also suited when a fixed, relatively small time step is desired. </li> 
 	<li> <code>1</code>: Euler solver (requires <code>FixDt = ...</code>, ignores other settings). Only useful in exceptional situations or for debugging. </li>
 </ul>
 E.g.:
@@ -2317,15 +2408,6 @@ FixDt = 1e-15
 	</p>
  
  
-	<p><span style="color:#000088; font-size:1.3em"> <b>dt</b> </span> 
-	 <p style="margin-left:40px"> Last solver time step (s) </p> 
-
-	
-
-	
-
-	</p>
-  
 	<p><span style="color:#000088; font-size:1.3em"> <b>FixDt</b> </span> 
 	 <p style="margin-left:40px"> Set a fixed time step, 0 disables fixed step </p> 
 
@@ -2337,15 +2419,6 @@ FixDt = 1e-15
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>Headroom</b> </span> 
 	 <p style="margin-left:40px"> Solver headroom </p> 
-
-	
-
-	
-
-	</p>
-  
-	<p><span style="color:#000088; font-size:1.3em"> <b>lastErr</b> </span> 
-	 <p style="margin-left:40px"> Maximum error of last time step </p> 
 
 	
 
@@ -2373,24 +2446,6 @@ FixDt = 1e-15
   
 	<p><span style="color:#000088; font-size:1.3em"> <b>MinDt</b> </span> 
 	 <p style="margin-left:40px"> Minimum time step the solver can take (s) </p> 
-
-	
-
-	
-
-	</p>
-  
-	<p><span style="color:#000088; font-size:1.3em"> <b>NEval</b>() int </span> 
-	 <p style="margin-left:40px"> Total number of torque evaluations </p> 
-
-	
-
-	
-
-	</p>
-  
-	<p><span style="color:#000088; font-size:1.3em"> <b>peakErr</b> </span> 
-	 <p style="margin-left:40px"> Maximum error over all time steps </p> 
 
 	
 
@@ -2738,6 +2793,32 @@ Extensions are extra functionalities that are not officially supported. They are
 	
 
 	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>ext_topologicalcharge</b> </span> 
+	 <p style="margin-left:40px"> 2D topological charge </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; Get( ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>ext_topologicalchargedensity</b> </span> 
+	 <p style="margin-left:40px"> 2D topological charge density m·(m/∂x ❌ ∂m/∂y) (1/m2) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; Region( int ) &nbsp; Set( Slice ) &nbsp; 
+		</span> </p> 
+	
+
+	
+
+	</p>
  
  
 	<p><span style="color:#000088; font-size:1.3em"> <b>EnableDemag</b> </span> 
@@ -2909,6 +2990,28 @@ Other available functions.
 	<p><span style="color:#000088; font-size:1.3em"> <b>DisableZhangLiTorque</b> </span> 
 	 <p style="margin-left:40px"> Disables Zhang-Li torque (default=false) </p> 
 
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>DoPrecess</b> </span> 
+	 <p style="margin-left:40px"> Enables LL precession (default=true) </p> 
+
+	
+
+	
+
+	</p>
+  
+	<p><span style="color:#000088; font-size:1.3em"> <b>DotProduct</b>(Quantity, Quantity) *dotProduct </span> 
+	 <p style="margin-left:40px"> Dot product of two vector quantities </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+		 Average( ) &nbsp; 
+		</span> </p> 
 	
 
 	
