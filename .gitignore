@@ -1,3 +1,7 @@
 *.dump
 *.out/*.txt
+*.out/*.ovf
+*.out/references.bib
+*.out/gui
+*.mx3
 examples
