@@ -1343,6 +1343,21 @@ Ku1 = 500 * sin(2*pi*f*t)
 	</div>
   
 	<div class="api-entry">
+	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">FreeLayerThickness</b> </span> 
+	 <p style="margin-left:40px" class="api-docstring"> Slonczewski free layer thickness (if set to zero (default), then the thickness will be deduced from the mesh size) (m) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+			 Average( ) &nbsp; EvalTo( Slice ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; MSlice( ) &nbsp; Region( int ) &nbsp; Set( float64 ) &nbsp; SetRegion( int ScalarFunction ) &nbsp; SetRegionFuncGo( int func() float64 ) &nbsp; SetRegionValueGo( int float64 ) &nbsp;
+		</span> </p> 
+	
+
+	
+
+	</p>
+	</div>
+  
+	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">frozenspins</b> </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Defines spins that should be fixed </p> 
 
@@ -1814,6 +1829,21 @@ Lambda = 1
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">FixedLayerPosition</b> </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Position of the fixed layer: FIXEDLAYER_TOP, FIXEDLAYER_BOTTOM (default=FIXEDLAYER_TOP) </p> 
 
+	
+
+	
+
+	</p>
+	</div>
+  
+	<div class="api-entry">
+	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">FreeLayerThickness</b> </span> 
+	 <p style="margin-left:40px" class="api-docstring"> Slonczewski free layer thickness (if set to zero (default), then the thickness will be deduced from the mesh size) (m) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+			 Average( ) &nbsp; EvalTo( Slice ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; MSlice( ) &nbsp; Region( int ) &nbsp; Set( float64 ) &nbsp; SetRegion( int ScalarFunction ) &nbsp; SetRegionFuncGo( int func() float64 ) &nbsp; SetRegionValueGo( int float64 ) &nbsp;
+		</span> </p> 
 	
 
 	
@@ -4388,9 +4418,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	 
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">abs</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Abs returns the absolute value of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Abs returns the absolute value of x.  </p> 
 
 	
 
@@ -4401,9 +4429,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">acos</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Acos returns the arccosine, in radians, of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Acos returns the arccosine, in radians, of x.  </p> 
 
 	
 
@@ -4414,9 +4440,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">acosh</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Acosh returns the inverse hyperbolic cosine of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Acosh returns the inverse hyperbolic cosine of x.  </p> 
 
 	
 
@@ -4427,9 +4451,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">asin</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Asin returns the arcsine, in radians, of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Asin returns the arcsine, in radians, of x.  </p> 
 
 	
 
@@ -4440,9 +4462,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">asinh</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Asinh returns the inverse hyperbolic sine of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Asinh returns the inverse hyperbolic sine of x.  </p> 
 
 	
 
@@ -4453,9 +4473,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">atan</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Atan returns the arctangent, in radians, of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Atan returns the arctangent, in radians, of x.  </p> 
 
 	
 
@@ -4466,9 +4484,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">atan2</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Atan2 returns the arc tangent of y/x, using the signs of the two to
-     determine the quadrant of the return value.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Atan2 returns the arc tangent of y/x, using the signs of the two to     determine the quadrant of the return value. </p> 
 
 	
 
@@ -4479,9 +4495,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">atanh</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Atanh returns the inverse hyperbolic tangent of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Atanh returns the inverse hyperbolic tangent of x.  </p> 
 
 	
 
@@ -4492,9 +4506,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">cbrt</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Cbrt returns the cube root of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Cbrt returns the cube root of x.  </p> 
 
 	
 
@@ -4505,9 +4517,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ceil</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Ceil returns the least integer value greater than or equal to x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Ceil returns the least integer value greater than or equal to x.  </p> 
 
 	
 
@@ -4518,9 +4528,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">cos</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Cos returns the cosine of the radian argument x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Cos returns the cosine of the radian argument x.  </p> 
 
 	
 
@@ -4540,9 +4548,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">cosh</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Cosh returns the hyperbolic cosine of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Cosh returns the hyperbolic cosine of x.  </p> 
 
 	
 
@@ -4586,9 +4592,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">erf</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Erf returns the error function of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Erf returns the error function of x.  </p> 
 
 	
 
@@ -4599,9 +4603,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">erfc</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Erfc returns the complementary error function of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Erfc returns the complementary error function of x.  </p> 
 
 	
 
@@ -4623,9 +4625,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">exp</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Exp returns e**x, the base-e exponential of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Exp returns e**x, the base-e exponential of x.  </p> 
 
 	
 
@@ -4641,9 +4641,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">exp2</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Exp2 returns 2**x, the base-2 exponential of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Exp2 returns 2**x, the base-2 exponential of x.  </p> 
 
 	
 
@@ -4676,9 +4674,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">expm1</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Expm1 returns e**x - 1, the base-e exponential of x minus 1. It is more
-     accurate than Exp(x) - 1 when x is near zero.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Expm1 returns e**x - 1, the base-e exponential of x minus 1. It is more     accurate than Exp(x) - 1 when x is near zero. </p> 
 
 	
 
@@ -4790,9 +4786,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">floor</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Floor returns the greatest integer value less than or equal to x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Floor returns the greatest integer value less than or equal to x.  </p> 
 
 	
 
@@ -4803,9 +4797,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">gamma</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Gamma returns the Gamma function of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Gamma returns the Gamma function of x.  </p> 
 
 	
 
@@ -4838,9 +4830,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">hypot</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Hypot returns Sqrt(p*p + q*q), taking care to avoid unnecessary overflow and
-     underflow.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Hypot returns Sqrt(p*p + q*q), taking care to avoid unnecessary overflow and     underflow. </p> 
 
 	
 
@@ -4851,9 +4841,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ilogb</b>(float64) int </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Ilogb returns the binary exponent of x as an integer.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Ilogb returns the binary exponent of x as an integer.  </p> 
 
 	
 
@@ -4889,9 +4877,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">inf</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Inf returns positive infinity if sign >= 0, negative infinity if sign < 0.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Inf returns positive infinity if sign >= 0, negative infinity if sign < 0.  </p> 
 
 	
 
@@ -4911,9 +4897,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">isInf</b>(float64, int) bool </span> 
-	 <p style="margin-left:40px" class="api-docstring">     IsInf reports whether f is an infinity, according to sign. If sign > 0,
-     IsInf reports whether f is positive infinity. If sign < 0, IsInf reports
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     IsInf reports whether f is an infinity, according to sign. If sign > 0,     IsInf reports whether f is positive infinity. If sign < 0, IsInf reports </p> 
 
 	
 
@@ -4924,9 +4908,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">isNaN</b>(float64) bool </span> 
-	 <p style="margin-left:40px" class="api-docstring">     IsNaN reports whether f is an IEEE 754 ``not-a-number'' value.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     IsNaN reports whether f is an IEEE 754 “not-a-number” value.  </p> 
 
 	
 
@@ -4937,9 +4919,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">j0</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     J0 returns the order-zero Bessel function of the first kind.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     J0 returns the order-zero Bessel function of the first kind.  </p> 
 
 	
 
@@ -4950,9 +4930,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">j1</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     J1 returns the order-one Bessel function of the first kind.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     J1 returns the order-one Bessel function of the first kind.  </p> 
 
 	
 
@@ -4963,9 +4941,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">jn</b>(int, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Jn returns the order-n Bessel function of the first kind.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Jn returns the order-n Bessel function of the first kind.  </p> 
 
 	
 
@@ -4976,9 +4952,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ldexp</b>(float64, int) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Ldexp is the inverse of Frexp. It returns frac × 2**exp.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Ldexp is the inverse of Frexp. It returns frac × 2**exp.  </p> 
 
 	
 
@@ -5009,9 +4983,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">log</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Log returns the natural logarithm of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Log returns the natural logarithm of x.  </p> 
 
 	
 
@@ -5029,9 +5001,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">log10</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Log10 returns the decimal logarithm of x. The special cases are the same as
-     for Log.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Log10 returns the decimal logarithm of x. The special cases are the same as     for Log. </p> 
 
 	
 
@@ -5042,9 +5012,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">log1p</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Log1p returns the natural logarithm of 1 plus its argument x. It is more
-     accurate than Log(1 + x) when x is near zero.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Log1p returns the natural logarithm of 1 plus its argument x. It is more     accurate than Log(1 + x) when x is near zero. </p> 
 
 	
 
@@ -5055,9 +5023,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">log2</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Log2 returns the binary logarithm of x. The special cases are the same as
-     for Log.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Log2 returns the binary logarithm of x. The special cases are the same as     for Log. </p> 
 
 	
 
@@ -5068,9 +5034,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">logb</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Logb returns the binary exponent of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Logb returns the binary exponent of x.  </p> 
 
 	
 
@@ -5086,9 +5050,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">max</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Max returns the larger of x or y.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Max returns the larger of x or y.  </p> 
 
 	
 
@@ -5106,9 +5068,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">min</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Min returns the smaller of x or y.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Min returns the smaller of x or y.  </p> 
 
 	
 
@@ -5126,9 +5086,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">mod</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Mod returns the floating-point remainder of x/y. The magnitude of the result
-     is less than y and its sign agrees with that of x.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Mod returns the floating-point remainder of x/y. The magnitude of the result     is less than y and its sign agrees with that of x. </p> 
 
 	
 
@@ -5297,9 +5255,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">pow</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Pow returns x**y, the base-x exponential of y.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Pow returns x**y, the base-x exponential of y.  </p> 
 
 	
 
@@ -5317,9 +5273,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">pow10</b>(int) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Pow10 returns 10**n, the base-10 exponential of n.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Pow10 returns 10**n, the base-10 exponential of n.  </p> 
 
 	
 
@@ -5401,9 +5355,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">remainder</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Remainder returns the IEEE 754 floating-point remainder of x/y.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Remainder returns the IEEE 754 floating-point remainder of x/y.  </p> 
 
 	
 
@@ -5425,9 +5377,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">sin</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Sin returns the sine of the radian argument x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Sin returns the sine of the radian argument x.  </p> 
 
 	
 
@@ -5466,7 +5416,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Hours( ) &nbsp; Minutes( ) &nbsp; Nanoseconds( ) &nbsp; Round( time.Duration ) &nbsp; Seconds( ) &nbsp; Truncate( time.Duration ) &nbsp;
+			 Hours( ) &nbsp; Microseconds( ) &nbsp; Milliseconds( ) &nbsp; Minutes( ) &nbsp; Nanoseconds( ) &nbsp; Round( time.Duration ) &nbsp; Seconds( ) &nbsp; Truncate( time.Duration ) &nbsp;
 		</span> </p> 
 	
 
@@ -5477,9 +5427,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">sinh</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Sinh returns the hyperbolic sine of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Sinh returns the hyperbolic sine of x.  </p> 
 
 	
 
@@ -5490,9 +5438,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">sqrt</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Sqrt returns the square root of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Sqrt returns the square root of x.  </p> 
 
 	
 
@@ -5508,9 +5454,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">tan</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Tan returns the tangent of the radian argument x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Tan returns the tangent of the radian argument x.  </p> 
 
 	
 
@@ -5521,9 +5465,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">tanh</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Tanh returns the hyperbolic tangent of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Tanh returns the hyperbolic tangent of x.  </p> 
 
 	
 
@@ -5556,9 +5498,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">trunc</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Trunc returns the integer value of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Trunc returns the integer value of x.  </p> 
 
 	
 
@@ -5605,9 +5545,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">y0</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Y0 returns the order-zero Bessel function of the second kind.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Y0 returns the order-zero Bessel function of the second kind.  </p> 
 
 	
 
@@ -5618,9 +5556,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">y1</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Y1 returns the order-one Bessel function of the second kind.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Y1 returns the order-one Bessel function of the second kind.  </p> 
 
 	
 
@@ -5631,9 +5567,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">yn</b>(int, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Yn returns the order-n Bessel function of the second kind.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Yn returns the order-n Bessel function of the second kind.  </p> 
 
 	
 
@@ -5652,9 +5586,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	 
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">abs</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Abs returns the absolute value of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Abs returns the absolute value of x.  </p> 
 
 	
 
@@ -5665,9 +5597,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">acos</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Acos returns the arccosine, in radians, of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Acos returns the arccosine, in radians, of x.  </p> 
 
 	
 
@@ -5678,9 +5608,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">acosh</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Acosh returns the inverse hyperbolic cosine of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Acosh returns the inverse hyperbolic cosine of x.  </p> 
 
 	
 
@@ -5902,9 +5830,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">asin</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Asin returns the arcsine, in radians, of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Asin returns the arcsine, in radians, of x.  </p> 
 
 	
 
@@ -5915,9 +5841,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">asinh</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Asinh returns the inverse hyperbolic sine of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Asinh returns the inverse hyperbolic sine of x.  </p> 
 
 	
 
@@ -5928,9 +5852,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">atan</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Atan returns the arctangent, in radians, of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Atan returns the arctangent, in radians, of x.  </p> 
 
 	
 
@@ -5941,9 +5863,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">atan2</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Atan2 returns the arc tangent of y/x, using the signs of the two to
-     determine the quadrant of the return value.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Atan2 returns the arc tangent of y/x, using the signs of the two to     determine the quadrant of the return value. </p> 
 
 	
 
@@ -5954,9 +5874,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">atanh</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Atanh returns the inverse hyperbolic tangent of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Atanh returns the inverse hyperbolic tangent of x.  </p> 
 
 	
 
@@ -6181,9 +6099,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">cbrt</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Cbrt returns the cube root of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Cbrt returns the cube root of x.  </p> 
 
 	
 
@@ -6194,9 +6110,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ceil</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Ceil returns the least integer value greater than or equal to x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Ceil returns the least integer value greater than or equal to x.  </p> 
 
 	
 
@@ -6343,9 +6257,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">cos</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Cos returns the cosine of the radian argument x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Cos returns the cosine of the radian argument x.  </p> 
 
 	
 
@@ -6365,9 +6277,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">cosh</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Cosh returns the hyperbolic cosine of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Cosh returns the hyperbolic cosine of x.  </p> 
 
 	
 
@@ -7050,9 +6960,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">erf</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Erf returns the error function of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Erf returns the error function of x.  </p> 
 
 	
 
@@ -7063,9 +6971,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">erfc</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Erfc returns the complementary error function of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Erfc returns the complementary error function of x.  </p> 
 
 	
 
@@ -7107,9 +7013,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">exp</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Exp returns e**x, the base-e exponential of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Exp returns e**x, the base-e exponential of x.  </p> 
 
 	
 
@@ -7125,9 +7029,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">exp2</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Exp2 returns 2**x, the base-2 exponential of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Exp2 returns 2**x, the base-2 exponential of x.  </p> 
 
 	
 
@@ -7160,9 +7062,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">expm1</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Expm1 returns e**x - 1, the base-e exponential of x minus 1. It is more
-     accurate than Exp(x) - 1 when x is near zero.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Expm1 returns e**x - 1, the base-e exponential of x minus 1. It is more     accurate than Exp(x) - 1 when x is near zero. </p> 
 
 	
 
@@ -7728,9 +7628,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">floor</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Floor returns the greatest integer value less than or equal to x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Floor returns the greatest integer value less than or equal to x.  </p> 
 
 	
 
@@ -7762,6 +7660,21 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	</div>
   
 	<div class="api-entry">
+	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">FreeLayerThickness</b> </span> 
+	 <p style="margin-left:40px" class="api-docstring"> Slonczewski free layer thickness (if set to zero (default), then the thickness will be deduced from the mesh size) (m) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+			 Average( ) &nbsp; EvalTo( Slice ) &nbsp; GetRegion( int ) &nbsp; IsUniform( ) &nbsp; MSlice( ) &nbsp; Region( int ) &nbsp; Set( float64 ) &nbsp; SetRegion( int ScalarFunction ) &nbsp; SetRegionFuncGo( int func() float64 ) &nbsp; SetRegionValueGo( int float64 ) &nbsp;
+		</span> </p> 
+	
+
+	
+
+	</p>
+	</div>
+  
+	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">frozenspins</b> </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Defines spins that should be fixed </p> 
 
@@ -7778,9 +7691,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">gamma</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Gamma returns the Gamma function of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Gamma returns the Gamma function of x.  </p> 
 
 	
 
@@ -7888,9 +7799,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">hypot</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Hypot returns Sqrt(p*p + q*q), taking care to avoid unnecessary overflow and
-     underflow.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Hypot returns Sqrt(p*p + q*q), taking care to avoid unnecessary overflow and     underflow. </p> 
 
 	
 
@@ -7901,9 +7810,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ilogb</b>(float64) int </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Ilogb returns the binary exponent of x as an integer.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Ilogb returns the binary exponent of x as an integer.  </p> 
 
 	
 
@@ -7959,9 +7866,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">inf</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Inf returns positive infinity if sign >= 0, negative infinity if sign < 0.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Inf returns positive infinity if sign >= 0, negative infinity if sign < 0.  </p> 
 
 	
 
@@ -7981,9 +7886,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">isInf</b>(float64, int) bool </span> 
-	 <p style="margin-left:40px" class="api-docstring">     IsInf reports whether f is an infinity, according to sign. If sign > 0,
-     IsInf reports whether f is positive infinity. If sign < 0, IsInf reports
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     IsInf reports whether f is an infinity, according to sign. If sign > 0,     IsInf reports whether f is positive infinity. If sign < 0, IsInf reports </p> 
 
 	
 
@@ -7994,9 +7897,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">isNaN</b>(float64) bool </span> 
-	 <p style="margin-left:40px" class="api-docstring">     IsNaN reports whether f is an IEEE 754 ``not-a-number'' value.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     IsNaN reports whether f is an IEEE 754 “not-a-number” value.  </p> 
 
 	
 
@@ -8037,9 +7938,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">j0</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     J0 returns the order-zero Bessel function of the first kind.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     J0 returns the order-zero Bessel function of the first kind.  </p> 
 
 	
 
@@ -8050,9 +7949,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">j1</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     J1 returns the order-one Bessel function of the first kind.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     J1 returns the order-one Bessel function of the first kind.  </p> 
 
 	
 
@@ -8063,9 +7960,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">jn</b>(int, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Jn returns the order-n Bessel function of the first kind.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Jn returns the order-n Bessel function of the first kind.  </p> 
 
 	
 
@@ -8244,9 +8139,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ldexp</b>(float64, int) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Ldexp is the inverse of Frexp. It returns frac × 2**exp.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Ldexp is the inverse of Frexp. It returns frac × 2**exp.  </p> 
 
 	
 
@@ -8292,9 +8185,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">log</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Log returns the natural logarithm of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Log returns the natural logarithm of x.  </p> 
 
 	
 
@@ -8312,9 +8203,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">log10</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Log10 returns the decimal logarithm of x. The special cases are the same as
-     for Log.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Log10 returns the decimal logarithm of x. The special cases are the same as     for Log. </p> 
 
 	
 
@@ -8325,9 +8214,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">log1p</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Log1p returns the natural logarithm of 1 plus its argument x. It is more
-     accurate than Log(1 + x) when x is near zero.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Log1p returns the natural logarithm of 1 plus its argument x. It is more     accurate than Log(1 + x) when x is near zero. </p> 
 
 	
 
@@ -8338,9 +8225,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">log2</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Log2 returns the binary logarithm of x. The special cases are the same as
-     for Log.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Log2 returns the binary logarithm of x. The special cases are the same as     for Log. </p> 
 
 	
 
@@ -8351,9 +8236,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">logb</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Logb returns the binary exponent of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Logb returns the binary exponent of x.  </p> 
 
 	
 
@@ -8462,9 +8345,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">max</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Max returns the larger of x or y.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Max returns the larger of x or y.  </p> 
 
 	
 
@@ -8581,9 +8462,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">min</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Min returns the smaller of x or y.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Min returns the smaller of x or y.  </p> 
 
 	
 
@@ -8657,9 +8536,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">mod</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Mod returns the floating-point remainder of x/y. The magnitude of the result
-     is less than y and its sign agrees with that of x.
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Mod returns the floating-point remainder of x/y. The magnitude of the result     is less than y and its sign agrees with that of x. </p> 
 
 	
 
@@ -9055,9 +8932,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">pow</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Pow returns x**y, the base-x exponential of y.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Pow returns x**y, the base-x exponential of y.  </p> 
 
 	
 
@@ -9075,9 +8950,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">pow10</b>(int) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Pow10 returns 10**n, the base-10 exponential of n.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Pow10 returns 10**n, the base-10 exponential of n.  </p> 
 
 	
 
@@ -9301,9 +9174,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">remainder</b>(float64, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Remainder returns the IEEE 754 floating-point remainder of x/y.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Remainder returns the IEEE 754 floating-point remainder of x/y.  </p> 
 
 	
 
@@ -9726,9 +9597,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">sin</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Sin returns the sine of the radian argument x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Sin returns the sine of the radian argument x.  </p> 
 
 	
 
@@ -9767,7 +9636,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Hours( ) &nbsp; Minutes( ) &nbsp; Nanoseconds( ) &nbsp; Round( time.Duration ) &nbsp; Seconds( ) &nbsp; Truncate( time.Duration ) &nbsp;
+			 Hours( ) &nbsp; Microseconds( ) &nbsp; Milliseconds( ) &nbsp; Minutes( ) &nbsp; Nanoseconds( ) &nbsp; Round( time.Duration ) &nbsp; Seconds( ) &nbsp; Truncate( time.Duration ) &nbsp;
 		</span> </p> 
 	
 
@@ -9778,9 +9647,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">sinh</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Sinh returns the hyperbolic sine of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Sinh returns the hyperbolic sine of x.  </p> 
 
 	
 
@@ -9861,9 +9728,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">sqrt</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Sqrt returns the square root of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Sqrt returns the square root of x.  </p> 
 
 	
 
@@ -10067,9 +9932,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">tan</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Tan returns the tangent of the radian argument x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Tan returns the tangent of the radian argument x.  </p> 
 
 	
 
@@ -10080,9 +9943,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">tanh</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Tanh returns the hyperbolic tangent of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Tanh returns the hyperbolic tangent of x.  </p> 
 
 	
 
@@ -10156,9 +10017,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">trunc</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Trunc returns the integer value of x.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Trunc returns the integer value of x.  </p> 
 
 	
 
@@ -10370,9 +10229,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">y0</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Y0 returns the order-zero Bessel function of the second kind.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Y0 returns the order-zero Bessel function of the second kind.  </p> 
 
 	
 
@@ -10383,9 +10240,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">y1</b>(float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Y1 returns the order-one Bessel function of the second kind.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Y1 returns the order-one Bessel function of the second kind.  </p> 
 
 	
 
@@ -10396,9 +10251,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">yn</b>(int, float64) float64 </span> 
-	 <p style="margin-left:40px" class="api-docstring">     Yn returns the order-n Bessel function of the second kind.
- 
- </p> 
+	 <p style="margin-left:40px" class="api-docstring">     Yn returns the order-n Bessel function of the second kind.  </p> 
 
 	
 
