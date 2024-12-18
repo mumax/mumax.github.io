@@ -6,45 +6,46 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>mumax3</title>
+	<link rel="icon" type="image/x-icon" href="nimble-cubes128.png">
 	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-50169601-1', 'mumax.github.io');
-  ga('send', 'pageview');
-
-</script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-50169601-1', 'mumax.github.io');
+		ga('send', 'pageview');
+	</script>
 </head>
 
 <body>
 <div style="float:left">
-	<img src="nimble-cubes128.png"/>
+	<a href="index.html"><img id="header_img" src="nimble-cubes128.png" href="index.html" /></a>
 </div>
+<script src="header.js"></script>
 
 <div style="float:left">
-<span style="font-size:48px"><b>mumax</b><sup>3</sup><br/></span>
-	GPU-accelerated micromagnetism <br/><br/>
+	<a href="index.html" style="color:black"><span style="font-size:48px"><b>mumax</b><sup>3</sup><br /></span>
+		GPU-accelerated micromagnetism <br /><br /></a>
 	<a class="pure-button pure-button-primary" href="index.html">Home</a>
 	<a class="pure-button pure-button-primary" href="download.html">Download</a>
 	<a class="pure-button pure-button-primary" href="examples.html">Examples</a>
+	<a class="pure-button pure-button-primary" href="https://mumax.ugent.be/mumax3-workshop/">Tutorial</a>
 	<a class="pure-button pure-button-primary" href="api.html">API</a>
 	<a class="pure-button pure-button-primary" href="https://groups.google.com/forum/#!forum/mumax2">Forum</a>
 </div>
-<br style="clear:both"/> 
+<br style="clear:both" />
 
-<hr/>
+<hr />
 
 <div class="api-container">
 <div class="api-menu">
 
   <div style="margin: 0px; margin-bottom: 5ex;">
   	<h2 style="text-align: center; margin: 5px;">mumax3.10 API</h2>
-  	<input style="text-align: center; margin: auto; width 50px; display: block" type="text" id="searchInput" onclick="onSearch()" onkeyup="onSearch()" placeholder="Enter a search term" title="Type in a name" size=15>
+  	<input style="text-align: center; margin: auto; display: block" type="text" id="searchInput" onclick="onSearch()" onkeyup="onSearch()" placeholder="Enter a search term" title="Type in a name" size=15>
   </div>
 
   <h3>Basics</h3>
@@ -72,7 +73,13 @@
     <li class="pure-menu-item"><a href="#" class="pure-menu-link api-section-link" onclick="openSection(event, 'misc')">Misc</a></li>
   </ul>
 
-  <p style="font-size:8px; margin-top: 4em"><a href="api39c.html"> Go to mumax3.9c API</a></p>
+  <p style="font-size:8px"><a href="api39c.html"> Go to mumax3.9c API</a></p>
+
+  <h3 id="api-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+	<sup><span class="api-to-top-arrow">&uarr;</span></sup>
+	  &nbsp; Back to top &nbsp;
+	<sup><span class="api-to-top-arrow">&uarr;</span></sup>
+  </h3>
 </div>
 
 <div class="api-content">
@@ -85,7 +92,7 @@
 	<h1> Syntax </h1>
 	
 	<p>
-	The mumax<sup>3</sup> input syntax is a subset of <a href=http://golang.org>Go</a>'s syntax, somewhat similar to C. It is case-independent however, so msat is the same as Msat or MSAT.</p>
+	The mumax<sup>3</sup> input syntax is a subset of <a href=http://golang.org>Go</a>'s syntax, somewhat similar to C. It is case-independent however, so <code>msat</code> is the same as <code>Msat</code> or <code>MSAT</code>.</p>
 	
 	<h3>Defining variables</h3>
 	
@@ -100,7 +107,7 @@ str := "hello" // defines str, type automatically is string
 </code></pre>
 	
 	<h3>Arithmetic</h3>
-	Most common arithmetic operations are possible. Also Go's <a href=http://golang.org/pkg/math>math</a> library and some common constants are available. For raise-to-the-power, pow(x,y) should be used.
+	Most common arithmetic operations are possible. Also Go's <a href=http://golang.org/pkg/math>math</a> library and some common constants are available. For raise-to-the-power, <code>pow(<i>x</i>,<i>y</i>)</code> should be used.
 	
 <pre><code>x := pi*(3+4)/5
 x = pow(x, 3)
@@ -117,7 +124,7 @@ y := abs(cbrt(cosh(erf(erfc(gamma(J0(Y0(2))))))))
 	
 	<h3>Implicit functions</h3>
 	
-	Some of the API features accept a function as argument (e.g.: <code>RunWhile(func()bool)</code>, or all input parameters). In that case, and <i>only</i> in this case, the argument is implicitly converted to a function, which is re-evaluated each time it's needed. E.g.:
+	Some of the API features accept a function as argument (e.g.: <code>RunWhile(<i>func()bool</i>)</code>, or all input parameters). In that case, and <i>only</i> in this case, the argument is implicitly converted to a function, which is re-evaluated each time it's needed. E.g.:
 	
 <pre><code>value := sin(pi*t)  // value is a float64, RHS evaluated only once
 Msat = value        // time-independent Msat
@@ -128,8 +135,8 @@ Msat = value        // time-independent Msat
 
 	<h3>Methods</h3>
 
-	Some of the API instances have methods defined on them. You can call methods on an instance by using '.' as in most object oriented programming languages. 
-	E.g.: a material parameter such as <code>Msat</code> has the method <code>SetRegion(int, float)</code> to set the value of the material parameter in a certain region:
+	Some of the API instances have methods defined on them. You can call methods on an instance by using '<code>.</code>' as in most object oriented programming languages. 
+	E.g.: a material parameter such as <code>Msat</code> has the method <code>SetRegion(<i>int</i>, <i>float</i>)</code> to set the value of the material parameter in a certain region:
 
 	<pre><code>Msat.SetRegion(1, 800e3) // Set Msat=520e3 in region 1 </code></pre>
 
@@ -167,8 +174,8 @@ SetCellSize(5e-9, 5e-9, 5e-9)
 
 	<h2> Setting the geometry </h2>
 
-	Optionally a magnet Shape other than the full simulation box can be specified. In order to set the geometry, you first need to <a href="#" onclick="openSection(event, 'geometry')">define a shape</a>.
-<pre><code> geometryShape := cylinder(400e-9, 20e-9).RotX(45*pi/180).Transl(1e-6,0,0)
+	Optionally a magnet <code>Shape</code> other than the full simulation box can be specified. In order to set the geometry, you first need to <a href="#" onclick="openSection(event, 'geometry')">define a shape</a>.
+<pre><code>geometryShape := cylinder(400e-9, 20e-9).RotX(45*pi/180).Transl(1e-6,0,0)
 SetGeom(geometryShape)
 </code></pre>
 
@@ -344,7 +351,7 @@ SetGeom(geometryShape)
 
 	A shape is an abstract object which outlines an area in a 3D universe. Shapes are useful for different tasks, e.g.: to define the geometry of a magnet, to define material regions, or to set locally a specific initial magnetization configuration.
 	One can specify primitive shapes, constructed at the origin (box center), and translate/rotate them if needed. All positions are specified in meters and the origin lies in the center of the simulation box. E.g.:
-<pre><code>myShape := cylinder(400e-9, 20e-9).RotX(45*pi/180).Transl(1e-6,0,0))
+<pre><code>myShape := cylinder(400e-9, 20e-9).RotX(45*pi/180).Transl(1e-6,0,0)
 anotherShape := Circle(400e-9).sub(Circle(200e-9))
 </code></pre>
 
@@ -805,7 +812,7 @@ tableAdd(m.Region(1))    // add average m over region 1 to table
 
 	<h1> Initial magnetization </h1>
 	
-	The initial magnetization is set by assigning a <code>Config</code> to m, setting it in separate regions, or by loading a file directly.
+	The initial magnetization is set by assigning a <code>Config</code> to <code>m</code>, setting it in separate regions, or by loading a file directly.
 <pre><code>m = uniform(1, 0, 0)
 m.SetRegion(1, vortex(1, 1))
 m.LoadFile("config.ovf")
@@ -1619,7 +1626,7 @@ Ku1 = 500 * sin(2*pi*f*t)
 <pre><code>B_ext = vector(0.01, 1e-6*sin(2*pi*f*t), 0)
 B_ext.SetRegion(1, vector(0, 0, 0.1))
 </code></pre>
-	Additionally, an arbitrary number of time- and space-dependent vector fields of the form <code> g(x,y,z) * f(t) </code> may be added. (E.g., to simulate the field of an antenna or an arbitrary current running through the magnet)
+	Additionally, an arbitrary number of time- and space-dependent vector fields of the form <code> g(<i>x</i>,<i>y</i>,<i>z</i>) * f(<i>t</i>) </code> may be added. (E.g., to simulate the field of an antenna or an arbitrary current running through the magnet)
 <pre><code>B_ext.Add(LoadFile("antenna.ovf"), sin(2*pi*f*t))
 J.Add(LoadFile("current.ovf"), 1)
 </code></pre>
@@ -1961,9 +1968,11 @@ Lambda = 1
 
 	<h1> Magnetic Force Microscopy </h1>
 	
-	<p>Mumax3 has built-in generation of MFM images from a 2D magnetization. The MFM tip lift can be freely chosen. By default the tip magnetization is modeled as a point monopole at the apex. This is sufficient for most situations. Nevertheless, it is also possible to model partially magnetized tips by setting MFMDipole to the magnetized portion of the tip, in meters. E.g., if only the first 20nm of the tip is (vertically) magnetized, set MFMDipole=20e-9.</p>
+	<p>mumax<sup>3</sup> has built-in generation of MFM images from a 2D magnetization. The MFM tip lift can be freely chosen. By default, the tip magnetization is modeled as a point monopole at the apex. This is sufficient for most situations. Nevertheless, it is also possible to model partially magnetized tips by setting <code>MFMDipole</code> to the magnetized portion of the tip, in meters. E.g., if only the first 20nm of the tip is (vertically) magnetized, set <code>MFMDipole=20e-9</code>.</p>
 	
 	<p><img width=400px src="mfm.svg" /></p>
+
+	<hr/>
 	
 	 
 	<div class="api-entry">
@@ -2023,13 +2032,23 @@ Lambda = 1
 
 	<h1> Output quantities </h1>
 	
-	The quantities listed below can be output. Also, derived quantities can be produced: the quantity restricted to a certain region or a single component. E.g.:
+	The quantities listed below can be output.<br>
+	Also, derived quantities can be produced: the quantity restricted to a certain region or a single component. E.g.:
 	
 <code><pre>m           // magnetization quantity
 m.Comp(0)   // x-component
 m.Region(1) // magnetization in region 1 (0 elsewhere)
 </pre></code>
-	
+
+	<h2> Averaging behavior </h2>
+	<code>.Average()</code> yields the average over the entire simulation grid, except for <code>m</code> which is always averaged over the geometry.<br>
+	For vector quantities, an average over the magnet geometry can still be obtained with the <code>.Comp()</code> method. E.g.:
+
+<code><pre>B_demag.Average()          // Average vector over entire simulation grid
+B_demag.Comp(1).Average()  // Average y-component over geometry
+m.Average()                // Average magnetization over geometry
+</pre></code>
+
 	<hr/>
 
 	 
@@ -2513,6 +2532,54 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 	</div>
   
 	<div class="api-entry">
+	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">m</b> </span> 
+	 <p style="margin-left:40px" class="api-docstring"> Reduced magnetization (unit length) </p> 
+
+	 
+		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
+			 Average( ) &nbsp; Buffer( ) &nbsp; Comp( int ) &nbsp; EvalTo( Slice ) &nbsp; GetCell( int int int ) &nbsp; LoadFile( string ) &nbsp; Quantity( ) &nbsp; Region( int ) &nbsp; Set( Config ) &nbsp; SetArray( Slice ) &nbsp; SetCell( int int int data.Vector ) &nbsp; SetInShape( Shape Config ) &nbsp; SetRegion( int Config ) &nbsp;
+		</span> </p> 
+	
+
+	 <p style="margin-left:40px; color:grey"> examples: 
+		 
+			<a href="examples.html#example1">[1]</a> 
+		 
+			<a href="examples.html#example2">[2]</a> 
+		 
+			<a href="examples.html#example3">[3]</a> 
+		 
+			<a href="examples.html#example4">[4]</a> 
+		 
+			<a href="examples.html#example5">[5]</a> 
+		 
+			<a href="examples.html#example6">[6]</a> 
+		 
+			<a href="examples.html#example7">[7]</a> 
+		 
+			<a href="examples.html#example8">[8]</a> 
+		 
+			<a href="examples.html#example9">[9]</a> 
+		 
+			<a href="examples.html#example10">[10]</a> 
+		 
+			<a href="examples.html#example11">[11]</a> 
+		 
+			<a href="examples.html#example12">[12]</a> 
+		 
+			<a href="examples.html#example13">[13]</a> 
+		 
+			<a href="examples.html#example14">[14]</a> 
+		 
+			<a href="examples.html#example15">[15]</a> 
+		 
+		</p> 
+	
+
+	</p>
+	</div>
+  
+	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">m_full</b> </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Unnormalized magnetization (A/m) </p> 
 
@@ -2662,7 +2729,7 @@ m.Region(1) // magnetization in region 1 (0 elsewhere)
 
 	<h1>Slicing and dicing output</h1>
 	
-	To save storage space, it's possible to save only the part of the output we're interested in. This works on all output quantities (not only m)
+	To save storage space, it's possible to save only the part of the output we're interested in. This works on all output quantities (not only <code>m</code>).
 	
 <code><pre>
 save(m)                         // save full magnetization
@@ -2792,7 +2859,7 @@ tableAdd(mx13)
 
 	<h1> Scheduling output </h1>
 	
-	All input and output quantities (as described above) can be saved in a space-dependent way (".ovf" file), or as spatial averages (table output). The data table ("table.txt") contains by default the time and average magnetization. More columns can be added with <code>TableAdd()</code>. 
+	All input and output quantities (as described above) can be saved in a space-dependent way (<code>.ovf</code> file), or as spatial averages (table output). The data table (<code>table.txt</code>) contains by default the time and average magnetization. More columns can be added with <code>TableAdd()</code>. 
 <pre><code>save(B_ext)
 
 tableadd(B_ext)
@@ -3173,7 +3240,7 @@ myField = ...
 
 	<h1> Running </h1>
 	
-	<code>Run(time)</code> runs the simulation for a given time in seconds, using sensible error settings. 
+	<code>Run(<i>time</i>)</code> runs the simulation for a given time in seconds, using sensible error settings. 
 <pre><code>Run(1e-9)
 </code></pre>
 	More fine-grained control is provided by <code>RunWhile(<i>condition</i>)</code>, which runs as long as an arbitrary condition is met. E.g.: 
@@ -3186,7 +3253,7 @@ MinDt = 1e-15
 MaxErr = 1e-6
 </code></pre>
 	
-	Optionally, a different solver may be chosen (at any point) with <code>SetSolver(int)</code>. Currently available solver types:
+	Optionally, a different solver may be chosen (at any point) with <code>SetSolver(<i>int</i>)</code>. Currently available solver types:
 	<ul>
 		<li> <code>6</code>: RK56 (Fehlberg) solver. This is the highest order solver available, but which is typically not faster than the RK45 solver.</li> 
 		<li> <code>5</code>: RK45 (Dormand-Prince) solver (the default). An accurate solver, very fast for magnetization dynamics at the cost of some memory usage. </li> 
@@ -3525,7 +3592,7 @@ FixDt = 1e-15
 	 
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">SetSolver</b>(int) </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Set solver type. 1:Euler, 2:Heun, 3:Bogaki-Shampine, 4: Runge-Kutta (RK45), 5: Dormand-Prince, 6: Fehlberg, -1: Backward Euler </p> 
+	 <p style="margin-left:40px" class="api-docstring"> Set solver type. 1:Euler, 2:Heun, 3:Bogaki-Shampine, 4: Runge-Kutta (RK4), 5: Dormand-Prince, 6: Fehlberg, -1: Backward Euler </p> 
 
 	
 
@@ -3544,7 +3611,7 @@ FixDt = 1e-15
 
 	<h1> Moving simulation window </h1>
 	
-	Mumax<sup>3</sup> can automatically shift the magnetization so that the simulation "window" stays centered on a region of interest. Shifting is done to keep a freely chosen magnetization component nearly zero. E.g.
+	mumax<sup>3</sup> can automatically shift the magnetization so that the simulation "window" stays centered on a region of interest. Shifting is done to keep a freely chosen magnetization component nearly zero. E.g.
 	
 <pre><code>ext_centerwall(0)
 ext_rmSurfaceCharge(0, -1, 1)
@@ -4304,7 +4371,7 @@ saveas(chargeDensity, "chargeDensity.ovf")
 	<h1> Custom effective field terms </h1>
 	It is possible to define additional effective field terms by promoting a custom quantity to an effective field term. 
 	The corresponding energy density term can also be added by promoting a custom quantity. 
-	E.g.: instead of using the existing anistropy field in mumax3, you could define the uniaxial anisotropy field 
+	E.g.: instead of using the existing anistropy field in mumax<sup>3</sup>, you could define the uniaxial anisotropy field 
 	(and the corresponding energy density) yourselves:
 
 <pre><code>
@@ -10330,7 +10397,23 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 		document.getElementById("searchInput").value = "";
 		document.getElementById("searchInput").click();
 		document.getElementById("searchInput").focus();
-	}	
+	}
+
+	document.addEventListener("DOMContentLoaded", () => {
+		const toTop = document.getElementById("api-to-top");
+
+		window.addEventListener('scroll', function(e){
+			var buttonTop = toTop.getBoundingClientRect().top;
+			var visible = toTop.classList.contains("visible")
+			console.log(buttonTop, visible)
+			if (buttonTop <= 0 && !visible) {
+				toTop.classList.add("visible");
+			}
+			else if (buttonTop > 0 && visible) {
+				toTop.classList.remove("visible")
+			}
+		});
+	});
 </script>
 
 
