@@ -10,13 +10,13 @@
 	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-29YY0Q5W95"></script>
 	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-50169601-1', 'mumax.github.io');
-		ga('send', 'pageview');
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-29YY0Q5W95');
 	</script>
 </head>
 
@@ -4186,7 +4186,7 @@ TableAdd(TotalShift)
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_grainCutShape</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Whether to add the complete (3D) voronoi grain, if its centre lies within the shape (default=false) </p> 
+	 <p style="margin-left:40px" class="api-docstring"> Whether to add the complete (3D) voronoi grain, only if its centre lies within the shape (default=false) </p> 
 
 	
 
@@ -7896,7 +7896,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_grainCutShape</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Whether to add the complete (3D) voronoi grain, if its centre lies within the shape (default=false) </p> 
+	 <p style="margin-left:40px" class="api-docstring"> Whether to add the complete (3D) voronoi grain, only if its centre lies within the shape (default=false) </p> 
 
 	
 
