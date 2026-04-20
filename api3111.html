@@ -21,6 +21,8 @@
 </head>
 
 <body>
+<p id="deprecated-page">Warning! This is the API for mumax3.11.1, which is no longer supported. If you like to use mumax3, we strongly recommend to use <a href="download.html">mumax3.12</a>.</p>
+
 <div id="header" style="display:flex;flex-direction:row;margin:0;">
 
 <div>
@@ -55,7 +57,7 @@
 <div class="api-menu">
 
   <div style="margin: 0px; margin-bottom: 5ex;">
-  	<h2 style="text-align: center; margin: 5px;">mumax3.12 API</h2>
+  	<h2 style="text-align: center; margin: 5px;">mumax3.11 API</h2>
   	<input style="text-align: center; margin: auto; display: block" type="text" id="searchInput" onclick="onSearch()" onkeyup="onSearch()" placeholder="Enter a search term" title="Type in a name" size=15>
   </div>
 
@@ -65,7 +67,7 @@
     <li class="pure-menu-item"><a href="#" class="pure-menu-link api-section-link" onclick="openSection(event, 'mesh')">Mesh size and geometry</a></li>
     <li class="pure-menu-item"><a href="#" class="pure-menu-link api-section-link" onclick="openSection(event, 'shapes')">Shapes</a></li>
     <li class="pure-menu-item"><a href="#" class="pure-menu-link api-section-link" onclick="openSection(event, 'regions')">Material regions</a></li>
-    <li class="pure-menu-item"><a href="#" class="pure-menu-link api-section-link" onclick="openSection(event, 'initial')">Initial magnetization</a></li>
+    <li class="pure-menu-item"><a href="#" class="pure-menu-link api-section-link" onclick="openSection(event, 'initial')">Initial Magnetization</a></li>
     <li class="pure-menu-item"><a href="#" class="pure-menu-link api-section-link" onclick="openSection(event, 'parameters')">Material parameters</a></li>
     <li class="pure-menu-item"><a href="#" class="pure-menu-link api-section-link" onclick="openSection(event, 'excitation')">Excitation</a></li>
     <li class="pure-menu-item"><a href="#" class="pure-menu-link api-section-link" onclick="openSection(event, 'outputquantities')">Output quantities</a></li>
@@ -85,8 +87,7 @@
     <li class="pure-menu-item"><a href="#" class="pure-menu-link api-section-link" onclick="openSection(event, 'misc')">Misc</a></li>
   </ul>
 
-  <p class="oldlink" style="margin-top: 4em"><a href="api3111.html"> Go to mumax3.11.1 API</a></p>
-  <p class="oldlink"><a href="api310.html"> Go to mumax3.10 API</a></p>
+  <p class="oldlink" style="margin-top: 4em"><a href="api310.html"> Go to mumax3.10 API</a></p>
   <p class="oldlink"><a href="api39c.html"> Go to mumax3.9c API</a></p>
 
   <h3 id="api-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
@@ -450,7 +451,7 @@ anotherShape := Circle(400e-9).sub(Circle(200e-9))
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Cone</b>(float64, float64) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> 3D Cone with diameter and height in meter. The base is at z=0.<br>If the height is positive, the tip points in the +z direction. </p> 
+	 <p style="margin-left:40px" class="api-docstring"> 3D Cone with diameter and height in meter. The base is at z=0. If the height is positive, the tip points in the +z direction. </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -584,7 +585,7 @@ anotherShape := Circle(400e-9).sub(Circle(200e-9))
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Layer</b>(int) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Single layer (along z), by integer index starting from 0. Note: based on the current cell size, so may no longer be valid if cell size is changed. </p> 
+	 <p style="margin-left:40px" class="api-docstring"> Single layer (along z), by integer index starting from 0 </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -608,7 +609,7 @@ anotherShape := Circle(400e-9).sub(Circle(200e-9))
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Layers</b>(int, int) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Part of space between cell layer1 (inclusive) and layer2 (exclusive), in integer indices. Note: based on the current cell size, so may no longer be valid if cell size is changed. </p> 
+	 <p style="margin-left:40px" class="api-docstring"> Part of space between cell layer1 (inclusive) and layer2 (exclusive), in integer indices </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -621,36 +622,6 @@ anotherShape := Circle(400e-9).sub(Circle(200e-9))
 			<a href="examples.html#example4">[4]</a> 
 		 
 		</p> 
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Line</b>(float64, float64, float64, float64, float64, float64, float64, string) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> 3D line segment between (x1, y1, z1) and (x2, y2, z2), with given diameter, in meter.<br>Last element specifies the line cap, which can be 'infinite', 'round' or 'flat'.<br>Using zero diameter creates a minimally connected geometry, unless it is later scaled/rotated. </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( Shape ) &nbsp; Intersect( Shape ) &nbsp; Inverse( ) &nbsp; Repeat( float64 float64 float64 ) &nbsp; RotX( float64 ) &nbsp; RotY( float64 ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Sub( Shape ) &nbsp; Transl( float64 float64 float64 ) &nbsp; Xor( Shape ) &nbsp;
-		</span> </p> 
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Line2D</b>(float64, float64, float64, float64, float64, string) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> 2D equivalent of Line(), resulting in a uniform fill along the z-axis </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( Shape ) &nbsp; Intersect( Shape ) &nbsp; Inverse( ) &nbsp; Repeat( float64 float64 float64 ) &nbsp; RotX( float64 ) &nbsp; RotY( float64 ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Sub( Shape ) &nbsp; Transl( float64 float64 float64 ) &nbsp; Xor( Shape ) &nbsp;
-		</span> </p> 
-	
-
 	
 
 	</p>
@@ -707,21 +678,6 @@ anotherShape := Circle(400e-9).sub(Circle(200e-9))
 	</div>
   
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Superball</b>(float64, float64) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> 3D Superball with diameter in meter and shape parameter p.<br>Interpolates between a cube (p=+∞), sphere (p=1), octahedron (p=0.5) and empty space (p≤0). </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( Shape ) &nbsp; Intersect( Shape ) &nbsp; Inverse( ) &nbsp; Repeat( float64 float64 float64 ) &nbsp; RotX( float64 ) &nbsp; RotY( float64 ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Sub( Shape ) &nbsp; Transl( float64 float64 float64 ) &nbsp; Xor( Shape ) &nbsp;
-		</span> </p> 
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Triangle</b>(float64, float64, float64, float64, float64, float64) Shape </span> 
 	 <p style="margin-left:40px" class="api-docstring"> 2D triangle with vertices (x0, y0), (x1, y1) and (x2, y2) </p> 
 
@@ -739,21 +695,6 @@ anotherShape := Circle(400e-9).sub(Circle(200e-9))
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Universe</b>() Shape </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Entire space </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( Shape ) &nbsp; Intersect( Shape ) &nbsp; Inverse( ) &nbsp; Repeat( float64 float64 float64 ) &nbsp; RotX( float64 ) &nbsp; RotY( float64 ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Sub( Shape ) &nbsp; Transl( float64 float64 float64 ) &nbsp; Xor( Shape ) &nbsp;
-		</span> </p> 
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">VoxelShape</b>(Slice, float64, float64, float64) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Use slice (ScalarMask containing 0s and 1s) of rectangular cells (with size defined by last 3 arguments) as a 3D object </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -864,24 +805,6 @@ tableAdd(m.Region(1))    // add average m over region 1 to table
 
 	
 
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">NREGION</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Maximum number of regions (256) </p> 
-
-	
-
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example12">[12]</a> 
-		 
-			<a href="examples.html#example15">[15]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -1027,21 +950,6 @@ m.SetInShape(circle(50e-9), uniform(0,0,1))
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Conical</b>(data.Vector, data.Vector, float64) Config </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Conical state for given wave vector, cone direction, and cone angle </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( float64 Config ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Transl( float64 float64 float64 ) &nbsp;
-		</span> </p> 
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">CurrentMag</b>() Config </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Returns the current magnetization as a Config. E.g. CurrentMag().Add(0.1, RandomMagSeed(123)) will return a Config with the current magnetization plus some noise. </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -3444,8 +3352,8 @@ FixDt = 1e-15
 	
 	 
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Minimize</b>() bool </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Use steepest conjugate gradient method to minimize the total energy. Returns true if convergence is reached, or false if the wall-clock time limit is exceeded. The wall-clock time limit is disabled by default. </p> 
+	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Minimize</b>() </span> 
+	 <p style="margin-left:40px" class="api-docstring"> Use steepest conjugate gradient method to minimize the total energy </p> 
 
 	
 
@@ -3462,8 +3370,8 @@ FixDt = 1e-15
 	</div>
   
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Relax</b>() bool </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Try to minimize the total energy. Returns true if convergence is reached, or false if the wall-clock time limit is exceeded. The wall-clock time limit is disabled by default. </p> 
+	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Relax</b>() </span> 
+	 <p style="margin-left:40px" class="api-docstring"> Try to minimize the total energy </p> 
 
 	
 
@@ -3651,17 +3559,6 @@ FixDt = 1e-15
 	</div>
   
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">MinimizeWallClockTime</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Wall-clock time limit (seconds) for Minimize that will interrupt the minimization if exceeded. Set to -1 (default) to disable. An interrupted minimization does not guarantee a correct solution. </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">NEval</b> </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Total number of torque evaluations </p> 
 
@@ -3694,17 +3591,6 @@ FixDt = 1e-15
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">RelaxTorqueThreshold</b> </span> 
 	 <p style="margin-left:40px" class="api-docstring"> MaxTorque threshold for relax(). If set to -1 (default), relax() will stop when the average torque is steady or increasing. </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">RelaxWallClockTime</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Wall-clock time limit (seconds) for Relax that will interrupt the relaxation if exceeded. Set to -1 (default) to disable. </p> 
 
 	
 
@@ -4036,17 +3922,6 @@ TableAdd(TotalShift)
 	
 	 
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_AllRegionShapes</b>() func(int) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Returns a function that gives the shape of each region. Does not automatically update if the region is redefined or moved with Shift. Call as: allregions := ext_AllRegionShapes(); shape := allregions(i); on seperate lines. Note: double parentheses as ext_AllRegionShapes()(i) are not supported in mx3 scripts and must be split across two lines. </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_BackGroundTilt</b> </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Size of in-plane component of background magnetization. All values below this one are rounded down to perfectly out-of-plane to improve position calculation  (default = 0.25) </p> 
 
@@ -4323,65 +4198,6 @@ TableAdd(TotalShift)
 	</div>
   
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_GeomEdge</b>(string) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Returns an edge (+x, -x, +y, -y, +z, -z) of the geometry as a Shape. The Shape may not update automatically after changes to the mesh or geometry; rerun the function to refresh. </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( Shape ) &nbsp; Intersect( Shape ) &nbsp; Inverse( ) &nbsp; Repeat( float64 float64 float64 ) &nbsp; RotX( float64 ) &nbsp; RotY( float64 ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Sub( Shape ) &nbsp; Transl( float64 float64 float64 ) &nbsp; Xor( Shape ) &nbsp;
-		</span> </p> 
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_grainboundaries</b>(int, int, int, float64, int) </span> 
-	 <p style="margin-left:40px" class="api-docstring"> (startregion, numgrains, offset, boundarythickness, zeroflag). Given existing regions, reassigns grain boundaries of boundarythickness to new region values, starting at offset. Zeroflag: 1 = region0 is normal, 0 = region0 acts as edge but no boundary itself, -1 = ignore region0 entirely. grainboundary_edgeX/Y/Z control whether simulatiion box edges are treated as grainboundaries. </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_grainboundary_edgeX</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Treat X edges of simulation box as boundaries. Ignored if PBC in X direction enabled (default= true) </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_grainboundary_edgeY</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Treat Y edges of simulation box as boundaries. Ignored if PBC in Y direction enabled (default= true) </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_grainboundary_edgeZ</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Treat Z edges of simulation box as boundaries. Ignored if PBC in Z direction enabled (default= false) </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_grainCutShape</b> </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Whether to add the complete (3D) voronoi grain, only if its centre lies within the shape (default=false) </p> 
 
@@ -4543,7 +4359,7 @@ TableAdd(TotalShift)
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_makegrains</b>(float64, int, int) </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Voronoi tesselation (grain size, num regions, seed) </p> 
+	 <p style="margin-left:40px" class="api-docstring"> Voronoi tesselation (grain size, num regions) </p> 
 
 	
 
@@ -4807,21 +4623,6 @@ saveas(chargeDensity, "chargeDensity.ovf")
 			<a href="examples.html#example12">[12]</a> 
 		 
 		</p> 
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">CustomQuantity</b>(Slice) Quantity </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Creates an arbitrary custom Quantity from a user provided (scalar or vector) slice. The slice should match the simulation grid size, and can be created with NewScalarMask or NewVectorMask, or loaded in via Loadfile. Variations in slice values are not restricted to the 256 region limit. </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 EvalTo( ) &nbsp;
-		</span> </p> 
-	
-
 	
 
 	</p>
@@ -5565,24 +5366,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	</div>
   
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Minimize</b>() bool </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Use steepest conjugate gradient method to minimize the total energy. Returns true if convergence is reached, or false if the wall-clock time limit is exceeded. The wall-clock time limit is disabled by default. </p> 
-
-	
-
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example3">[3]</a> 
-		 
-			<a href="examples.html#example6">[6]</a> 
-		 
-		</p> 
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">mod</b>(float64, float64) float64 </span> 
 	 <p style="margin-left:40px" class="api-docstring">     Mod returns the floating-point remainder of x/y. The magnitude of the result     is less than y and its sign agrees with that of x. </p> 
 
@@ -5693,32 +5476,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	 <p style="margin-left:40px; color:grey"> examples: 
 		 
 			<a href="examples.html#example12">[12]</a> 
-		 
-		</p> 
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Relax</b>() bool </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Try to minimize the total energy. Returns true if convergence is reached, or false if the wall-clock time limit is exceeded. The wall-clock time limit is disabled by default. </p> 
-
-	
-
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example1">[1]</a> 
-		 
-			<a href="examples.html#example2">[2]</a> 
-		 
-			<a href="examples.html#example3">[3]</a> 
-		 
-			<a href="examples.html#example9">[9]</a> 
-		 
-			<a href="examples.html#example10">[10]</a> 
-		 
-			<a href="examples.html#example11">[11]</a> 
 		 
 		</p> 
 	
@@ -5975,21 +5732,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 
 	 
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">CellIndices</b>() Slice </span> 
-	 <p style="margin-left:40px" class="api-docstring"> 4D slice containing the index of each cell as (ix, iy, iz). </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 CPUAccess( ) &nbsp; Comp( int ) &nbsp; DevPtr( int ) &nbsp; Disable( ) &nbsp; Free( ) &nbsp; GPUAccess( ) &nbsp; Get( int int int int ) &nbsp; Host( ) &nbsp; HostCopy( ) &nbsp; Index( int int int ) &nbsp; IsNil( ) &nbsp; Len( ) &nbsp; MemType( ) &nbsp; Scalars( ) &nbsp; Set( int int int int float64 ) &nbsp; SetScalar( int int int float64 ) &nbsp; SetVector( int int int data.Vector ) &nbsp; Size( ) &nbsp; Tensors( ) &nbsp; Vectors( ) &nbsp;
-		</span> </p> 
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ClearPostSteps</b>() </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Clear the postStep array, which contains functions that are executed after each solver step. This includes running averages, centering routines to track skyrmions and domain walls etc. </p> 
 
@@ -6047,17 +5789,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Expect</b>(string, float64, float64, float64) </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Used for automated tests: checks if a value is close enough to the expected value </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ExpectB</b>(string, bool, bool) </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Used for automated tests: checks if two booleans are equal </p> 
 
 	
 
@@ -6290,7 +6021,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( time.Duration ) &nbsp; AddDate( int int int ) &nbsp; After( time.Time ) &nbsp; AppendBinary( []uint8 ) &nbsp; AppendFormat( []uint8 string ) &nbsp; AppendText( []uint8 ) &nbsp; Before( time.Time ) &nbsp; Clock( ) &nbsp; Compare( time.Time ) &nbsp; Date( ) &nbsp; Day( ) &nbsp; Equal( time.Time ) &nbsp; Format( string ) &nbsp; GoString( ) &nbsp; GobEncode( ) &nbsp; Hour( ) &nbsp; ISOWeek( ) &nbsp; In( *time.Location ) &nbsp; IsDST( ) &nbsp; IsZero( ) &nbsp; Local( ) &nbsp; Location( ) &nbsp; MarshalBinary( ) &nbsp; MarshalJSON( ) &nbsp; MarshalText( ) &nbsp; Minute( ) &nbsp; Month( ) &nbsp; Nanosecond( ) &nbsp; Round( time.Duration ) &nbsp; Second( ) &nbsp; Sub( time.Time ) &nbsp; Truncate( time.Duration ) &nbsp; UTC( ) &nbsp; Unix( ) &nbsp; UnixMicro( ) &nbsp; UnixMilli( ) &nbsp; UnixNano( ) &nbsp; Weekday( ) &nbsp; Year( ) &nbsp; YearDay( ) &nbsp; Zone( ) &nbsp; ZoneBounds( ) &nbsp;
+			 Add( time.Duration ) &nbsp; AddDate( int int int ) &nbsp; After( time.Time ) &nbsp; AppendFormat( []uint8 string ) &nbsp; Before( time.Time ) &nbsp; Clock( ) &nbsp; Compare( time.Time ) &nbsp; Date( ) &nbsp; Day( ) &nbsp; Equal( time.Time ) &nbsp; Format( string ) &nbsp; GoString( ) &nbsp; GobEncode( ) &nbsp; Hour( ) &nbsp; ISOWeek( ) &nbsp; In( *time.Location ) &nbsp; IsDST( ) &nbsp; IsZero( ) &nbsp; Local( ) &nbsp; Location( ) &nbsp; MarshalBinary( ) &nbsp; MarshalJSON( ) &nbsp; MarshalText( ) &nbsp; Minute( ) &nbsp; Month( ) &nbsp; Nanosecond( ) &nbsp; Round( time.Duration ) &nbsp; Second( ) &nbsp; Sub( time.Time ) &nbsp; Truncate( time.Duration ) &nbsp; UTC( ) &nbsp; Unix( ) &nbsp; UnixMicro( ) &nbsp; UnixMilli( ) &nbsp; UnixNano( ) &nbsp; Weekday( ) &nbsp; Year( ) &nbsp; YearDay( ) &nbsp; Zone( ) &nbsp; ZoneBounds( ) &nbsp;
 		</span> </p> 
 	
 
@@ -6975,21 +6706,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	</div>
   
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">CellIndices</b>() Slice </span> 
-	 <p style="margin-left:40px" class="api-docstring"> 4D slice containing the index of each cell as (ix, iy, iz). </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 CPUAccess( ) &nbsp; Comp( int ) &nbsp; DevPtr( int ) &nbsp; Disable( ) &nbsp; Free( ) &nbsp; GPUAccess( ) &nbsp; Get( int int int int ) &nbsp; Host( ) &nbsp; HostCopy( ) &nbsp; Index( int int int ) &nbsp; IsNil( ) &nbsp; Len( ) &nbsp; MemType( ) &nbsp; Scalars( ) &nbsp; Set( int int int int float64 ) &nbsp; SetScalar( int int int float64 ) &nbsp; SetVector( int int int data.Vector ) &nbsp; Size( ) &nbsp; Tensors( ) &nbsp; Vectors( ) &nbsp;
-		</span> </p> 
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Circle</b>(float64) Shape </span> 
 	 <p style="margin-left:40px" class="api-docstring"> 2D Circle with diameter in meter </p> 
 
@@ -7030,7 +6746,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Cone</b>(float64, float64) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> 3D Cone with diameter and height in meter. The base is at z=0.<br>If the height is positive, the tip points in the +z direction. </p> 
+	 <p style="margin-left:40px" class="api-docstring"> 3D Cone with diameter and height in meter. The base is at z=0. If the height is positive, the tip points in the +z direction. </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -7254,36 +6970,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 			<a href="examples.html#example4">[4]</a> 
 		 
 		</p> 
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">CurrentMag</b>() Config </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Returns the current magnetization as a Config. E.g. CurrentMag().Add(0.1, RandomMagSeed(123)) will return a Config with the current magnetization plus some noise. </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( float64 Config ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Transl( float64 float64 float64 ) &nbsp;
-		</span> </p> 
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">CustomQuantity</b>(Slice) Quantity </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Creates an arbitrary custom Quantity from a user provided (scalar or vector) slice. The slice should match the simulation grid size, and can be created with NewScalarMask or NewVectorMask, or loaded in via Loadfile. Variations in slice values are not restricted to the 256 region limit. </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 EvalTo( ) &nbsp;
-		</span> </p> 
-	
-
 	
 
 	</p>
@@ -7924,17 +7610,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	</div>
   
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ExpectB</b>(string, bool, bool) </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Used for automated tests: checks if two booleans are equal </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ExpectV</b>(string, data.Vector, data.Vector, float64) </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Used for automated tests: checks if a vector is close enough to the expected value </p> 
 
@@ -7948,17 +7623,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">expm1</b>(float64) float64 </span> 
 	 <p style="margin-left:40px" class="api-docstring">     Expm1 returns e**x - 1, the base-e exponential of x minus 1. It is more     accurate than Exp(x) - 1 when x is near zero. </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_AllRegionShapes</b>() func(int) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Returns a function that gives the shape of each region. Does not automatically update if the region is redefined or moved with Shift. Call as: allregions := ext_AllRegionShapes(); shape := allregions(i); on seperate lines. Note: double parentheses as ext_AllRegionShapes()(i) are not supported in mx3 scripts and must be split across two lines. </p> 
 
 	
 
@@ -8244,65 +7908,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	</div>
   
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_GeomEdge</b>(string) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Returns an edge (+x, -x, +y, -y, +z, -z) of the geometry as a Shape. The Shape may not update automatically after changes to the mesh or geometry; rerun the function to refresh. </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( Shape ) &nbsp; Intersect( Shape ) &nbsp; Inverse( ) &nbsp; Repeat( float64 float64 float64 ) &nbsp; RotX( float64 ) &nbsp; RotY( float64 ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Sub( Shape ) &nbsp; Transl( float64 float64 float64 ) &nbsp; Xor( Shape ) &nbsp;
-		</span> </p> 
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_grainboundaries</b>(int, int, int, float64, int) </span> 
-	 <p style="margin-left:40px" class="api-docstring"> (startregion, numgrains, offset, boundarythickness, zeroflag). Given existing regions, reassigns grain boundaries of boundarythickness to new region values, starting at offset. Zeroflag: 1 = region0 is normal, 0 = region0 acts as edge but no boundary itself, -1 = ignore region0 entirely. grainboundary_edgeX/Y/Z control whether simulatiion box edges are treated as grainboundaries. </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_grainboundary_edgeX</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Treat X edges of simulation box as boundaries. Ignored if PBC in X direction enabled (default= true) </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_grainboundary_edgeY</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Treat Y edges of simulation box as boundaries. Ignored if PBC in Y direction enabled (default= true) </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_grainboundary_edgeZ</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Treat Z edges of simulation box as boundaries. Ignored if PBC in Z direction enabled (default= false) </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_grainCutShape</b> </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Whether to add the complete (3D) voronoi grain, only if its centre lies within the shape (default=false) </p> 
 
@@ -8464,7 +8069,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ext_makegrains</b>(float64, int, int) </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Voronoi tesselation (grain size, num regions, seed) </p> 
+	 <p style="margin-left:40px" class="api-docstring"> Voronoi tesselation (grain size, num regions) </p> 
 
 	
 
@@ -9303,7 +8908,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Layer</b>(int) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Single layer (along z), by integer index starting from 0. Note: based on the current cell size, so may no longer be valid if cell size is changed. </p> 
+	 <p style="margin-left:40px" class="api-docstring"> Single layer (along z), by integer index starting from 0 </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -9327,7 +8932,7 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
   
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Layers</b>(int, int) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Part of space between cell layer1 (inclusive) and layer2 (exclusive), in integer indices. Note: based on the current cell size, so may no longer be valid if cell size is changed. </p> 
+	 <p style="margin-left:40px" class="api-docstring"> Part of space between cell layer1 (inclusive) and layer2 (exclusive), in integer indices </p> 
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
@@ -9349,36 +8954,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">ldexp</b>(float64, int) float64 </span> 
 	 <p style="margin-left:40px" class="api-docstring">     Ldexp is the inverse of Frexp. It returns frac × 2**exp. </p> 
 
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Line</b>(float64, float64, float64, float64, float64, float64, float64, string) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> 3D line segment between (x1, y1, z1) and (x2, y2, z2), with given diameter, in meter.<br>Last element specifies the line cap, which can be 'infinite', 'round' or 'flat'.<br>Using zero diameter creates a minimally connected geometry, unless it is later scaled/rotated. </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( Shape ) &nbsp; Intersect( Shape ) &nbsp; Inverse( ) &nbsp; Repeat( float64 float64 float64 ) &nbsp; RotX( float64 ) &nbsp; RotY( float64 ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Sub( Shape ) &nbsp; Transl( float64 float64 float64 ) &nbsp; Xor( Shape ) &nbsp;
-		</span> </p> 
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Line2D</b>(float64, float64, float64, float64, float64, string) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> 2D equivalent of Line(), resulting in a uniform fill along the z-axis </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( Shape ) &nbsp; Intersect( Shape ) &nbsp; Inverse( ) &nbsp; Repeat( float64 float64 float64 ) &nbsp; RotX( float64 ) &nbsp; RotY( float64 ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Sub( Shape ) &nbsp; Transl( float64 float64 float64 ) &nbsp; Xor( Shape ) &nbsp;
-		</span> </p> 
 	
 
 	
@@ -9728,8 +9303,8 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	</div>
   
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Minimize</b>() bool </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Use steepest conjugate gradient method to minimize the total energy. Returns true if convergence is reached, or false if the wall-clock time limit is exceeded. The wall-clock time limit is disabled by default. </p> 
+	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Minimize</b>() </span> 
+	 <p style="margin-left:40px" class="api-docstring"> Use steepest conjugate gradient method to minimize the total energy </p> 
 
 	
 
@@ -9767,17 +9342,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 			<a href="examples.html#example3">[3]</a> 
 		 
 		</p> 
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">MinimizeWallClockTime</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Wall-clock time limit (seconds) for Minimize that will interrupt the minimization if exceeded. Set to -1 (default) to disable. An interrupted minimization does not guarantee a correct solution. </p> 
-
-	
-
 	
 
 	</p>
@@ -10035,28 +9599,10 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 
 	 
 		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( time.Duration ) &nbsp; AddDate( int int int ) &nbsp; After( time.Time ) &nbsp; AppendBinary( []uint8 ) &nbsp; AppendFormat( []uint8 string ) &nbsp; AppendText( []uint8 ) &nbsp; Before( time.Time ) &nbsp; Clock( ) &nbsp; Compare( time.Time ) &nbsp; Date( ) &nbsp; Day( ) &nbsp; Equal( time.Time ) &nbsp; Format( string ) &nbsp; GoString( ) &nbsp; GobEncode( ) &nbsp; Hour( ) &nbsp; ISOWeek( ) &nbsp; In( *time.Location ) &nbsp; IsDST( ) &nbsp; IsZero( ) &nbsp; Local( ) &nbsp; Location( ) &nbsp; MarshalBinary( ) &nbsp; MarshalJSON( ) &nbsp; MarshalText( ) &nbsp; Minute( ) &nbsp; Month( ) &nbsp; Nanosecond( ) &nbsp; Round( time.Duration ) &nbsp; Second( ) &nbsp; Sub( time.Time ) &nbsp; Truncate( time.Duration ) &nbsp; UTC( ) &nbsp; Unix( ) &nbsp; UnixMicro( ) &nbsp; UnixMilli( ) &nbsp; UnixNano( ) &nbsp; Weekday( ) &nbsp; Year( ) &nbsp; YearDay( ) &nbsp; Zone( ) &nbsp; ZoneBounds( ) &nbsp;
+			 Add( time.Duration ) &nbsp; AddDate( int int int ) &nbsp; After( time.Time ) &nbsp; AppendFormat( []uint8 string ) &nbsp; Before( time.Time ) &nbsp; Clock( ) &nbsp; Compare( time.Time ) &nbsp; Date( ) &nbsp; Day( ) &nbsp; Equal( time.Time ) &nbsp; Format( string ) &nbsp; GoString( ) &nbsp; GobEncode( ) &nbsp; Hour( ) &nbsp; ISOWeek( ) &nbsp; In( *time.Location ) &nbsp; IsDST( ) &nbsp; IsZero( ) &nbsp; Local( ) &nbsp; Location( ) &nbsp; MarshalBinary( ) &nbsp; MarshalJSON( ) &nbsp; MarshalText( ) &nbsp; Minute( ) &nbsp; Month( ) &nbsp; Nanosecond( ) &nbsp; Round( time.Duration ) &nbsp; Second( ) &nbsp; Sub( time.Time ) &nbsp; Truncate( time.Duration ) &nbsp; UTC( ) &nbsp; Unix( ) &nbsp; UnixMicro( ) &nbsp; UnixMilli( ) &nbsp; UnixNano( ) &nbsp; Weekday( ) &nbsp; Year( ) &nbsp; YearDay( ) &nbsp; Zone( ) &nbsp; ZoneBounds( ) &nbsp;
 		</span> </p> 
 	
 
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">NREGION</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Maximum number of regions (256) </p> 
-
-	
-
-	 <p style="margin-left:40px; color:grey"> examples: 
-		 
-			<a href="examples.html#example12">[12]</a> 
-		 
-			<a href="examples.html#example15">[15]</a> 
-		 
-		</p> 
 	
 
 	</p>
@@ -10414,8 +9960,8 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	</div>
   
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Relax</b>() bool </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Try to minimize the total energy. Returns true if convergence is reached, or false if the wall-clock time limit is exceeded. The wall-clock time limit is disabled by default. </p> 
+	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Relax</b>() </span> 
+	 <p style="margin-left:40px" class="api-docstring"> Try to minimize the total energy </p> 
 
 	
 
@@ -10442,17 +9988,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">RelaxTorqueThreshold</b> </span> 
 	 <p style="margin-left:40px" class="api-docstring"> MaxTorque threshold for relax(). If set to -1 (default), relax() will stop when the average torque is steady or increasing. </p> 
-
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">RelaxWallClockTime</b> </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Wall-clock time limit (seconds) for Relax that will interrupt the relaxation if exceeded. Set to -1 (default) to disable. </p> 
 
 	
 
@@ -11148,21 +10683,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 	</div>
   
 	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">Superball</b>(float64, float64) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> 3D Superball with diameter in meter and shape parameter p.<br>Interpolates between a cube (p=+∞), sphere (p=1), octahedron (p=0.5) and empty space (p≤0). </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( Shape ) &nbsp; Intersect( Shape ) &nbsp; Inverse( ) &nbsp; Repeat( float64 float64 float64 ) &nbsp; RotX( float64 ) &nbsp; RotY( float64 ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Sub( Shape ) &nbsp; Transl( float64 float64 float64 ) &nbsp; Xor( Shape ) &nbsp;
-		</span> </p> 
-	
-
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
 	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">t</b> </span> 
 	 <p style="margin-left:40px" class="api-docstring"> Total simulated time (s) </p> 
 
@@ -11547,21 +11067,6 @@ tableAdd(E_custom)  // Add a column with the energy related to the custom field
 			<a href="examples.html#example5">[5]</a> 
 		 
 		</p> 
-	
-
-	</p>
-	</div>
-  
-	<div class="api-entry">
-	<p><span style="color:#000088; font-size:1.5em; font-family: monospace"> <b class="api-identifier">VoxelShape</b>(Slice, float64, float64, float64) Shape </span> 
-	 <p style="margin-left:40px" class="api-docstring"> Use slice (ScalarMask containing 0s and 1s) of rectangular cells (with size defined by last 3 arguments) as a 3D object </p> 
-
-	 
-		<p style="margin-left:40px"> <span style="color:grey"> <b>methods:</b> 
-			 Add( Shape ) &nbsp; Intersect( Shape ) &nbsp; Inverse( ) &nbsp; Repeat( float64 float64 float64 ) &nbsp; RotX( float64 ) &nbsp; RotY( float64 ) &nbsp; RotZ( float64 ) &nbsp; Scale( float64 float64 float64 ) &nbsp; Sub( Shape ) &nbsp; Transl( float64 float64 float64 ) &nbsp; Xor( Shape ) &nbsp;
-		</span> </p> 
-	
-
 	
 
 	</p>

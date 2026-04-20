@@ -19,6 +19,7 @@
 </head>
 
 <body>
+<p id="deprecated-page">Warning! These are downloads for mumax3.11.1, which is no longer supported. If you like to use mumax3, we strongly recommend to use <a href="download.html">mumax3.12</a>.</p>
 
     <div id="header" style="display:flex;flex-direction:row;margin:0;">
 
@@ -52,7 +53,7 @@
 
     <h2> Prerequisites </h2>
 
-    To run <b>mumax3.12</b>, you need:
+    To run <b>mumax3.11</b>, you need:
 
     <ul>
         <li> An <b>NVIDIA GPU</b> with at least a compute capability <b>5.0</b>.</li>
@@ -100,7 +101,7 @@
     </p>
 
     <div id="download-old">
-        <p class="oldlink"><a href="download3111.html">Go to mumax3.11.1 downloads</a></p>
+        <p class="oldlink"><a href="download310.html">Go to mumax3.10 downloads</a></p>
     </div>
     
     <script>
@@ -162,9 +163,9 @@
             var link;
 
             if (platform == "windows") {
-                link = "https://mumax.ugent.be/mumax3-binaries/mumax3.12_windows_cuda" + cudaVersion + ".zip";
+                link = "https://mumax.ugent.be/mumax3-binaries/mumax3.11.1_windows_cuda" + cudaVersion + ".zip";
             } else if (platform == "linux") {
-                link = "https://mumax.ugent.be/mumax3-binaries/mumax3.12_linux_cuda" + cudaVersion + ".tar.gz";
+                link = "https://mumax.ugent.be/mumax3-binaries/mumax3.11.1_linux_cuda" + cudaVersion + ".tar.gz";
             } else {
                 link = "#";
             }
@@ -192,7 +193,7 @@
                     'file': file,
                     'platform': platform,
                     'cuda_version': cudaVersion,
-                    'mumax_version': "3.12"
+                    'mumax_version': "3.11.1"
                 });
             });
         }

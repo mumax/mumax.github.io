@@ -48,7 +48,7 @@
 
 <hr />
 
-<h1>mumax 3.11 examples</h1>
+<h1>mumax 3.12 examples</h1>
 
 <p>
 	These are example input scripts, the full API can be found <a href="http://mumax.github.io/api.html">here</a>.<br>
@@ -357,7 +357,7 @@ saveas(geom, &#34;imageShape&#34;)</pre>
 
 Note: these are 3D geometries seen from above. The displayed cell filling is averaged along the thickness (notable in ellipse and layers example). Black means empty space, white is filled.
 
-<hr/><h2 id="ex_initmag">Initial Magnetization</h2>
+<hr/><h2 id="ex_initmag">Initial magnetization</h2>
 Some initial magnetization functions are provided, as well as transformations similar to those on Shapes. See the Config <a href="http://mumax.github.io/api.html">API</a>.
 
 <a id=example5></a><pre>setgridsize(256, 128, 1)
@@ -464,7 +464,7 @@ These initial states are approximate, after setting them it is a good idea to re
 The magnetization can also be set in separate regions, see below.
 
 
-<hr/><h2 id="ex_cheese">Interlude: Rotating Cheese</h2>
+<hr/><h2 id="ex_cheese">Interlude: rotating cheese</h2>
 
 In this example we define a geometry that looks like a slice of cheese and have it rotate in time.
 
@@ -513,7 +513,7 @@ for i:=0; i&lt;=90; i=i+30{
 </figure><br style="clear:both"/> 
 
 
-<hr/><h2 id="ex_regions">Regions: Space-dependent Parameters</h2>
+<hr/><h2 id="ex_regions">Regions: space-dependent parameters</h2>
 
 <p>Space-dependent parameters are defined using material <i>regions</i>. Regions are numbered 0-255 and represent different materials. Each cell can belong to only one region. At the start of a simulation all cells have region number 0.</p>
 
@@ -674,7 +674,7 @@ saveas(MFM, &#34;lift_90nm&#34;)</pre>
 </figure><br style="clear:both"/> 
 
 
-<hr/><h2 id="ex_PMA">PMA Racetrack</h2>
+<hr/><h2 id="ex_PMA">PMA racetrack</h2>
 In this example we drive a domain wall in PMA material by spin-transfer torque.  We set up a post-step function that makes the simulation box "follow" the domain wall. Like this, only a small number of cells is needed to simulate an infinitely long magnetic wire.
 
 <a id=example10></a><pre>setGridSize(128, 128, 1)
@@ -730,7 +730,7 @@ run(.5e-9)</pre>
 Since we center on the domain wall we can not see that it is actually moving, but the domain wall breakdown is visible.
 
 
-<hr/><h2 id="ex_Py">Py Racetrack</h2>
+<hr/><h2 id="ex_Py">Py racetrack</h2>
 
 In this example we drive a vortex wall in Permalloy by spin-transfer torque. The simulation box "follows" the domain wall. By removing surface charges at the left and right ends, we mimic an infintely long wire.
 
@@ -838,10 +838,10 @@ setGeom(circle(N*c))
 // define grains with region number 0-255
 grainSize  := 40e-9  // m
 randomSeed := 1234567
-maxRegion  := 255
+maxRegion  := NREGION - 1
 ext_makegrains(grainSize, maxRegion, randomSeed)
 
-defregion(256, circle(N*c).inverse()) // region 256 is outside, not really needed
+defregion(0, circle(N*c).inverse()) // region 0 is outside, not really needed
 
 alpha = 3
 Kc1   = 1000
@@ -1054,7 +1054,7 @@ c := 5e-9
 setgridsize(Nx, Ny, 1)
 setcellsize(c, c, c)
 
-ext_makegrains(30e-9, 256, 0)
+ext_makegrains(30e-9, NREGION, 0)
 
 // PMA material
 Ku1   = 0.4e6
@@ -1064,12 +1064,12 @@ alpha = 1
 
 delta := 0.2 // anisotropy variation
 
-for i:=0; i&lt;256; i++{
+for i:=0; i&lt;NREGION; i++{
 	// random cubic anisotropy direction
 	AnisU.SetRegion(i, vector(delta*(rand()-0.5), delta*(rand()-0.5), 1))
 
 	// strongly reduce exchange coupling between grains
-	for j:=i+1; j&lt;256; j++{
+	for j:=i+1; j&lt;NREGION; j++{
 		ext_scaleExchange(i, j, 0.1)
 	}
 }
